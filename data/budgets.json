@@ -1,0 +1,3033 @@
+{
+  "182": {
+    "estimatedCost": 2148.19,
+    "actualCost": 2162.56,
+    "budgetedSum": 3914.8,
+    "usedBudget": 3914.8,
+    "currency": "CHF"
+  },
+  "197": {
+    "estimatedCost": 0,
+    "actualCost": 115622.25,
+    "budgetedSum": 248838,
+    "usedBudget": 260202.34,
+    "currency": "PLN"
+  },
+  "236": {
+    "estimatedCost": 16.56,
+    "actualCost": 831.4,
+    "budgetedSum": 770.4,
+    "usedBudget": 770.4,
+    "currency": "CHF"
+  },
+  "267": {
+    "estimatedCost": 5098.37,
+    "actualCost": 3936.27,
+    "budgetedSum": 10320,
+    "usedBudget": 10320,
+    "currency": "CHF"
+  },
+  "282": {
+    "estimatedCost": 5298.21,
+    "actualCost": 6296.26,
+    "budgetedSum": 9568.7,
+    "usedBudget": 9568.7,
+    "currency": "CHF"
+  },
+  "285": {
+    "estimatedCost": 3972.12,
+    "actualCost": 5122.75,
+    "budgetedSum": 6952,
+    "usedBudget": 6952,
+    "currency": "CHF"
+  },
+  "309": {
+    "estimatedCost": 9136.99,
+    "actualCost": 3643.58,
+    "budgetedSum": 15588.96,
+    "usedBudget": 15588.96,
+    "currency": "USD"
+  },
+  "351": {
+    "estimatedCost": 1,
+    "actualCost": 11029.85,
+    "budgetedSum": 19616,
+    "usedBudget": 19616.44,
+    "currency": "CHF"
+  },
+  "368": {
+    "estimatedCost": 4001.98,
+    "actualCost": 14513.95,
+    "budgetedSum": 17778,
+    "usedBudget": 17778,
+    "currency": "EUR"
+  },
+  "372": {
+    "estimatedCost": 0,
+    "actualCost": 1054.09,
+    "budgetedSum": 1122.6733,
+    "usedBudget": 1227.36,
+    "currency": "USD"
+  },
+  "373": {
+    "estimatedCost": 9299.3,
+    "actualCost": 9848.85,
+    "budgetedSum": 17035.2,
+    "usedBudget": 17035.2,
+    "currency": "EUR"
+  },
+  "388": {
+    "estimatedCost": 1,
+    "actualCost": 5227.64,
+    "budgetedSum": 10843.5,
+    "usedBudget": 0,
+    "currency": "CHF"
+  },
+  "394": {
+    "estimatedCost": 16.3,
+    "actualCost": 7612.87,
+    "budgetedSum": 9422.5,
+    "usedBudget": 9422.5,
+    "currency": "CHF"
+  },
+  "400": {
+    "estimatedCost": 15239.62,
+    "actualCost": 21110.17,
+    "budgetedSum": 25788.383,
+    "usedBudget": 23661.473,
+    "currency": "PLN"
+  },
+  "436": {
+    "estimatedCost": 193260,
+    "actualCost": 81380.18,
+    "budgetedSum": 360000,
+    "usedBudget": 0,
+    "currency": "EUR"
+  },
+  "577": {
+    "estimatedCost": 0,
+    "actualCost": 10649.58,
+    "budgetedSum": 0,
+    "usedBudget": 2000,
+    "currency": "PLN"
+  },
+  "592": {
+    "estimatedCost": 8368.45,
+    "actualCost": 7996.55,
+    "budgetedSum": 15588,
+    "usedBudget": 15588,
+    "currency": "EUR"
+  },
+  "594": {
+    "estimatedCost": 364.6,
+    "actualCost": 1324.49,
+    "budgetedSum": 665,
+    "usedBudget": 963.5,
+    "currency": "CHF"
+  },
+  "623": {
+    "estimatedCost": 754,
+    "actualCost": 1620.41,
+    "budgetedSum": 1520,
+    "usedBudget": 1520.03,
+    "currency": "CHF"
+  },
+  "637": {
+    "estimatedCost": 3403.57,
+    "actualCost": 4552.1,
+    "budgetedSum": 6679.5,
+    "usedBudget": 6679.5,
+    "currency": "CHF"
+  },
+  "686": {
+    "estimatedCost": 10963.8,
+    "actualCost": 6876.09,
+    "budgetedSum": 19882.4,
+    "usedBudget": 16890.1,
+    "currency": "CHF"
+  },
+  "691": {
+    "estimatedCost": 4786.81,
+    "actualCost": 14008.87,
+    "budgetedSum": 7940.83,
+    "usedBudget": 7940.83,
+    "currency": "USD"
+  },
+  "812": {
+    "estimatedCost": 602.95,
+    "actualCost": 583.35,
+    "budgetedSum": 1027.2,
+    "usedBudget": 1027.2,
+    "currency": "CHF"
+  },
+  "825": {
+    "estimatedCost": 882.4,
+    "actualCost": 872.61,
+    "budgetedSum": 1478,
+    "usedBudget": 1478,
+    "currency": "EUR"
+  },
+  "843": {
+    "estimatedCost": 0,
+    "actualCost": 1125.04,
+    "budgetedSum": 1179.6158,
+    "usedBudget": 2273.1,
+    "currency": "CHF"
+  },
+  "860": {
+    "estimatedCost": 0,
+    "actualCost": 2354.44,
+    "budgetedSum": 3585.4604,
+    "usedBudget": 3573,
+    "currency": "EUR"
+  },
+  "895": {
+    "estimatedCost": 986.64,
+    "actualCost": 725.16,
+    "budgetedSum": 1950,
+    "usedBudget": 1950,
+    "currency": "CHF"
+  },
+  "905": {
+    "estimatedCost": 2483.93,
+    "actualCost": 1912.5,
+    "budgetedSum": 4870,
+    "usedBudget": 0,
+    "currency": "CHF"
+  },
+  "924": {
+    "estimatedCost": 186.13,
+    "actualCost": 281.48,
+    "budgetedSum": 337,
+    "usedBudget": 337,
+    "currency": "CHF"
+  },
+  "935": {
+    "estimatedCost": 555.01,
+    "actualCost": 1589.6,
+    "budgetedSum": 916,
+    "usedBudget": 916,
+    "currency": "EUR"
+  },
+  "938": {
+    "estimatedCost": 18163.27,
+    "actualCost": 15834.67,
+    "budgetedSum": 38063.906,
+    "usedBudget": 37796.61,
+    "currency": "PLN"
+  },
+  "941": {
+    "estimatedCost": 208.82,
+    "actualCost": 213.36,
+    "budgetedSum": 348,
+    "usedBudget": 348,
+    "currency": "EUR"
+  },
+  "944": {
+    "estimatedCost": 633.58,
+    "actualCost": 674.72,
+    "budgetedSum": 1143.56,
+    "usedBudget": 1143.56,
+    "currency": "USD"
+  },
+  "957": {
+    "estimatedCost": 6638.86,
+    "actualCost": 6996.19,
+    "budgetedSum": 11131,
+    "usedBudget": 11131,
+    "currency": "EUR"
+  },
+  "958": {
+    "estimatedCost": 0,
+    "actualCost": 6715.6,
+    "budgetedSum": 0,
+    "usedBudget": 0,
+    "currency": "CHF"
+  },
+  "998": {
+    "estimatedCost": 8368.53,
+    "actualCost": 9767.9,
+    "budgetedSum": 17318.25,
+    "usedBudget": 17318.25,
+    "currency": "CHF"
+  },
+  "1019": {
+    "estimatedCost": 4595.82,
+    "actualCost": 2212.91,
+    "budgetedSum": 9109.294,
+    "usedBudget": 9174.946,
+    "currency": "EUR"
+  },
+  "1028": {
+    "estimatedCost": 489.4,
+    "actualCost": 426.77,
+    "budgetedSum": 889.5,
+    "usedBudget": 889.5,
+    "currency": "EUR"
+  },
+  "1040": {
+    "estimatedCost": 1996.35,
+    "actualCost": 2145.09,
+    "budgetedSum": 3296.1,
+    "usedBudget": 3296.1,
+    "currency": "USD"
+  },
+  "1047": {
+    "estimatedCost": 2177.24,
+    "actualCost": 2154.49,
+    "budgetedSum": 3750,
+    "usedBudget": 3750,
+    "currency": "CHF"
+  },
+  "1056": {
+    "estimatedCost": 2803.7,
+    "actualCost": 2642.03,
+    "budgetedSum": 4682.52,
+    "usedBudget": 4682.52,
+    "currency": "USD"
+  },
+  "1058": {
+    "estimatedCost": 968.38,
+    "actualCost": 1087.34,
+    "budgetedSum": 1616.16,
+    "usedBudget": 1616.16,
+    "currency": "USD"
+  },
+  "1064": {
+    "estimatedCost": 1781.16,
+    "actualCost": 1686.97,
+    "budgetedSum": 2987.46,
+    "usedBudget": 2987.46,
+    "currency": "USD"
+  },
+  "1087": {
+    "estimatedCost": 1138.57,
+    "actualCost": 711.28,
+    "budgetedSum": 2299.5,
+    "usedBudget": 2299.5,
+    "currency": "CHF"
+  },
+  "1092": {
+    "estimatedCost": 3594.38,
+    "actualCost": 3719.55,
+    "budgetedSum": 7543.8,
+    "usedBudget": 7543.8,
+    "currency": "CHF"
+  },
+  "1093": {
+    "estimatedCost": 1851.23,
+    "actualCost": 1521.99,
+    "budgetedSum": 3576.72,
+    "usedBudget": 3576.72,
+    "currency": "CHF"
+  },
+  "1095": {
+    "estimatedCost": 433.36,
+    "actualCost": 350.86,
+    "budgetedSum": 730.24,
+    "usedBudget": 730.24,
+    "currency": "USD"
+  },
+  "1113": {
+    "estimatedCost": 1454.08,
+    "actualCost": 1134.62,
+    "budgetedSum": 2456,
+    "usedBudget": 2456,
+    "currency": "EUR"
+  },
+  "1114": {
+    "estimatedCost": 4283,
+    "actualCost": 4239.64,
+    "budgetedSum": 8617.88,
+    "usedBudget": 8617.88,
+    "currency": "CHF"
+  },
+  "1133": {
+    "estimatedCost": 0,
+    "actualCost": 5837.05,
+    "budgetedSum": 6320.5054,
+    "usedBudget": 6669,
+    "currency": "EUR"
+  },
+  "1135": {
+    "estimatedCost": 9479.19,
+    "actualCost": 10169.04,
+    "budgetedSum": 18501.9,
+    "usedBudget": 18501.9,
+    "currency": "CHF"
+  },
+  "1136": {
+    "estimatedCost": 4927.03,
+    "actualCost": 6210.98,
+    "budgetedSum": 9190,
+    "usedBudget": 9190,
+    "currency": "EUR"
+  },
+  "1142": {
+    "estimatedCost": 353.41,
+    "actualCost": 105.54,
+    "budgetedSum": 601.2,
+    "usedBudget": 601.2,
+    "currency": "CHF"
+  },
+  "1144": {
+    "estimatedCost": 134.45,
+    "actualCost": 177.76,
+    "budgetedSum": 227.7,
+    "usedBudget": 227.7,
+    "currency": "CHF"
+  },
+  "1146": {
+    "estimatedCost": 165.04,
+    "actualCost": 230.19,
+    "budgetedSum": 280.2,
+    "usedBudget": 280.2,
+    "currency": "CHF"
+  },
+  "1147": {
+    "estimatedCost": 532.09,
+    "actualCost": 382.93,
+    "budgetedSum": 910.2,
+    "usedBudget": 910.2,
+    "currency": "CHF"
+  },
+  "1155": {
+    "estimatedCost": 5096,
+    "actualCost": 7271.81,
+    "budgetedSum": 10810,
+    "usedBudget": 10810,
+    "currency": "CHF"
+  },
+  "1160": {
+    "estimatedCost": 1224.46,
+    "actualCost": 983.17,
+    "budgetedSum": 2225,
+    "usedBudget": 2225,
+    "currency": "EUR"
+  },
+  "1161": {
+    "estimatedCost": 258.89,
+    "actualCost": 234.92,
+    "budgetedSum": 443.7,
+    "usedBudget": 443.7,
+    "currency": "CHF"
+  },
+  "1166": {
+    "estimatedCost": 2248.28,
+    "actualCost": 2927.45,
+    "budgetedSum": 3923.15,
+    "usedBudget": 3923.15,
+    "currency": "CHF"
+  },
+  "1177": {
+    "estimatedCost": 1010.31,
+    "actualCost": 621.22,
+    "budgetedSum": 1733.4,
+    "usedBudget": 1733.4,
+    "currency": "CHF"
+  },
+  "1193": {
+    "estimatedCost": 486.84,
+    "actualCost": 588.96,
+    "budgetedSum": 808.08,
+    "usedBudget": 808.08,
+    "currency": "USD"
+  },
+  "1194": {
+    "estimatedCost": 2965.08,
+    "actualCost": 3303.08,
+    "budgetedSum": 5291,
+    "usedBudget": 5291,
+    "currency": "EUR"
+  },
+  "1203": {
+    "estimatedCost": 487.36,
+    "actualCost": 473.72,
+    "budgetedSum": 829.2,
+    "usedBudget": 829.2,
+    "currency": "CHF"
+  },
+  "1204": {
+    "estimatedCost": 3137.97,
+    "actualCost": 2791.08,
+    "budgetedSum": 5088,
+    "usedBudget": 5088,
+    "currency": "EUR"
+  },
+  "1205": {
+    "estimatedCost": 1638.14,
+    "actualCost": 1860.41,
+    "budgetedSum": 2985,
+    "usedBudget": 275,
+    "currency": "EUR"
+  },
+  "1207": {
+    "estimatedCost": 261.59,
+    "actualCost": 279.66,
+    "budgetedSum": 433.5,
+    "usedBudget": 433.5,
+    "currency": "EUR"
+  },
+  "1209": {
+    "estimatedCost": 7047,
+    "actualCost": 5473.47,
+    "budgetedSum": 10551,
+    "usedBudget": 0,
+    "currency": "CHF"
+  },
+  "1236": {
+    "estimatedCost": 756.75,
+    "actualCost": 585.61,
+    "budgetedSum": 1307.4,
+    "usedBudget": 0,
+    "currency": "CHF"
+  },
+  "1237": {
+    "estimatedCost": 226.72,
+    "actualCost": 306.17,
+    "budgetedSum": 391.2,
+    "usedBudget": 391.2,
+    "currency": "CHF"
+  },
+  "1246": {
+    "estimatedCost": 431.71,
+    "actualCost": 416.48,
+    "budgetedSum": 730.24,
+    "usedBudget": 730.24,
+    "currency": "USD"
+  },
+  "1249": {
+    "estimatedCost": 1242.79,
+    "actualCost": 1227.29,
+    "budgetedSum": 2153,
+    "usedBudget": 2153,
+    "currency": "CHF"
+  },
+  "1254": {
+    "estimatedCost": 660.73,
+    "actualCost": 348.11,
+    "budgetedSum": 1154.9039,
+    "usedBudget": 1154.0573,
+    "currency": "CHF"
+  },
+  "1259": {
+    "estimatedCost": 0,
+    "actualCost": 1785.69,
+    "budgetedSum": 6158.0913,
+    "usedBudget": 6160,
+    "currency": "EUR"
+  },
+  "1263": {
+    "estimatedCost": 129.94,
+    "actualCost": 133.11,
+    "budgetedSum": 221.85,
+    "usedBudget": 221.85,
+    "currency": "CHF"
+  },
+  "1269": {
+    "estimatedCost": 412.38,
+    "actualCost": 267.56,
+    "budgetedSum": 690,
+    "usedBudget": 690,
+    "currency": "EUR"
+  },
+  "1274": {
+    "estimatedCost": 5447.93,
+    "actualCost": 2830.9,
+    "budgetedSum": 10501,
+    "usedBudget": 10501,
+    "currency": "EUR"
+  },
+  "1288": {
+    "estimatedCost": 1025.05,
+    "actualCost": 861.48,
+    "budgetedSum": 1715.6,
+    "usedBudget": 1715.6,
+    "currency": "USD"
+  },
+  "1299": {
+    "estimatedCost": 521.98,
+    "actualCost": 268.92,
+    "budgetedSum": 1018,
+    "usedBudget": 1018,
+    "currency": "EUR"
+  },
+  "1327": {
+    "estimatedCost": 777.74,
+    "actualCost": 704.26,
+    "budgetedSum": 1404.5,
+    "usedBudget": 1404.5,
+    "currency": "EUR"
+  },
+  "1328": {
+    "estimatedCost": 2793.31,
+    "actualCost": 2756.02,
+    "budgetedSum": 4629,
+    "usedBudget": 4629,
+    "currency": "EUR"
+  },
+  "1340": {
+    "estimatedCost": 2514.13,
+    "actualCost": 2462.46,
+    "budgetedSum": 4847,
+    "usedBudget": 4847,
+    "currency": "EUR"
+  },
+  "1347": {
+    "estimatedCost": 1323.99,
+    "actualCost": 477.51,
+    "budgetedSum": 2298.8,
+    "usedBudget": 764.12,
+    "currency": "CHF"
+  },
+  "1352": {
+    "estimatedCost": 6982.39,
+    "actualCost": 6529.05,
+    "budgetedSum": 12687.6,
+    "usedBudget": 12687.6,
+    "currency": "CHF"
+  },
+  "1354": {
+    "estimatedCost": 5150.76,
+    "actualCost": 4152.06,
+    "budgetedSum": 9252.66,
+    "usedBudget": 9252.66,
+    "currency": "USD"
+  },
+  "1357": {
+    "estimatedCost": 1851.71,
+    "actualCost": 1577.38,
+    "budgetedSum": 3601.22,
+    "usedBudget": 3601.22,
+    "currency": "USD"
+  },
+  "1358": {
+    "estimatedCost": 5080.51,
+    "actualCost": 3752.83,
+    "budgetedSum": 8606.6,
+    "usedBudget": 8606.6,
+    "currency": "USD"
+  },
+  "1359": {
+    "estimatedCost": 1335.16,
+    "actualCost": 1427.41,
+    "budgetedSum": 2206.5,
+    "usedBudget": 2206.5,
+    "currency": "EUR"
+  },
+  "1360": {
+    "estimatedCost": 1015.22,
+    "actualCost": 1444.46,
+    "budgetedSum": 1721.55,
+    "usedBudget": 1721.55,
+    "currency": "USD"
+  },
+  "1367": {
+    "estimatedCost": 477.95,
+    "actualCost": 398.87,
+    "budgetedSum": 817.2,
+    "usedBudget": 817.2,
+    "currency": "CHF"
+  },
+  "1370": {
+    "estimatedCost": 1884.29,
+    "actualCost": 1674.88,
+    "budgetedSum": 3332.8,
+    "usedBudget": 3332.8,
+    "currency": "CHF"
+  },
+  "1371": {
+    "estimatedCost": 0,
+    "actualCost": 0,
+    "budgetedSum": 440,
+    "usedBudget": 440,
+    "currency": "CHF"
+  },
+  "1373": {
+    "estimatedCost": 685.33,
+    "actualCost": 728.97,
+    "budgetedSum": 1194,
+    "usedBudget": 1194,
+    "currency": "EUR"
+  },
+  "1377": {
+    "estimatedCost": 7394.74,
+    "actualCost": 3619.9,
+    "budgetedSum": 14855,
+    "usedBudget": 14855,
+    "currency": "CHF"
+  },
+  "1379": {
+    "estimatedCost": 189.82,
+    "actualCost": 167.17,
+    "budgetedSum": 314.5,
+    "usedBudget": 314.5,
+    "currency": "EUR"
+  },
+  "1382": {
+    "estimatedCost": 545.07,
+    "actualCost": 523,
+    "budgetedSum": 928.2,
+    "usedBudget": 928.2,
+    "currency": "CHF"
+  },
+  "1387": {
+    "estimatedCost": 4653.26,
+    "actualCost": 3407.22,
+    "budgetedSum": 7815,
+    "usedBudget": 7815,
+    "currency": "EUR"
+  },
+  "1391": {
+    "estimatedCost": 0,
+    "actualCost": 29783,
+    "budgetedSum": 30000,
+    "usedBudget": 30000,
+    "currency": "PLN"
+  },
+  "1396": {
+    "estimatedCost": 3211.58,
+    "actualCost": 3006.23,
+    "budgetedSum": 5417.79,
+    "usedBudget": 5417.79,
+    "currency": "EUR"
+  },
+  "1399": {
+    "estimatedCost": 0,
+    "actualCost": 576.28,
+    "budgetedSum": 0,
+    "usedBudget": 1291,
+    "currency": "EUR"
+  },
+  "1401": {
+    "estimatedCost": 752.49,
+    "actualCost": 1061.11,
+    "budgetedSum": 1269,
+    "usedBudget": 1269,
+    "currency": "EUR"
+  },
+  "1403": {
+    "estimatedCost": 405.42,
+    "actualCost": 379.72,
+    "budgetedSum": 688.95,
+    "usedBudget": 688.95,
+    "currency": "CHF"
+  },
+  "1408": {
+    "estimatedCost": 587.06,
+    "actualCost": 698.04,
+    "budgetedSum": 971,
+    "usedBudget": 971,
+    "currency": "EUR"
+  },
+  "1414": {
+    "estimatedCost": 12833.01,
+    "actualCost": 10576.27,
+    "budgetedSum": 22972,
+    "usedBudget": 22972,
+    "currency": "CHF"
+  },
+  "1443": {
+    "estimatedCost": 1087.55,
+    "actualCost": 1096.67,
+    "budgetedSum": 1846,
+    "usedBudget": 1846,
+    "currency": "EUR"
+  },
+  "1444": {
+    "estimatedCost": 620.66,
+    "actualCost": 650.31,
+    "budgetedSum": 1055.5,
+    "usedBudget": 1055.5,
+    "currency": "EUR"
+  },
+  "1445": {
+    "estimatedCost": 610.17,
+    "actualCost": 563.74,
+    "budgetedSum": 1013.5,
+    "usedBudget": 0,
+    "currency": "EUR"
+  },
+  "1446": {
+    "estimatedCost": 1752.37,
+    "actualCost": 581.96,
+    "budgetedSum": 3127.6,
+    "usedBudget": 3127.6,
+    "currency": "CHF"
+  },
+  "1448": {
+    "estimatedCost": 5250.77,
+    "actualCost": 3761.47,
+    "budgetedSum": 10212.5,
+    "usedBudget": 10212.5,
+    "currency": "CHF"
+  },
+  "1453": {
+    "estimatedCost": 1687.15,
+    "actualCost": 1949.71,
+    "budgetedSum": 2935.5,
+    "usedBudget": 2935.5,
+    "currency": "EUR"
+  },
+  "1458": {
+    "estimatedCost": 909.81,
+    "actualCost": 919.35,
+    "budgetedSum": 1722.2,
+    "usedBudget": 1722.2,
+    "currency": "USD"
+  },
+  "1460": {
+    "estimatedCost": 758.65,
+    "actualCost": 500.56,
+    "budgetedSum": 942,
+    "usedBudget": 942,
+    "currency": "CHF"
+  },
+  "1474": {
+    "estimatedCost": 15055.9,
+    "actualCost": 15619.72,
+    "budgetedSum": 27651,
+    "usedBudget": 26616,
+    "currency": "EUR"
+  },
+  "1490": {
+    "estimatedCost": 1583.17,
+    "actualCost": 862.69,
+    "budgetedSum": 2905.8804,
+    "usedBudget": 2882.653,
+    "currency": "EUR"
+  },
+  "1500": {
+    "estimatedCost": 366.12,
+    "actualCost": 354.41,
+    "budgetedSum": 602.68,
+    "usedBudget": 602.68,
+    "currency": "USD"
+  },
+  "1505": {
+    "estimatedCost": 1261.25,
+    "actualCost": 1066.62,
+    "budgetedSum": 2288,
+    "usedBudget": 2288,
+    "currency": "EUR"
+  },
+  "1510": {
+    "estimatedCost": 443.82,
+    "actualCost": 430.76,
+    "budgetedSum": 805.44,
+    "usedBudget": 805.44,
+    "currency": "USD"
+  },
+  "1515": {
+    "estimatedCost": 3406.73,
+    "actualCost": 7990.38,
+    "budgetedSum": 7680,
+    "usedBudget": 7680,
+    "currency": "USD"
+  },
+  "1527": {
+    "estimatedCost": 804.45,
+    "actualCost": 600,
+    "budgetedSum": 1544,
+    "usedBudget": 1544,
+    "currency": "EUR"
+  },
+  "1528": {
+    "estimatedCost": 722.88,
+    "actualCost": 907.91,
+    "budgetedSum": 1000,
+    "usedBudget": 1000,
+    "currency": "EUR"
+  },
+  "1529": {
+    "estimatedCost": 5743.99,
+    "actualCost": 5189.45,
+    "budgetedSum": 11838,
+    "usedBudget": 11838,
+    "currency": "CHF"
+  },
+  "1534": {
+    "estimatedCost": 674.95,
+    "actualCost": 499.45,
+    "budgetedSum": 1219.7,
+    "usedBudget": 1219.7,
+    "currency": "CHF"
+  },
+  "1539": {
+    "estimatedCost": 908.18,
+    "actualCost": 895.63,
+    "budgetedSum": 1499.4,
+    "usedBudget": 1499.4,
+    "currency": "USD"
+  },
+  "1540": {
+    "estimatedCost": 0,
+    "actualCost": 791.18,
+    "budgetedSum": 0,
+    "usedBudget": 5904.5,
+    "currency": "CHF"
+  },
+  "1541": {
+    "estimatedCost": 392.01,
+    "actualCost": 363.26,
+    "budgetedSum": 659.7,
+    "usedBudget": 659.7,
+    "currency": "CHF"
+  },
+  "1547": {
+    "estimatedCost": 392.58,
+    "actualCost": 307.9,
+    "budgetedSum": 665.4,
+    "usedBudget": 665.4,
+    "currency": "CHF"
+  },
+  "1549": {
+    "estimatedCost": 491.02,
+    "actualCost": 319.61,
+    "budgetedSum": 912.75,
+    "usedBudget": 912.75,
+    "currency": "CHF"
+  },
+  "1551": {
+    "estimatedCost": 3556.19,
+    "actualCost": 4414.53,
+    "budgetedSum": 5940,
+    "usedBudget": 5940,
+    "currency": "EUR"
+  },
+  "1553": {
+    "estimatedCost": 226.98,
+    "actualCost": 492.58,
+    "budgetedSum": 385.2,
+    "usedBudget": 385.2,
+    "currency": "CHF"
+  },
+  "1554": {
+    "estimatedCost": 1763.38,
+    "actualCost": 1141.21,
+    "budgetedSum": 3199.3523,
+    "usedBudget": 3206.894,
+    "currency": "CHF"
+  },
+  "1559": {
+    "estimatedCost": 2083.6,
+    "actualCost": 2366.97,
+    "budgetedSum": 3600.4,
+    "usedBudget": 3600.4,
+    "currency": "CHF"
+  },
+  "1563": {
+    "estimatedCost": 2138.7,
+    "actualCost": 6549.12,
+    "budgetedSum": 4025.4312,
+    "usedBudget": 13608.7,
+    "currency": "CHF"
+  },
+  "1565": {
+    "estimatedCost": 1101.66,
+    "actualCost": 1141.98,
+    "budgetedSum": 1869,
+    "usedBudget": 1869,
+    "currency": "CHF"
+  },
+  "1567": {
+    "estimatedCost": 411.95,
+    "actualCost": 559.74,
+    "budgetedSum": 770.25,
+    "usedBudget": 770.25,
+    "currency": "CHF"
+  },
+  "1570": {
+    "estimatedCost": 1306.35,
+    "actualCost": 994.45,
+    "budgetedSum": 2430.5,
+    "usedBudget": 2430.5,
+    "currency": "CHF"
+  },
+  "1571": {
+    "estimatedCost": 2282.15,
+    "actualCost": 1328.39,
+    "budgetedSum": 3987.6,
+    "usedBudget": 3987.6,
+    "currency": "CHF"
+  },
+  "1576": {
+    "estimatedCost": 351.74,
+    "actualCost": 320.04,
+    "budgetedSum": 631,
+    "usedBudget": 631,
+    "currency": "EUR"
+  },
+  "1577": {
+    "estimatedCost": 1163.46,
+    "actualCost": 389.74,
+    "budgetedSum": 2341,
+    "usedBudget": 2341,
+    "currency": "CHF"
+  },
+  "1578": {
+    "estimatedCost": 351.74,
+    "actualCost": 289.27,
+    "budgetedSum": 631,
+    "usedBudget": 631,
+    "currency": "EUR"
+  },
+  "1579": {
+    "estimatedCost": 1146.46,
+    "actualCost": 1173.92,
+    "budgetedSum": 2064,
+    "usedBudget": 2064,
+    "currency": "EUR"
+  },
+  "1581": {
+    "estimatedCost": 699.67,
+    "actualCost": 452.98,
+    "budgetedSum": 1194,
+    "usedBudget": 1194,
+    "currency": "CHF"
+  },
+  "1582": {
+    "estimatedCost": 0,
+    "actualCost": 3844.88,
+    "budgetedSum": 0,
+    "usedBudget": 5572.5,
+    "currency": "CHF"
+  },
+  "1583": {
+    "estimatedCost": 585.26,
+    "actualCost": 400.4,
+    "budgetedSum": 979,
+    "usedBudget": 979,
+    "currency": "EUR"
+  },
+  "1584": {
+    "estimatedCost": 56.06,
+    "actualCost": 64.87,
+    "budgetedSum": 119,
+    "usedBudget": 119,
+    "currency": "EUR"
+  },
+  "1585": {
+    "estimatedCost": 616.76,
+    "actualCost": 732.16,
+    "budgetedSum": 1006.72,
+    "usedBudget": 1006.72,
+    "currency": "USD"
+  },
+  "1595": {
+    "estimatedCost": 261.11,
+    "actualCost": 284.58,
+    "budgetedSum": 498.24,
+    "usedBudget": 498.24,
+    "currency": "USD"
+  },
+  "1596": {
+    "estimatedCost": 323.7,
+    "actualCost": 438.53,
+    "budgetedSum": 548.7,
+    "usedBudget": 548.7,
+    "currency": "CHF"
+  },
+  "1597": {
+    "estimatedCost": 349.52,
+    "actualCost": 217.02,
+    "budgetedSum": 595.2,
+    "usedBudget": 595.2,
+    "currency": "CHF"
+  },
+  "1599": {
+    "estimatedCost": 180.29,
+    "actualCost": 225.52,
+    "budgetedSum": 301.25,
+    "usedBudget": 301.25,
+    "currency": "EUR"
+  },
+  "1605": {
+    "estimatedCost": 398.92,
+    "actualCost": 446.5,
+    "budgetedSum": 644.32,
+    "usedBudget": 644.32,
+    "currency": "USD"
+  },
+  "1606": {
+    "estimatedCost": 420.59,
+    "actualCost": 451.1,
+    "budgetedSum": 708.36,
+    "usedBudget": 708.36,
+    "currency": "USD"
+  },
+  "1610": {
+    "estimatedCost": 488.28,
+    "actualCost": 687.91,
+    "budgetedSum": 806,
+    "usedBudget": 806,
+    "currency": "EUR"
+  },
+  "1611": {
+    "estimatedCost": 81.82,
+    "actualCost": 77.91,
+    "budgetedSum": 144.5,
+    "usedBudget": 144.5,
+    "currency": "EUR"
+  },
+  "1613": {
+    "estimatedCost": 87.76,
+    "actualCost": 80.29,
+    "budgetedSum": 146.5,
+    "usedBudget": 146.5,
+    "currency": "EUR"
+  },
+  "1614": {
+    "estimatedCost": 584.73,
+    "actualCost": 1684.07,
+    "budgetedSum": 1038.5,
+    "usedBudget": 1038.5,
+    "currency": "EUR"
+  },
+  "1615": {
+    "estimatedCost": 67.45,
+    "actualCost": 25.14,
+    "budgetedSum": 113.85,
+    "usedBudget": 113.85,
+    "currency": "CHF"
+  },
+  "1616": {
+    "estimatedCost": 630.11,
+    "actualCost": 525.65,
+    "budgetedSum": 1139.24,
+    "usedBudget": 1139.24,
+    "currency": "USD"
+  },
+  "1617": {
+    "estimatedCost": 1047.76,
+    "actualCost": 990.92,
+    "budgetedSum": 1709,
+    "usedBudget": 1709,
+    "currency": "EUR"
+  },
+  "1618": {
+    "estimatedCost": 61.61,
+    "actualCost": 57.96,
+    "budgetedSum": 111.75,
+    "usedBudget": 111.75,
+    "currency": "CHF"
+  },
+  "1619": {
+    "estimatedCost": 2909.74,
+    "actualCost": 948.85,
+    "budgetedSum": 2870.68,
+    "usedBudget": 2870.68,
+    "currency": "USD"
+  },
+  "1620": {
+    "estimatedCost": 98.34,
+    "actualCost": 102.72,
+    "budgetedSum": 166.35,
+    "usedBudget": 166.35,
+    "currency": "CHF"
+  },
+  "1621": {
+    "estimatedCost": 430.74,
+    "actualCost": 340.6,
+    "budgetedSum": 705.38,
+    "usedBudget": 705.38,
+    "currency": "USD"
+  },
+  "1622": {
+    "estimatedCost": 66.17,
+    "actualCost": 62.72,
+    "budgetedSum": 116,
+    "usedBudget": 116,
+    "currency": "EUR"
+  },
+  "1624": {
+    "estimatedCost": 508.09,
+    "actualCost": 443.52,
+    "budgetedSum": 916,
+    "usedBudget": 916,
+    "currency": "EUR"
+  },
+  "1625": {
+    "estimatedCost": 921.06,
+    "actualCost": 679.53,
+    "budgetedSum": 1686,
+    "usedBudget": 1686,
+    "currency": "CHF"
+  },
+  "1626": {
+    "estimatedCost": 211.85,
+    "actualCost": 269.1,
+    "budgetedSum": 358.95,
+    "usedBudget": 0,
+    "currency": "CHF"
+  },
+  "1627": {
+    "estimatedCost": 276.94,
+    "actualCost": 392.75,
+    "budgetedSum": 469.8,
+    "usedBudget": 0,
+    "currency": "CHF"
+  },
+  "1628": {
+    "estimatedCost": 372.71,
+    "actualCost": 388.25,
+    "budgetedSum": 671.92,
+    "usedBudget": 671.92,
+    "currency": "USD"
+  },
+  "1629": {
+    "estimatedCost": 1070.36,
+    "actualCost": 1174.8,
+    "budgetedSum": 1893,
+    "usedBudget": 1893,
+    "currency": "EUR"
+  },
+  "1630": {
+    "estimatedCost": 81.75,
+    "actualCost": 80.72,
+    "budgetedSum": 144.5,
+    "usedBudget": 144.5,
+    "currency": "EUR"
+  },
+  "1633": {
+    "estimatedCost": 269.99,
+    "actualCost": 268.46,
+    "budgetedSum": 486.5,
+    "usedBudget": 486.5,
+    "currency": "EUR"
+  },
+  "1634": {
+    "estimatedCost": 1513.08,
+    "actualCost": 1167.15,
+    "budgetedSum": 2498,
+    "usedBudget": 2498,
+    "currency": "EUR"
+  },
+  "1635": {
+    "estimatedCost": 411.11,
+    "actualCost": 246.97,
+    "budgetedSum": 743,
+    "usedBudget": 743,
+    "currency": "EUR"
+  },
+  "1637": {
+    "estimatedCost": 317.01,
+    "actualCost": 296.23,
+    "budgetedSum": 537,
+    "usedBudget": 537,
+    "currency": "CHF"
+  },
+  "1639": {
+    "estimatedCost": 211.08,
+    "actualCost": 214.72,
+    "budgetedSum": 348,
+    "usedBudget": 348,
+    "currency": "EUR"
+  },
+  "1640": {
+    "estimatedCost": 7443.08,
+    "actualCost": 7508.8,
+    "budgetedSum": 8187.39,
+    "usedBudget": 8187.39,
+    "currency": "USD"
+  },
+  "1642": {
+    "estimatedCost": 117.28,
+    "actualCost": 133.44,
+    "budgetedSum": 198.45,
+    "usedBudget": 198.45,
+    "currency": "CHF"
+  },
+  "1646": {
+    "estimatedCost": 3634.77,
+    "actualCost": 3422.17,
+    "budgetedSum": 7050.2256,
+    "usedBudget": 6839.564,
+    "currency": "PLN"
+  },
+  "1647": {
+    "estimatedCost": 157.42,
+    "actualCost": 203.16,
+    "budgetedSum": 259.5,
+    "usedBudget": 259.5,
+    "currency": "EUR"
+  },
+  "1649": {
+    "estimatedCost": 104.43,
+    "actualCost": 132.51,
+    "budgetedSum": 216.6,
+    "usedBudget": 216.6,
+    "currency": "CHF"
+  },
+  "1650": {
+    "estimatedCost": 689,
+    "actualCost": 139.79,
+    "budgetedSum": 278.5,
+    "usedBudget": 278.5,
+    "currency": "CHF"
+  },
+  "1652": {
+    "estimatedCost": 243.77,
+    "actualCost": 229.85,
+    "budgetedSum": 403,
+    "usedBudget": 403,
+    "currency": "EUR"
+  },
+  "1654": {
+    "estimatedCost": 510.27,
+    "actualCost": 443.32,
+    "budgetedSum": 886.4,
+    "usedBudget": 886.4,
+    "currency": "CHF"
+  },
+  "1655": {
+    "estimatedCost": 144.56,
+    "actualCost": 127.81,
+    "budgetedSum": 258.5,
+    "usedBudget": 258.5,
+    "currency": "EUR"
+  },
+  "1657": {
+    "estimatedCost": 214.45,
+    "actualCost": 246.82,
+    "budgetedSum": 376,
+    "usedBudget": 376,
+    "currency": "EUR"
+  },
+  "1658": {
+    "estimatedCost": 640.5,
+    "actualCost": 685.5,
+    "budgetedSum": 1130,
+    "usedBudget": 1130,
+    "currency": "EUR"
+  },
+  "1659": {
+    "estimatedCost": 354.03,
+    "actualCost": 353.09,
+    "budgetedSum": 601.2,
+    "usedBudget": 601.2,
+    "currency": "CHF"
+  },
+  "1662": {
+    "estimatedCost": 489.54,
+    "actualCost": 341.79,
+    "budgetedSum": 845.95,
+    "usedBudget": 845.95,
+    "currency": "CHF"
+  },
+  "1663": {
+    "estimatedCost": 1332.04,
+    "actualCost": 1396.33,
+    "budgetedSum": 2416.32,
+    "usedBudget": 2416.32,
+    "currency": "USD"
+  },
+  "1664": {
+    "estimatedCost": 606.1,
+    "actualCost": 605.45,
+    "budgetedSum": 1247,
+    "usedBudget": 1247,
+    "currency": "CHF"
+  },
+  "1665": {
+    "estimatedCost": 701.02,
+    "actualCost": 624.01,
+    "budgetedSum": 1262,
+    "usedBudget": 1262,
+    "currency": "EUR"
+  },
+  "1667": {
+    "estimatedCost": 72.3,
+    "actualCost": 97.47,
+    "budgetedSum": 119,
+    "usedBudget": 119,
+    "currency": "EUR"
+  },
+  "1669": {
+    "estimatedCost": 305.14,
+    "actualCost": 256.64,
+    "budgetedSum": 503.36,
+    "usedBudget": 503.36,
+    "currency": "USD"
+  },
+  "1671": {
+    "estimatedCost": 46.59,
+    "actualCost": 43.19,
+    "budgetedSum": 84.25,
+    "usedBudget": 84.25,
+    "currency": "CHF"
+  },
+  "1672": {
+    "estimatedCost": 821.76,
+    "actualCost": 651.95,
+    "budgetedSum": 1477.36,
+    "usedBudget": 1477.36,
+    "currency": "USD"
+  },
+  "1673": {
+    "estimatedCost": 256.67,
+    "actualCost": 208.31,
+    "budgetedSum": 460,
+    "usedBudget": 460,
+    "currency": "EUR"
+  },
+  "1674": {
+    "estimatedCost": 515.99,
+    "actualCost": 444.94,
+    "budgetedSum": 967.75,
+    "usedBudget": 967.75,
+    "currency": "CHF"
+  },
+  "1675": {
+    "estimatedCost": 335.8,
+    "actualCost": 177.25,
+    "budgetedSum": 555.5,
+    "usedBudget": 555.5,
+    "currency": "EUR"
+  },
+  "1677": {
+    "estimatedCost": 925.37,
+    "actualCost": 645.16,
+    "budgetedSum": 1556,
+    "usedBudget": 1556,
+    "currency": "EUR"
+  },
+  "1679": {
+    "estimatedCost": 281.26,
+    "actualCost": 295.92,
+    "budgetedSum": 464,
+    "usedBudget": 464,
+    "currency": "EUR"
+  },
+  "1680": {
+    "estimatedCost": 75.53,
+    "actualCost": 72.39,
+    "budgetedSum": 139.25,
+    "usedBudget": 139.25,
+    "currency": "CHF"
+  },
+  "1682": {
+    "estimatedCost": 301.29,
+    "actualCost": 294.51,
+    "budgetedSum": 538.4,
+    "usedBudget": 538.4,
+    "currency": "USD"
+  },
+  "1683": {
+    "estimatedCost": 296.63,
+    "actualCost": 201.87,
+    "budgetedSum": 538.5,
+    "usedBudget": 538.5,
+    "currency": "CHF"
+  },
+  "1685": {
+    "estimatedCost": 128.98,
+    "actualCost": 113.36,
+    "budgetedSum": 230,
+    "usedBudget": 230,
+    "currency": "EUR"
+  },
+  "1690": {
+    "estimatedCost": 144.66,
+    "actualCost": 143.52,
+    "budgetedSum": 258.5,
+    "usedBudget": 258.5,
+    "currency": "EUR"
+  },
+  "1691": {
+    "estimatedCost": 2199.51,
+    "actualCost": 1729.92,
+    "budgetedSum": 4638.2,
+    "usedBudget": 4638.2,
+    "currency": "CHF"
+  },
+  "1692": {
+    "estimatedCost": 206.85,
+    "actualCost": 167.21,
+    "budgetedSum": 369.34,
+    "usedBudget": 369.34,
+    "currency": "USD"
+  },
+  "1693": {
+    "estimatedCost": 360.62,
+    "actualCost": 268.72,
+    "budgetedSum": 665.4,
+    "usedBudget": 665.4,
+    "currency": "CHF"
+  },
+  "1694": {
+    "estimatedCost": 286.6,
+    "actualCost": 508.97,
+    "budgetedSum": 514.32,
+    "usedBudget": 0,
+    "currency": "USD"
+  },
+  "1695": {
+    "estimatedCost": 0,
+    "actualCost": 857,
+    "budgetedSum": 857,
+    "usedBudget": 857,
+    "currency": "CHF"
+  },
+  "1696": {
+    "estimatedCost": 1560.65,
+    "actualCost": 1340.85,
+    "budgetedSum": 2966,
+    "usedBudget": 2966,
+    "currency": "EUR"
+  },
+  "1697": {
+    "estimatedCost": 1082.5,
+    "actualCost": 929.09,
+    "budgetedSum": 1915.62,
+    "usedBudget": 1915.62,
+    "currency": "USD"
+  },
+  "1698": {
+    "estimatedCost": 113.23,
+    "actualCost": 112.16,
+    "budgetedSum": 201.5,
+    "usedBudget": 201.5,
+    "currency": "EUR"
+  },
+  "1700": {
+    "estimatedCost": 70.34,
+    "actualCost": 32.23,
+    "budgetedSum": 121.05,
+    "usedBudget": 121.05,
+    "currency": "CHF"
+  },
+  "1701": {
+    "estimatedCost": 490.76,
+    "actualCost": 443.59,
+    "budgetedSum": 872.2,
+    "usedBudget": 872.2,
+    "currency": "USD"
+  },
+  "1702": {
+    "estimatedCost": 472.83,
+    "actualCost": 517.99,
+    "budgetedSum": 908.4,
+    "usedBudget": 908.4,
+    "currency": "CHF"
+  },
+  "1704": {
+    "estimatedCost": 457.88,
+    "actualCost": 443.42,
+    "budgetedSum": 805.44,
+    "usedBudget": 805.44,
+    "currency": "USD"
+  },
+  "1705": {
+    "estimatedCost": 767.67,
+    "actualCost": 557.28,
+    "budgetedSum": 1376,
+    "usedBudget": 1376,
+    "currency": "EUR"
+  },
+  "1706": {
+    "estimatedCost": 326.85,
+    "actualCost": 263.99,
+    "budgetedSum": 608.5,
+    "usedBudget": 608.5,
+    "currency": "CHF"
+  },
+  "1710": {
+    "estimatedCost": 951.66,
+    "actualCost": 566.04,
+    "budgetedSum": 1562,
+    "usedBudget": 1562,
+    "currency": "EUR"
+  },
+  "1711": {
+    "estimatedCost": 469.2,
+    "actualCost": 472.69,
+    "budgetedSum": 883.5,
+    "usedBudget": 884.5992,
+    "currency": "CHF"
+  },
+  "1713": {
+    "estimatedCost": 60.78,
+    "actualCost": 36.38,
+    "budgetedSum": 105,
+    "usedBudget": 105,
+    "currency": "CHF"
+  },
+  "1714": {
+    "estimatedCost": 379.52,
+    "actualCost": 505.31,
+    "budgetedSum": 1385.5,
+    "usedBudget": 1385.5,
+    "currency": "CHF"
+  },
+  "1715": {
+    "estimatedCost": 1058.67,
+    "actualCost": 1228.37,
+    "budgetedSum": 1754.4324,
+    "usedBudget": 1739.4777,
+    "currency": "CHF"
+  },
+  "1718": {
+    "estimatedCost": 1092.28,
+    "actualCost": 468.33,
+    "budgetedSum": 1743.72,
+    "usedBudget": 1743.72,
+    "currency": "USD"
+  },
+  "1719": {
+    "estimatedCost": 363.52,
+    "actualCost": 592.61,
+    "budgetedSum": 618.9,
+    "usedBudget": 618.9,
+    "currency": "CHF"
+  },
+  "1720": {
+    "estimatedCost": 60.54,
+    "actualCost": 55.78,
+    "budgetedSum": 102.3,
+    "usedBudget": 102.3,
+    "currency": "USD"
+  },
+  "1723": {
+    "estimatedCost": 179.64,
+    "actualCost": 127.48,
+    "budgetedSum": 317.5,
+    "usedBudget": 317.5,
+    "currency": "EUR"
+  },
+  "1725": {
+    "estimatedCost": 1666.06,
+    "actualCost": 2900.87,
+    "budgetedSum": 3150,
+    "usedBudget": 3150,
+    "currency": "EUR"
+  },
+  "1726": {
+    "estimatedCost": 1167,
+    "actualCost": 1199.58,
+    "budgetedSum": 2200,
+    "usedBudget": 2200,
+    "currency": "PLN"
+  },
+  "1727": {
+    "estimatedCost": 305.31,
+    "actualCost": 296.43,
+    "budgetedSum": 545.5,
+    "usedBudget": 545.5,
+    "currency": "EUR"
+  },
+  "1728": {
+    "estimatedCost": 522.27,
+    "actualCost": 451.96,
+    "budgetedSum": 867,
+    "usedBudget": 867,
+    "currency": "EUR"
+  },
+  "1729": {
+    "estimatedCost": 14332.73,
+    "actualCost": 13436.79,
+    "budgetedSum": 25610,
+    "usedBudget": 25610,
+    "currency": "EUR"
+  },
+  "1731": {
+    "estimatedCost": 4178.82,
+    "actualCost": 3789.69,
+    "budgetedSum": 7267.15,
+    "usedBudget": 7267.15,
+    "currency": "USD"
+  },
+  "1732": {
+    "estimatedCost": 528,
+    "actualCost": 91.82,
+    "budgetedSum": 220,
+    "usedBudget": 220,
+    "currency": "CHF"
+  },
+  "1733": {
+    "estimatedCost": 266.7,
+    "actualCost": 249.58,
+    "budgetedSum": 510,
+    "usedBudget": 510,
+    "currency": "CHF"
+  },
+  "1734": {
+    "estimatedCost": 569.68,
+    "actualCost": 422.57,
+    "budgetedSum": 1077.75,
+    "usedBudget": 1077.75,
+    "currency": "CHF"
+  },
+  "1735": {
+    "estimatedCost": 527.65,
+    "actualCost": 524.76,
+    "budgetedSum": 935,
+    "usedBudget": 935,
+    "currency": "EUR"
+  },
+  "1736": {
+    "estimatedCost": 669.56,
+    "actualCost": 1018.3,
+    "budgetedSum": 1183.5,
+    "usedBudget": 1183.5,
+    "currency": "EUR"
+  },
+  "1737": {
+    "estimatedCost": 1077.07,
+    "actualCost": 977.35,
+    "budgetedSum": 2000,
+    "usedBudget": 2000,
+    "currency": "CHF"
+  },
+  "1739": {
+    "estimatedCost": 353.42,
+    "actualCost": 353.84,
+    "budgetedSum": 567.14,
+    "usedBudget": 567.14,
+    "currency": "USD"
+  },
+  "1740": {
+    "estimatedCost": 821,
+    "actualCost": 176.79,
+    "budgetedSum": 333.5,
+    "usedBudget": 333.5,
+    "currency": "CHF"
+  },
+  "1741": {
+    "estimatedCost": 1122.08,
+    "actualCost": 293.98,
+    "budgetedSum": 542.72,
+    "usedBudget": 542.72,
+    "currency": "USD"
+  },
+  "1742": {
+    "estimatedCost": 499.36,
+    "actualCost": 739.31,
+    "budgetedSum": 817,
+    "usedBudget": 817,
+    "currency": "EUR"
+  },
+  "1743": {
+    "estimatedCost": 4620,
+    "actualCost": 1128.18,
+    "budgetedSum": 2336.6,
+    "usedBudget": 2336.6,
+    "currency": "USD"
+  },
+  "1744": {
+    "estimatedCost": 1686.06,
+    "actualCost": 1523.69,
+    "budgetedSum": 2673.56,
+    "usedBudget": 2673.56,
+    "currency": "USD"
+  },
+  "1745": {
+    "estimatedCost": 662.12,
+    "actualCost": 720.94,
+    "budgetedSum": 1225.6,
+    "usedBudget": 1225.6,
+    "currency": "CHF"
+  },
+  "1746": {
+    "estimatedCost": 150.57,
+    "actualCost": 143.91,
+    "budgetedSum": 294.83,
+    "usedBudget": 294.83,
+    "currency": "CHF"
+  },
+  "1747": {
+    "estimatedCost": 156.4,
+    "actualCost": 216.26,
+    "budgetedSum": 268.5,
+    "usedBudget": 268.5,
+    "currency": "CHF"
+  },
+  "1749": {
+    "estimatedCost": 702.34,
+    "actualCost": 760.11,
+    "budgetedSum": 1262,
+    "usedBudget": 1262,
+    "currency": "EUR"
+  },
+  "1750": {
+    "estimatedCost": 584.97,
+    "actualCost": 520.09,
+    "budgetedSum": 1126,
+    "usedBudget": 1126,
+    "currency": "EUR"
+  },
+  "1752": {
+    "estimatedCost": 197.62,
+    "actualCost": 181.97,
+    "budgetedSum": 358.5,
+    "usedBudget": 358.5,
+    "currency": "CHF"
+  },
+  "1755": {
+    "estimatedCost": 658.1,
+    "actualCost": 551.79,
+    "budgetedSum": 1100,
+    "usedBudget": 1100,
+    "currency": "EUR"
+  },
+  "1756": {
+    "estimatedCost": 795.06,
+    "actualCost": 770.94,
+    "budgetedSum": 1388.3,
+    "usedBudget": 1388.3,
+    "currency": "CHF"
+  },
+  "1757": {
+    "estimatedCost": 484.83,
+    "actualCost": 367.83,
+    "budgetedSum": 863,
+    "usedBudget": 863,
+    "currency": "EUR"
+  },
+  "1758": {
+    "estimatedCost": 60.54,
+    "actualCost": 38.75,
+    "budgetedSum": 102.3,
+    "usedBudget": 102.3,
+    "currency": "USD"
+  },
+  "1759": {
+    "estimatedCost": 421.28,
+    "actualCost": 604.45,
+    "budgetedSum": 696,
+    "usedBudget": 696,
+    "currency": "EUR"
+  },
+  "1764": {
+    "estimatedCost": 137.47,
+    "actualCost": 214.87,
+    "budgetedSum": 391.2,
+    "usedBudget": 391.2,
+    "currency": "CHF"
+  },
+  "1766": {
+    "estimatedCost": 444.42,
+    "actualCost": 481.21,
+    "budgetedSum": 802,
+    "usedBudget": 802,
+    "currency": "EUR"
+  },
+  "1769": {
+    "estimatedCost": 175.56,
+    "actualCost": 140.58,
+    "budgetedSum": 315.51,
+    "usedBudget": 315.51,
+    "currency": "EUR"
+  },
+  "1771": {
+    "estimatedCost": 124.9,
+    "actualCost": 123.97,
+    "budgetedSum": 219.5,
+    "usedBudget": 219.5,
+    "currency": "EUR"
+  },
+  "1775": {
+    "estimatedCost": 225.98,
+    "actualCost": 175.26,
+    "budgetedSum": 391.2,
+    "usedBudget": 391.2,
+    "currency": "CHF"
+  },
+  "1776": {
+    "estimatedCost": 836.7,
+    "actualCost": 417.85,
+    "budgetedSum": 1575.9,
+    "usedBudget": 1575.9,
+    "currency": "CHF"
+  },
+  "1777": {
+    "estimatedCost": 2885.81,
+    "actualCost": 2381.67,
+    "budgetedSum": 5623.23,
+    "usedBudget": 5623.23,
+    "currency": "USD"
+  },
+  "1779": {
+    "estimatedCost": 177.7,
+    "actualCost": 380.66,
+    "budgetedSum": 293,
+    "usedBudget": 293,
+    "currency": "EUR"
+  },
+  "1780": {
+    "estimatedCost": 1900.22,
+    "actualCost": 1395.02,
+    "budgetedSum": 3666,
+    "usedBudget": 0,
+    "currency": "EUR"
+  },
+  "1781": {
+    "estimatedCost": 133.81,
+    "actualCost": 104.22,
+    "budgetedSum": 214.5,
+    "usedBudget": 214.5,
+    "currency": "EUR"
+  },
+  "1782": {
+    "estimatedCost": 112.95,
+    "actualCost": 108.68,
+    "budgetedSum": 201.5,
+    "usedBudget": 201.5,
+    "currency": "EUR"
+  },
+  "1783": {
+    "estimatedCost": 612.68,
+    "actualCost": 474.09,
+    "budgetedSum": 1135.5,
+    "usedBudget": 1135.5,
+    "currency": "CHF"
+  },
+  "1784": {
+    "estimatedCost": 582.89,
+    "actualCost": 587.67,
+    "budgetedSum": 1260,
+    "usedBudget": 0,
+    "currency": "CHF"
+  },
+  "1786": {
+    "estimatedCost": 231.01,
+    "actualCost": 183.09,
+    "budgetedSum": 408.5,
+    "usedBudget": 408.5,
+    "currency": "EUR"
+  },
+  "1787": {
+    "estimatedCost": 319.79,
+    "actualCost": 210.33,
+    "budgetedSum": 574,
+    "usedBudget": 574,
+    "currency": "EUR"
+  },
+  "1788": {
+    "estimatedCost": 329.87,
+    "actualCost": 381.39,
+    "budgetedSum": 635,
+    "usedBudget": 635,
+    "currency": "EUR"
+  },
+  "1789": {
+    "estimatedCost": 287.42,
+    "actualCost": 326.29,
+    "budgetedSum": 467.82,
+    "usedBudget": 467.82,
+    "currency": "USD"
+  },
+  "1791": {
+    "estimatedCost": 132.08,
+    "actualCost": 31.77,
+    "budgetedSum": 232,
+    "usedBudget": 232,
+    "currency": "EUR"
+  },
+  "1792": {
+    "estimatedCost": 140.41,
+    "actualCost": 87.27,
+    "budgetedSum": 260.9,
+    "usedBudget": 261.2264,
+    "currency": "CHF"
+  },
+  "1793": {
+    "estimatedCost": 171.16,
+    "actualCost": 482.55,
+    "budgetedSum": 303,
+    "usedBudget": 303,
+    "currency": "EUR"
+  },
+  "1794": {
+    "estimatedCost": 769.5,
+    "actualCost": 562.96,
+    "budgetedSum": 1270,
+    "usedBudget": 1270,
+    "currency": "EUR"
+  },
+  "1795": {
+    "estimatedCost": 308.29,
+    "actualCost": 308.47,
+    "budgetedSum": 530,
+    "usedBudget": 0,
+    "currency": "EUR"
+  },
+  "1796": {
+    "estimatedCost": 403.52,
+    "actualCost": 495.03,
+    "budgetedSum": 747,
+    "usedBudget": 747,
+    "currency": "CHF"
+  },
+  "1797": {
+    "estimatedCost": 574.81,
+    "actualCost": 406.84,
+    "budgetedSum": 1010.04,
+    "usedBudget": 1010.04,
+    "currency": "USD"
+  },
+  "1798": {
+    "estimatedCost": 74.69,
+    "actualCost": 42.39,
+    "budgetedSum": 139.25,
+    "usedBudget": 139.25,
+    "currency": "CHF"
+  },
+  "1799": {
+    "estimatedCost": 160.7,
+    "actualCost": 193.39,
+    "budgetedSum": 265.68,
+    "usedBudget": 265.68,
+    "currency": "USD"
+  },
+  "1803": {
+    "estimatedCost": 388.78,
+    "actualCost": 314.72,
+    "budgetedSum": 641,
+    "usedBudget": 641,
+    "currency": "EUR"
+  },
+  "1804": {
+    "estimatedCost": 113.02,
+    "actualCost": 108.72,
+    "budgetedSum": 201.5,
+    "usedBudget": 201.5,
+    "currency": "EUR"
+  },
+  "1805": {
+    "estimatedCost": 1054.99,
+    "actualCost": 781.18,
+    "budgetedSum": 2033,
+    "usedBudget": 2033,
+    "currency": "EUR"
+  },
+  "1806": {
+    "estimatedCost": 75.49,
+    "actualCost": 85.13,
+    "budgetedSum": 125.25,
+    "usedBudget": 125.25,
+    "currency": "EUR"
+  },
+  "1808": {
+    "estimatedCost": 483.28,
+    "actualCost": 311.81,
+    "budgetedSum": 863,
+    "usedBudget": 863,
+    "currency": "EUR"
+  },
+  "1810": {
+    "estimatedCost": 445.11,
+    "actualCost": 330.17,
+    "budgetedSum": 802,
+    "usedBudget": 802,
+    "currency": "EUR"
+  },
+  "1811": {
+    "estimatedCost": 963.47,
+    "actualCost": 783.1,
+    "budgetedSum": 1825.5,
+    "usedBudget": 1825.5,
+    "currency": "CHF"
+  },
+  "1812": {
+    "estimatedCost": 126.05,
+    "actualCost": 107,
+    "budgetedSum": 231,
+    "usedBudget": 231,
+    "currency": "CHF"
+  },
+  "1813": {
+    "estimatedCost": 520.43,
+    "actualCost": 450.97,
+    "budgetedSum": 993.5,
+    "usedBudget": 993.5,
+    "currency": "CHF"
+  },
+  "1814": {
+    "estimatedCost": 131.68,
+    "actualCost": 128.02,
+    "budgetedSum": 249.25,
+    "usedBudget": 249.25,
+    "currency": "CHF"
+  },
+  "1815": {
+    "estimatedCost": 384.75,
+    "actualCost": 207.42,
+    "budgetedSum": 665.4,
+    "usedBudget": 665.4,
+    "currency": "CHF"
+  },
+  "1816": {
+    "estimatedCost": 924.65,
+    "actualCost": 399.6,
+    "budgetedSum": 1599.3,
+    "usedBudget": 1599.3,
+    "currency": "CHF"
+  },
+  "1817": {
+    "estimatedCost": 76.4,
+    "actualCost": 133.68,
+    "budgetedSum": 135,
+    "usedBudget": 135,
+    "currency": "EUR"
+  },
+  "1821": {
+    "estimatedCost": 4728.74,
+    "actualCost": 1947.29,
+    "budgetedSum": 0,
+    "usedBudget": 0,
+    "currency": "CHF"
+  },
+  "1822": {
+    "estimatedCost": 607.29,
+    "actualCost": 697.45,
+    "budgetedSum": 1099,
+    "usedBudget": 1099,
+    "currency": "EUR"
+  },
+  "1823": {
+    "estimatedCost": 314.16,
+    "actualCost": 332.42,
+    "budgetedSum": 566.4,
+    "usedBudget": 566.4,
+    "currency": "CHF"
+  },
+  "1824": {
+    "estimatedCost": 613.58,
+    "actualCost": 573.89,
+    "budgetedSum": 1162,
+    "usedBudget": 1162,
+    "currency": "CHF"
+  },
+  "1825": {
+    "estimatedCost": 0,
+    "actualCost": 279.12,
+    "budgetedSum": 0,
+    "usedBudget": 0,
+    "currency": "CHF"
+  },
+  "1826": {
+    "estimatedCost": 1981.81,
+    "actualCost": 1815.42,
+    "budgetedSum": 2870,
+    "usedBudget": 2870,
+    "currency": "CHF"
+  },
+  "1827": {
+    "estimatedCost": 735.71,
+    "actualCost": 451.84,
+    "budgetedSum": 1166.34,
+    "usedBudget": 1166.34,
+    "currency": "USD"
+  },
+  "1828": {
+    "estimatedCost": 0,
+    "actualCost": 650.31,
+    "budgetedSum": 0,
+    "usedBudget": 0,
+    "currency": "CHF"
+  },
+  "1833": {
+    "estimatedCost": 66.1,
+    "actualCost": 46.7,
+    "budgetedSum": 116,
+    "usedBudget": 116,
+    "currency": "EUR"
+  },
+  "1834": {
+    "estimatedCost": 144.4,
+    "actualCost": 127.39,
+    "budgetedSum": 258.5,
+    "usedBudget": 258.5,
+    "currency": "EUR"
+  },
+  "1835": {
+    "estimatedCost": 170.77,
+    "actualCost": 161.09,
+    "budgetedSum": 302.58,
+    "usedBudget": 302.58,
+    "currency": "USD"
+  },
+  "1836": {
+    "estimatedCost": 1295.95,
+    "actualCost": 1008.64,
+    "budgetedSum": 2235.9,
+    "usedBudget": 0,
+    "currency": "CHF"
+  },
+  "1839": {
+    "estimatedCost": 146.13,
+    "actualCost": 145.29,
+    "budgetedSum": 269.25,
+    "usedBudget": 269.25,
+    "currency": "CHF"
+  },
+  "1841": {
+    "estimatedCost": 584.4,
+    "actualCost": 422.1,
+    "budgetedSum": 1142,
+    "usedBudget": 1142,
+    "currency": "EUR"
+  },
+  "1843": {
+    "estimatedCost": 0,
+    "actualCost": 380.63,
+    "budgetedSum": 0,
+    "usedBudget": 0,
+    "currency": "CHF"
+  },
+  "1844": {
+    "estimatedCost": 238.04,
+    "actualCost": 494.58,
+    "budgetedSum": 458.5,
+    "usedBudget": 458.5,
+    "currency": "CHF"
+  },
+  "1845": {
+    "estimatedCost": 667.07,
+    "actualCost": 374.58,
+    "budgetedSum": 1165.63,
+    "usedBudget": 1165.63,
+    "currency": "USD"
+  },
+  "1848": {
+    "estimatedCost": 1181.39,
+    "actualCost": 879.84,
+    "budgetedSum": 2062.8,
+    "usedBudget": 2062.8,
+    "currency": "CHF"
+  },
+  "1849": {
+    "estimatedCost": 1179.69,
+    "actualCost": 550.62,
+    "budgetedSum": 2121,
+    "usedBudget": 2121,
+    "currency": "EUR"
+  },
+  "1850": {
+    "estimatedCost": 471.76,
+    "actualCost": 379.3,
+    "budgetedSum": 718.07,
+    "usedBudget": 718.07,
+    "currency": "CHF"
+  },
+  "1851": {
+    "estimatedCost": 285.4,
+    "actualCost": 191.75,
+    "budgetedSum": 501.5,
+    "usedBudget": 501.5,
+    "currency": "EUR"
+  },
+  "1852": {
+    "estimatedCost": 763.76,
+    "actualCost": 508.64,
+    "budgetedSum": 1376,
+    "usedBudget": 1376,
+    "currency": "EUR"
+  },
+  "1853": {
+    "estimatedCost": 112.81,
+    "actualCost": 82.72,
+    "budgetedSum": 201.5,
+    "usedBudget": 201.5,
+    "currency": "EUR"
+  },
+  "1854": {
+    "estimatedCost": 146.8,
+    "actualCost": 133.68,
+    "budgetedSum": 251.1,
+    "usedBudget": 251.1,
+    "currency": "CHF"
+  },
+  "1855": {
+    "estimatedCost": 160.58,
+    "actualCost": 79.21,
+    "budgetedSum": 304.25,
+    "usedBudget": 304.25,
+    "currency": "CHF"
+  },
+  "1856": {
+    "estimatedCost": 717.28,
+    "actualCost": 787.58,
+    "budgetedSum": 1320,
+    "usedBudget": 1320,
+    "currency": "EUR"
+  },
+  "1858": {
+    "estimatedCost": 112.99,
+    "actualCost": 96.14,
+    "budgetedSum": 201.5,
+    "usedBudget": 201.5,
+    "currency": "EUR"
+  },
+  "1859": {
+    "estimatedCost": 319.88,
+    "actualCost": 265.01,
+    "budgetedSum": 574,
+    "usedBudget": 574,
+    "currency": "EUR"
+  },
+  "1861": {
+    "estimatedCost": 2361.91,
+    "actualCost": 1127.76,
+    "budgetedSum": 4016,
+    "usedBudget": 4016,
+    "currency": "EUR"
+  },
+  "1862": {
+    "estimatedCost": 230.61,
+    "actualCost": 176.26,
+    "budgetedSum": 387.5,
+    "usedBudget": 387.5,
+    "currency": "EUR"
+  },
+  "1863": {
+    "estimatedCost": 72.39,
+    "actualCost": 97.99,
+    "budgetedSum": 119,
+    "usedBudget": 119,
+    "currency": "EUR"
+  },
+  "1864": {
+    "estimatedCost": 262.42,
+    "actualCost": 139.95,
+    "budgetedSum": 428.9,
+    "usedBudget": 428.9,
+    "currency": "USD"
+  },
+  "1865": {
+    "estimatedCost": 2282.58,
+    "actualCost": 1609.66,
+    "budgetedSum": 3814,
+    "usedBudget": 3814,
+    "currency": "EUR"
+  },
+  "1866": {
+    "estimatedCost": 698.31,
+    "actualCost": 598.39,
+    "budgetedSum": 1154,
+    "usedBudget": 1154,
+    "currency": "EUR"
+  },
+  "1867": {
+    "estimatedCost": 525.95,
+    "actualCost": 443.84,
+    "budgetedSum": 946.5,
+    "usedBudget": 946.5,
+    "currency": "EUR"
+  },
+  "1868": {
+    "estimatedCost": 4932.3,
+    "actualCost": 3592.17,
+    "budgetedSum": 11115,
+    "usedBudget": 11115,
+    "currency": "CHF"
+  },
+  "1869": {
+    "estimatedCost": 206.73,
+    "actualCost": 124.22,
+    "budgetedSum": 372.5,
+    "usedBudget": 372.5,
+    "currency": "EUR"
+  },
+  "1870": {
+    "estimatedCost": 0,
+    "actualCost": 102.97,
+    "budgetedSum": 0,
+    "usedBudget": 81.75,
+    "currency": "CHF"
+  },
+  "1871": {
+    "estimatedCost": 274.22,
+    "actualCost": 305.86,
+    "budgetedSum": 524.25,
+    "usedBudget": 524.25,
+    "currency": "CHF"
+  },
+  "1872": {
+    "estimatedCost": 222.58,
+    "actualCost": 229.57,
+    "budgetedSum": 401,
+    "usedBudget": 401,
+    "currency": "EUR"
+  },
+  "1873": {
+    "estimatedCost": 406.23,
+    "actualCost": 480.43,
+    "budgetedSum": 770.4,
+    "usedBudget": 770.4,
+    "currency": "CHF"
+  },
+  "1874": {
+    "estimatedCost": 603.49,
+    "actualCost": 497.52,
+    "budgetedSum": 1146.4,
+    "usedBudget": 1146.4,
+    "currency": "CHF"
+  },
+  "1877": {
+    "estimatedCost": 596.1,
+    "actualCost": 714.29,
+    "budgetedSum": 1087,
+    "usedBudget": 0,
+    "currency": "EUR"
+  },
+  "1878": {
+    "estimatedCost": 656.01,
+    "actualCost": 625.31,
+    "budgetedSum": 1095.5,
+    "usedBudget": 0,
+    "currency": "EUR"
+  },
+  "1881": {
+    "estimatedCost": 381.89,
+    "actualCost": 313.73,
+    "budgetedSum": 688,
+    "usedBudget": 688,
+    "currency": "EUR"
+  },
+  "1883": {
+    "estimatedCost": 124.57,
+    "actualCost": 104.83,
+    "budgetedSum": 216,
+    "usedBudget": 216,
+    "currency": "CHF"
+  },
+  "1884": {
+    "estimatedCost": 206.59,
+    "actualCost": 222.98,
+    "budgetedSum": 372.5,
+    "usedBudget": 372.5,
+    "currency": "EUR"
+  },
+  "1886": {
+    "estimatedCost": 5412,
+    "actualCost": 1280.7,
+    "budgetedSum": 2737.16,
+    "usedBudget": 2737.16,
+    "currency": "USD"
+  },
+  "1888": {
+    "estimatedCost": 2246.53,
+    "actualCost": 465.44,
+    "budgetedSum": 926.1,
+    "usedBudget": 926.1,
+    "currency": "CHF"
+  },
+  "1889": {
+    "estimatedCost": 909.62,
+    "actualCost": 845.62,
+    "budgetedSum": 1615.2,
+    "usedBudget": 1615.2,
+    "currency": "USD"
+  },
+  "1892": {
+    "estimatedCost": 3979.96,
+    "actualCost": 3820.36,
+    "budgetedSum": 7007.24,
+    "usedBudget": 7007.24,
+    "currency": "USD"
+  },
+  "1893": {
+    "estimatedCost": 81.56,
+    "actualCost": 52.14,
+    "budgetedSum": 144.5,
+    "usedBudget": 144.5,
+    "currency": "EUR"
+  },
+  "1895": {
+    "estimatedCost": 112.99,
+    "actualCost": 101.57,
+    "budgetedSum": 201.5,
+    "usedBudget": 201.5,
+    "currency": "EUR"
+  },
+  "1896": {
+    "estimatedCost": 430.41,
+    "actualCost": 374.3,
+    "budgetedSum": 774.22,
+    "usedBudget": 774.22,
+    "currency": "USD"
+  },
+  "1897": {
+    "estimatedCost": 276.53,
+    "actualCost": 243.37,
+    "budgetedSum": 458,
+    "usedBudget": 0,
+    "currency": "EUR"
+  },
+  "1898": {
+    "estimatedCost": 2493.07,
+    "actualCost": 1302.67,
+    "budgetedSum": 4536,
+    "usedBudget": 4536,
+    "currency": "EUR"
+  },
+  "1900": {
+    "estimatedCost": 813.25,
+    "actualCost": 819.31,
+    "budgetedSum": 1474,
+    "usedBudget": 1474,
+    "currency": "EUR"
+  },
+  "1901": {
+    "estimatedCost": 0,
+    "actualCost": 763.58,
+    "budgetedSum": 0,
+    "usedBudget": 0,
+    "currency": "CHF"
+  },
+  "1902": {
+    "estimatedCost": 763.85,
+    "actualCost": 540.51,
+    "budgetedSum": 1376,
+    "usedBudget": 1376,
+    "currency": "EUR"
+  },
+  "1907": {
+    "estimatedCost": 214.22,
+    "actualCost": 182.53,
+    "budgetedSum": 414.25,
+    "usedBudget": 414.25,
+    "currency": "CHF"
+  },
+  "1908": {
+    "estimatedCost": 953,
+    "actualCost": 182.93,
+    "budgetedSum": 388.5,
+    "usedBudget": 388.5,
+    "currency": "CHF"
+  },
+  "1910": {
+    "estimatedCost": 742.97,
+    "actualCost": 711.11,
+    "budgetedSum": 1329.8,
+    "usedBudget": 1329.8,
+    "currency": "CHF"
+  },
+  "1912": {
+    "estimatedCost": 878.31,
+    "actualCost": 680.04,
+    "budgetedSum": 1546.8,
+    "usedBudget": 1546.8,
+    "currency": "CHF"
+  },
+  "1914": {
+    "estimatedCost": 253.06,
+    "actualCost": 208.12,
+    "budgetedSum": 460,
+    "usedBudget": 460,
+    "currency": "EUR"
+  },
+  "1915": {
+    "estimatedCost": 329.51,
+    "actualCost": 375.44,
+    "budgetedSum": 605.16,
+    "usedBudget": 605.16,
+    "currency": "USD"
+  },
+  "1916": {
+    "estimatedCost": 0,
+    "actualCost": 171.69,
+    "budgetedSum": 0,
+    "usedBudget": 360,
+    "currency": "EUR"
+  },
+  "1920": {
+    "estimatedCost": 199.68,
+    "actualCost": 133.66,
+    "budgetedSum": 369.34,
+    "usedBudget": 369.34,
+    "currency": "USD"
+  },
+  "1921": {
+    "estimatedCost": 192.55,
+    "actualCost": 219.93,
+    "budgetedSum": 345.5,
+    "usedBudget": 345.5,
+    "currency": "EUR"
+  },
+  "1923": {
+    "estimatedCost": 240.27,
+    "actualCost": 214.69,
+    "budgetedSum": 403,
+    "usedBudget": 403,
+    "currency": "EUR"
+  },
+  "1925": {
+    "estimatedCost": 932.95,
+    "actualCost": 1046.39,
+    "budgetedSum": 1735,
+    "usedBudget": 1735,
+    "currency": "CHF"
+  },
+  "1930": {
+    "estimatedCost": 807.21,
+    "actualCost": 564.02,
+    "budgetedSum": 1414.34,
+    "usedBudget": 1414.34,
+    "currency": "USD"
+  },
+  "1933": {
+    "estimatedCost": 695.5,
+    "actualCost": 678.8,
+    "budgetedSum": 1262,
+    "usedBudget": 1262,
+    "currency": "EUR"
+  },
+  "1935": {
+    "estimatedCost": 323.95,
+    "actualCost": 181.47,
+    "budgetedSum": 598.5,
+    "usedBudget": 598.5,
+    "currency": "EUR"
+  },
+  "1936": {
+    "estimatedCost": 80.35,
+    "actualCost": 61.17,
+    "budgetedSum": 144.5,
+    "usedBudget": 144.5,
+    "currency": "EUR"
+  },
+  "1938": {
+    "estimatedCost": 202.59,
+    "actualCost": 196.51,
+    "budgetedSum": 369.34,
+    "usedBudget": 369.34,
+    "currency": "USD"
+  },
+  "1939": {
+    "estimatedCost": 757.39,
+    "actualCost": 755.2,
+    "budgetedSum": 1710,
+    "usedBudget": 1710,
+    "currency": "CHF"
+  },
+  "1941": {
+    "estimatedCost": 96.41,
+    "actualCost": 85.51,
+    "budgetedSum": 173,
+    "usedBudget": 173,
+    "currency": "EUR"
+  },
+  "1942": {
+    "estimatedCost": 245.7,
+    "actualCost": 248.76,
+    "budgetedSum": 435.93,
+    "usedBudget": 435.93,
+    "currency": "USD"
+  },
+  "1943": {
+    "estimatedCost": 1557.77,
+    "actualCost": 788.36,
+    "budgetedSum": 2627,
+    "usedBudget": 2627,
+    "currency": "EUR"
+  },
+  "1945": {
+    "estimatedCost": 160.09,
+    "actualCost": 139.01,
+    "budgetedSum": 306,
+    "usedBudget": 306,
+    "currency": "CHF"
+  },
+  "1950": {
+    "estimatedCost": 2066.8,
+    "actualCost": 1511.48,
+    "budgetedSum": 3641,
+    "usedBudget": 0,
+    "currency": "EUR"
+  },
+  "1952": {
+    "estimatedCost": 72.97,
+    "actualCost": 79.62,
+    "budgetedSum": 139.25,
+    "usedBudget": 139.25,
+    "currency": "CHF"
+  },
+  "1954": {
+    "estimatedCost": 156.85,
+    "actualCost": 125.86,
+    "budgetedSum": 304.25,
+    "usedBudget": 304.25,
+    "currency": "CHF"
+  },
+  "1955": {
+    "estimatedCost": 136.2,
+    "actualCost": 160.56,
+    "budgetedSum": 239.6,
+    "usedBudget": 239.6,
+    "currency": "CHF"
+  },
+  "1958": {
+    "estimatedCost": 0,
+    "actualCost": 550.91,
+    "budgetedSum": 0,
+    "usedBudget": 0,
+    "currency": "EUR"
+  },
+  "1959": {
+    "estimatedCost": 65.25,
+    "actualCost": 122.24,
+    "budgetedSum": 116,
+    "usedBudget": 116,
+    "currency": "EUR"
+  },
+  "1962": {
+    "estimatedCost": 60.54,
+    "actualCost": 52.58,
+    "budgetedSum": 102.3,
+    "usedBudget": 102.3,
+    "currency": "USD"
+  },
+  "1963": {
+    "estimatedCost": 127.37,
+    "actualCost": 70.12,
+    "budgetedSum": 230,
+    "usedBudget": 230,
+    "currency": "EUR"
+  },
+  "1967": {
+    "estimatedCost": 112.16,
+    "actualCost": 173.35,
+    "budgetedSum": 227.7,
+    "usedBudget": 227.7,
+    "currency": "CHF"
+  },
+  "1969": {
+    "estimatedCost": 758.12,
+    "actualCost": 600.65,
+    "budgetedSum": 1354.3,
+    "usedBudget": 1354.3,
+    "currency": "CHF"
+  },
+  "1970": {
+    "estimatedCost": 694.68,
+    "actualCost": 631.24,
+    "budgetedSum": 1277.08,
+    "usedBudget": 1277.08,
+    "currency": "USD"
+  },
+  "1971": {
+    "estimatedCost": 254.74,
+    "actualCost": 199.76,
+    "budgetedSum": 460,
+    "usedBudget": 460,
+    "currency": "EUR"
+  },
+  "1975": {
+    "estimatedCost": 3276.6,
+    "actualCost": 2191.11,
+    "budgetedSum": 5885.9,
+    "usedBudget": 4520.38,
+    "currency": "CHF"
+  },
+  "1979": {
+    "estimatedCost": 513.95,
+    "actualCost": 296.37,
+    "budgetedSum": 878,
+    "usedBudget": 878,
+    "currency": "EUR"
+  },
+  "1980": {
+    "estimatedCost": 407.2,
+    "actualCost": 283.33,
+    "budgetedSum": 745,
+    "usedBudget": 745,
+    "currency": "EUR"
+  },
+  "1981": {
+    "estimatedCost": 200.47,
+    "actualCost": 235.64,
+    "budgetedSum": 369.34,
+    "usedBudget": 369.34,
+    "currency": "USD"
+  },
+  "1982": {
+    "estimatedCost": 99.57,
+    "actualCost": 65.3,
+    "budgetedSum": 172,
+    "usedBudget": 172,
+    "currency": "EUR"
+  },
+  "1983": {
+    "estimatedCost": 142.23,
+    "actualCost": 141.54,
+    "budgetedSum": 258.5,
+    "usedBudget": 258.5,
+    "currency": "EUR"
+  },
+  "1984": {
+    "estimatedCost": 911.36,
+    "actualCost": 825.75,
+    "budgetedSum": 2010,
+    "usedBudget": 2010,
+    "currency": "CHF"
+  },
+  "1986": {
+    "estimatedCost": 240.28,
+    "actualCost": 79.2,
+    "budgetedSum": 403,
+    "usedBudget": 403,
+    "currency": "EUR"
+  },
+  "1987": {
+    "estimatedCost": 73.24,
+    "actualCost": 80.04,
+    "budgetedSum": 139.25,
+    "usedBudget": 139.25,
+    "currency": "CHF"
+  },
+  "1988": {
+    "estimatedCost": 142.7,
+    "actualCost": 102.71,
+    "budgetedSum": 258.5,
+    "usedBudget": 258.5,
+    "currency": "EUR"
+  },
+  "1991": {
+    "estimatedCost": 65.31,
+    "actualCost": 83.43,
+    "budgetedSum": 116,
+    "usedBudget": 116,
+    "currency": "EUR"
+  },
+  "1992": {
+    "estimatedCost": 501.28,
+    "actualCost": 684.3,
+    "budgetedSum": 916,
+    "usedBudget": 916,
+    "currency": "EUR"
+  },
+  "1993": {
+    "estimatedCost": 64.19,
+    "actualCost": 59.75,
+    "budgetedSum": 111,
+    "usedBudget": 111,
+    "currency": "CHF"
+  },
+  "1995": {
+    "estimatedCost": 594.38,
+    "actualCost": 563.29,
+    "budgetedSum": 1055.9,
+    "usedBudget": 1055.9,
+    "currency": "CHF"
+  },
+  "1996": {
+    "estimatedCost": 346.49,
+    "actualCost": 378.5,
+    "budgetedSum": 635,
+    "usedBudget": 635,
+    "currency": "EUR"
+  },
+  "2000": {
+    "estimatedCost": 192.19,
+    "actualCost": 149.63,
+    "budgetedSum": 346,
+    "usedBudget": 346,
+    "currency": "EUR"
+  },
+  "2002": {
+    "estimatedCost": 64.28,
+    "actualCost": 34.47,
+    "budgetedSum": 111,
+    "usedBudget": 111,
+    "currency": "CHF"
+  },
+  "2003": {
+    "estimatedCost": 578.15,
+    "actualCost": 388.52,
+    "budgetedSum": 1430,
+    "usedBudget": 0,
+    "currency": "CHF"
+  },
+  "2006": {
+    "estimatedCost": 0,
+    "actualCost": 756.82,
+    "budgetedSum": 0,
+    "usedBudget": 0,
+    "currency": "USD"
+  },
+  "2008": {
+    "estimatedCost": 0,
+    "actualCost": 1950.71,
+    "budgetedSum": 0,
+    "usedBudget": 0,
+    "currency": "CHF"
+  },
+  "2009": {
+    "estimatedCost": 346.69,
+    "actualCost": 422.11,
+    "budgetedSum": 631,
+    "usedBudget": 631,
+    "currency": "EUR"
+  },
+  "2016": {
+    "estimatedCost": 741.19,
+    "actualCost": 490.28,
+    "budgetedSum": 1318.4,
+    "usedBudget": 1318.4,
+    "currency": "CHF"
+  },
+  "2017": {
+    "estimatedCost": 157.01,
+    "actualCost": 150.38,
+    "budgetedSum": 274.35,
+    "usedBudget": 274.35,
+    "currency": "CHF"
+  },
+  "2022": {
+    "estimatedCost": 323.21,
+    "actualCost": 0,
+    "budgetedSum": 598.5,
+    "usedBudget": 598.5,
+    "currency": "EUR"
+  },
+  "2025": {
+    "estimatedCost": 663.8,
+    "actualCost": 312.1,
+    "budgetedSum": 1334.85,
+    "usedBudget": 0,
+    "currency": "CHF"
+  },
+  "2030": {
+    "estimatedCost": 1142.69,
+    "actualCost": 1161.61,
+    "budgetedSum": 1970,
+    "usedBudget": 0,
+    "currency": "EUR"
+  },
+  "2031": {
+    "estimatedCost": 222.2,
+    "actualCost": 322.23,
+    "budgetedSum": 403,
+    "usedBudget": 403,
+    "currency": "EUR"
+  },
+  "2035": {
+    "estimatedCost": 499.26,
+    "actualCost": 451.43,
+    "budgetedSum": 916,
+    "usedBudget": 916,
+    "currency": "EUR"
+  },
+  "2037": {
+    "estimatedCost": 345.3,
+    "actualCost": 320.01,
+    "budgetedSum": 631,
+    "usedBudget": 0,
+    "currency": "EUR"
+  },
+  "2039": {
+    "estimatedCost": 1003.91,
+    "actualCost": 1009.41,
+    "budgetedSum": 1665,
+    "usedBudget": 1665,
+    "currency": "EUR"
+  },
+  "2041": {
+    "estimatedCost": 347.03,
+    "actualCost": 146.38,
+    "budgetedSum": 787.38,
+    "usedBudget": 0,
+    "currency": "CHF"
+  },
+  "2043": {
+    "estimatedCost": 141.99,
+    "actualCost": 141.52,
+    "budgetedSum": 258.5,
+    "usedBudget": 258.5,
+    "currency": "EUR"
+  },
+  "2048": {
+    "estimatedCost": 173.21,
+    "actualCost": 192.95,
+    "budgetedSum": 315.5,
+    "usedBudget": 0,
+    "currency": "EUR"
+  },
+  "2049": {
+    "estimatedCost": 622.8,
+    "actualCost": 593.11,
+    "budgetedSum": 1144,
+    "usedBudget": 1144,
+    "currency": "EUR"
+  },
+  "2055": {
+    "estimatedCost": 193,
+    "actualCost": 204.39,
+    "budgetedSum": 346,
+    "usedBudget": 0,
+    "currency": "EUR"
+  },
+  "2059": {
+    "estimatedCost": 80.95,
+    "actualCost": 80.18,
+    "budgetedSum": 144.5,
+    "usedBudget": 0,
+    "currency": "EUR"
+  },
+  "2063": {
+    "estimatedCost": 634.14,
+    "actualCost": 454.65,
+    "budgetedSum": 1091.4,
+    "usedBudget": 1091.4,
+    "currency": "CHF"
+  },
+  "2067": {
+    "estimatedCost": 441.05,
+    "actualCost": 280.85,
+    "budgetedSum": 802,
+    "usedBudget": 802,
+    "currency": "EUR"
+  },
+  "2073": {
+    "estimatedCost": 421.05,
+    "actualCost": 290.9,
+    "budgetedSum": 711.74,
+    "usedBudget": 711.74,
+    "currency": "USD"
+  },
+  "2074": {
+    "estimatedCost": 149.57,
+    "actualCost": 143.49,
+    "budgetedSum": 278.5,
+    "usedBudget": 0,
+    "currency": "CHF"
+  },
+  "2075": {
+    "estimatedCost": 267.14,
+    "actualCost": 266.88,
+    "budgetedSum": 486.5,
+    "usedBudget": 0,
+    "currency": "EUR"
+  },
+  "2082": {
+    "estimatedCost": 278.39,
+    "actualCost": 274.33,
+    "budgetedSum": 478.65,
+    "usedBudget": 478.65,
+    "currency": "CHF"
+  },
+  "2086": {
+    "estimatedCost": 0,
+    "actualCost": 60.85,
+    "budgetedSum": 0,
+    "usedBudget": 0,
+    "currency": "CHF"
+  },
+  "2088": {
+    "estimatedCost": 151.12,
+    "actualCost": 193.78,
+    "budgetedSum": 345,
+    "usedBudget": 0,
+    "currency": "CHF"
+  },
+  "2089": {
+    "estimatedCost": 191.37,
+    "actualCost": 147.64,
+    "budgetedSum": 338.12,
+    "usedBudget": 0,
+    "currency": "USD"
+  }
+}

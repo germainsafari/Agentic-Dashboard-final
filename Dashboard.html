@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Admind · Creative Director Dashboard</title>
+<meta name="viewport" content="width=1400" />
+<style>
+  /* Acumin Pro is a paid Adobe typeface — requires a licensed Typekit kit URL.
+     Using a high-quality humanist-sans fallback (Source Sans 3 + Helvetica) so the
+     aesthetic matches until the kit URL is added in the <link> below. */
+  @import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&display=swap");
+  :root {
+    --serif: "Acumin Pro", "acumin-pro", "Source Sans 3", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --sans:  "Acumin Pro", "acumin-pro", "Source Sans 3", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #F6F4EF; }
+  body {
+    font-family: var(--sans);
+    color: #0A0A0A;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01", "kern";
+  }
+  button { font-family: inherit; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.15); }
+  }
+  /* scrollbars */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-thumb { background: #B0B0B0; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  @media (max-width: 780px) {
+    .cd-identity { grid-template-columns: 1fr !important; gap: 20px !important; }
+    .cd-identity > *:last-child { justify-self: start; }
+    .cd-name { font-size: 44px !important; }
+  }
+  @media (max-width: 480px) {
+    .cd-name { font-size: 36px !important; }
+  }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+// ── Creative Director Dashboard data model ────────────────────────────────
+// KPI targets (per Figma):
+//  - utilization     → 75% target (donut)
+//  - billable        → 65% goal
+//  - fta             → 15% goal   (First-Time Acceptance Rate)
+//  - estimate        → 80% goal   (Projects in Estimate)
+//  - newBizWin       → 30% goal
+//  - existingWin     → 60% goal
+// "achieved" = value meets or exceeds goal.
+
+const KPI_META = [
+  { key: "utilization", label: "Project utilization",        goal: 75, kind: "donut",  note: "Billable vs available hours" },
+  { key: "billable",    label: "Billable hours",             goal: 65, kind: "bar",    note: "% of tracked hours billable to clients" },
+  { key: "fta",         label: "First-Time Acceptance Rate", goal: 15, kind: "bar",    note: "10 projects analyzed (04/05/2026)" },
+  { key: "estimate",    label: "Projects in Estimate",       goal: 80, kind: "bar",    note: "Projects within estimate ± tolerance" },
+  { key: "newBizWin",   label: "New Business Pitch Win Rate",goal: 30, kind: "bar",    note: "10 projects analyzed (04/05/2026)" },
+  { key: "existingWin", label: "Existing Client Pitch Win Rate", goal: 60, kind: "bar", note: "10 projects analyzed (04/05/2026)" },
+];
+
+// deterministic pseudo-random so values are stable across reloads
+const seeded = (seed) => {
+  let s = seed;
+  return () => {
+    s = (s * 9301 + 49297) % 233280;
+    return s / 233280;
+  };
+};
+
+const gen = (seedBase, goal) => {
+  const r = seeded(seedBase);
+  // spread: some below goal, some close, a few above
+  const quarters = ["Q1", "Q2", "Q3", "Q4"].map((q, i) => {
+    const rr = r();
+    // distribute around goal, slight upward trend through year
+    const lift = i * (goal * 0.04);
+    const variance = (rr - 0.45) * goal * 0.9;
+    let v = Math.round(goal + variance + lift);
+    if (v < 2) v = 2;
+    if (v > 100) v = 100;
+    return [q, v];
+  });
+  return Object.fromEntries(quarters);
+};
+
+const makeTeam = (seed, name, lead) => {
+  const rand = seeded(seed + 7);
+  return {
+  name,
+  lead,
+  people: Math.round(4 + seeded(seed)() * 8),
+  activeProjects: Math.round(3 + seeded(seed + 1)() * 9),
+  kpis: Object.fromEntries(
+    KPI_META.map((m, i) => [m.key, gen(seed + i * 13, m.goal)])
+  ),
+  // projects analyzed per sample KPI (FTA, new business, existing)
+  projectsAnalyzed: {
+    fta:         Math.round(6 + rand() * 10),
+    newBizWin:   Math.round(3 + rand() * 8),
+    existingWin: Math.round(8 + rand() * 14),
+  },
+}};
+
+const DIRECTORS = [
+  {
+    id: "marta",
+    name: "Marta Szmyd",
+    title: "Creative Director",
+    location: "Kraków",
+    initials: "MS",
+    teamCount: 4,
+    teams: [
+      makeTeam(101, "Team 01", "A. Kowalska"),
+      makeTeam(211, "Team 02", "J. Nowak"),
+      makeTeam(343, "Team 03", "P. Wiśniewski"),
+      makeTeam(457, "Team 04", "K. Lewandowska"),
+    ],
+    escalations: [
+      { id: "e1", team: "Team 01", project: "Northwind Rebrand",      score: 42, quarter: "Q1", opened: "12 Jan",  severity: "high",   reason: "Scope drift — 3 rounds of revisions on brand marks" },
+      { id: "e2", team: "Team 02", project: "Aurora App Redesign",    score: 58, quarter: "Q2", opened: "04 Apr",  severity: "medium", reason: "Key stakeholder rotation; direction reset requested" },
+      { id: "e3", team: "Team 03", project: "Halcyon Hotels — OOH",   score: 61, quarter: "Q2", opened: "18 Apr",  severity: "medium", reason: "Print-vendor timeline compressed by 2 weeks" },
+      { id: "e4", team: "Team 04", project: "Meridian Q3 Campaign",   score: 29, quarter: "Q3", opened: "02 Jul",  severity: "high",   reason: "Budget reduced mid-production, deliverables unchanged" },
+    ],
+    updated: "04 May 2026 · 14:32 CET",
+  },
+  {
+    id: "tomasz",
+    name: "Tomasz Rybak",
+    title: "Creative Director",
+    location: "Barcelona",
+    initials: "TR",
+    teamCount: 3,
+    teams: [
+      makeTeam(512, "Team 01", "E. Martín"),
+      makeTeam(623, "Team 02", "R. López"),
+      makeTeam(734, "Team 03", "S. Gómez"),
+    ],
+    escalations: [
+      { id: "e1", team: "Team 01", project: "Vanta Fintech Launch",   score: 48, quarter: "Q1", opened: "22 Feb", severity: "medium", reason: "Legal review added 3 weeks to motion deliverables" },
+      { id: "e2", team: "Team 03", project: "Ocio Festival Identity", score: 33, quarter: "Q2", opened: "09 May", severity: "high",   reason: "Client pivoted from festival to year-round platform" },
+    ],
+    updated: "04 May 2026 · 14:29 CET",
+  },
+  {
+    id: "ines",
+    name: "Inês Carvalho",
+    title: "Creative Director",
+    location: "Lisbon",
+    initials: "IC",
+    teamCount: 5,
+    teams: [
+      makeTeam(845, "Team 01", "M. Silva"),
+      makeTeam(956, "Team 02", "D. Fernandes"),
+      makeTeam(1067, "Team 03", "C. Ribeiro"),
+      makeTeam(1178, "Team 04", "L. Almeida"),
+      makeTeam(1289, "Team 05", "B. Moreira"),
+    ],
+    escalations: [
+      { id: "e1", team: "Team 02", project: "Klarity Product Site",  score: 51, quarter: "Q1", opened: "07 Mar", severity: "medium", reason: "Design-dev handoff mismatch on component library" },
+      { id: "e2", team: "Team 04", project: "Nordic Bank — Annual",  score: 39, quarter: "Q1", opened: "28 Mar", severity: "high",   reason: "Approval chain expanded to 11 stakeholders" },
+      { id: "e3", team: "Team 05", project: "Pura Skincare Launch",  score: 64, quarter: "Q2", opened: "14 Apr", severity: "low",    reason: "Photography reshoot on one product variant" },
+    ],
+    updated: "04 May 2026 · 14:35 CET",
+  },
+];
+
+window.KPI_META = KPI_META;
+window.DIRECTORS = DIRECTORS;
+
+  </script>
+  <script type="text/babel">
+// KPI visual primitives — donut, goal-bar, mini tooltip
+// Shared across column/row/grid layouts.
+
+const COLORS = {
+  ink: "#0A0A0A",
+  inkSoft: "#3A3A3A",
+  muted: "#5A5A5A",
+  rule: "#111111",
+  paper: "#FFFFFF",
+  // brand
+  tangerine: "#FF5A3C",
+  turquoise: "#00DDC2",
+  beige:     "#EBDBC3",
+  gray01:    "#D9D9D9",
+  gray02:    "#5A5A5A",
+  gray03:    "#B0B0B0",
+  hairline:  "#1A1A1A",
+  subtleBg:  "#F6F4EF",
+};
+
+// Status helper
+const statusOf = (value, goal) => {
+  if (value >= goal) return "achieved";
+  if (value >= goal * 0.75) return "onTrack";
+  return "off";
+};
+
+const statusColor = (s, emphasis = "balanced") => {
+  if (s === "achieved") return COLORS.turquoise;
+  if (s === "onTrack") return emphasis === "bold" ? COLORS.beige : "#8A8A8A";
+  return COLORS.tangerine;
+};
+
+// Donut for utilization
+function Donut({ value, goal, size = 148, thickness = 6 }) {
+  const status = statusOf(value, goal);
+  const color = statusColor(status);
+  const r = (size - thickness) / 2;
+  const c = 2 * Math.PI * r;
+  const pct = Math.max(0, Math.min(100, value)) / 100;
+  const dash = c * pct;
+  const goalAngle = (goal / 100) * 360 - 90;
+  const goalX = size / 2 + (r + thickness / 2 + 1) * Math.cos((goalAngle * Math.PI) / 180);
+  const goalY = size / 2 + (r + thickness / 2 + 1) * Math.sin((goalAngle * Math.PI) / 180);
+  const goalInX = size / 2 + (r - thickness / 2 - 3) * Math.cos((goalAngle * Math.PI) / 180);
+  const goalInY = size / 2 + (r - thickness / 2 - 3) * Math.sin((goalAngle * Math.PI) / 180);
+
+  return (
+    <div style={{ position: "relative", width: size, height: size }}>
+      <svg width={size} height={size} style={{ display: "block" }}>
+        {/* track */}
+        <circle cx={size/2} cy={size/2} r={r} fill="none" stroke={COLORS.gray01} strokeWidth={thickness} />
+        {/* value */}
+        <circle
+          cx={size/2} cy={size/2} r={r}
+          fill="none"
+          stroke={color}
+          strokeWidth={thickness}
+          strokeDasharray={`${dash} ${c - dash}`}
+          strokeDashoffset={c / 4}
+          strokeLinecap="butt"
+          style={{ transition: "stroke-dasharray 0.6s cubic-bezier(.2,.8,.2,1)" }}
+        />
+        {/* goal tick */}
+        <line x1={goalInX} y1={goalInY} x2={goalX} y2={goalY} stroke={COLORS.ink} strokeWidth={1.5} />
+      </svg>
+      <div style={{
+        position: "absolute", inset: 0,
+        display: "flex", flexDirection: "column",
+        alignItems: "center", justifyContent: "center",
+        fontFamily: "var(--serif)",
+      }}>
+        <div style={{ fontSize: 34, fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 1, color: COLORS.ink }}>
+          {value}<span style={{ fontSize: 16, marginLeft: 1 }}>%</span>
+        </div>
+        <div style={{ fontSize: 10, letterSpacing: "0.08em", textTransform: "uppercase", color: COLORS.muted, marginTop: 4 }}>
+          {goal}% target
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Horizontal goal bar
+function GoalBar({ value, goal, width = 180, compact = false }) {
+  const status = statusOf(value, goal);
+  const color = statusColor(status);
+  const h = compact ? 6 : 8;
+  const v = Math.max(0, Math.min(100, value));
+  return (
+    <div style={{ width: "100%" }}>
+      <div style={{
+        display: "flex", alignItems: "baseline", justifyContent: "space-between",
+        marginBottom: 6, gap: 8,
+      }}>
+        <span style={{ fontFamily: "var(--serif)", fontSize: 22, letterSpacing: "-0.02em", color: COLORS.ink, lineHeight: 1 }}>
+          {value}<span style={{ fontSize: 12, color: COLORS.muted }}>%</span>
+        </span>
+        <span style={{ fontSize: 10, letterSpacing: "0.08em", textTransform: "uppercase", color: COLORS.muted }}>
+          {goal}% goal
+        </span>
+      </div>
+      <div style={{ position: "relative", width: "100%", height: h, background: COLORS.gray01 }}>
+        <div
+          style={{
+            position: "absolute", left: 0, top: 0, bottom: 0,
+            width: `${v}%`,
+            background: color,
+            transition: "width 0.5s cubic-bezier(.2,.8,.2,1)",
+          }}
+        />
+        <div style={{
+          position: "absolute", top: -3, bottom: -3, left: `${goal}%`,
+          width: 1, background: COLORS.ink,
+        }} />
+      </div>
+    </div>
+  );
+}
+
+// Small inline sparkline across Q1–Q4 for drill-in
+function QuarterSpark({ values, goal, width = 90, height = 28 }) {
+  const max = Math.max(...values, goal, 100);
+  const min = 0;
+  const step = width / (values.length - 1);
+  const pts = values.map((v, i) => [i * step, height - ((v - min) / (max - min)) * height]);
+  const d = pts.map(([x, y], i) => (i === 0 ? `M${x},${y}` : `L${x},${y}`)).join(" ");
+  const gy = height - ((goal - min) / (max - min)) * height;
+  return (
+    <svg width={width} height={height} style={{ display: "block" }}>
+      <line x1={0} y1={gy} x2={width} y2={gy} stroke={COLORS.gray03} strokeWidth={1} strokeDasharray="2 3" />
+      <path d={d} fill="none" stroke={COLORS.ink} strokeWidth={1.25} />
+      {pts.map(([x, y], i) => (
+        <circle key={i} cx={x} cy={y} r={2} fill={COLORS.ink} />
+      ))}
+    </svg>
+  );
+}
+
+Object.assign(window, { COLORS, statusOf, statusColor, Donut, GoalBar, QuarterSpark });
+
+  </script>
+  <script type="text/babel">
+// Layouts: Columns (Figma), Rows, Cards
+// Shared: TeamHeader, KpiLabel, KpiTooltip
+
+function useHoverKpi() {
+  const [hover, setHover] = React.useState(null); // { teamIdx, kpiKey, x, y }
+  const handlers = (teamIdx, kpiKey) => ({});
+  return [hover, handlers];
+}
+
+function KpiTooltip({ data, meta, quarter, values }) {
+  if (!data) return null;
+  return (
+    <div style={{
+      position: "fixed",
+      left: data.x,
+      top: data.y - 12,
+      transform: "translate(-50%, -100%)",
+      background: COLORS.ink,
+      color: "#fff",
+      padding: "10px 12px",
+      fontSize: 11,
+      lineHeight: 1.45,
+      maxWidth: 240,
+      pointerEvents: "none",
+      zIndex: 100,
+      boxShadow: "0 12px 30px rgba(0,0,0,0.18)",
+    }}>
+      <div style={{ letterSpacing: "0.08em", textTransform: "uppercase", color: COLORS.gray03, fontSize: 9, marginBottom: 4 }}>
+        {meta.label}
+      </div>
+      <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: 6 }}>
+        <div style={{ fontFamily: "var(--serif)", fontSize: 24, lineHeight: 1, letterSpacing: "-0.02em" }}>
+          {values[quarter]}%
+        </div>
+        <div style={{ fontSize: 10, color: COLORS.gray03 }}>
+          vs {meta.goal}% goal · {quarter}
+        </div>
+      </div>
+      <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 8 }}>
+        <QuarterSpark values={["Q1","Q2","Q3","Q4"].map(q => values[q])} goal={meta.goal} />
+        <div style={{ fontSize: 10, color: COLORS.gray03, lineHeight: 1.4 }}>
+          {["Q1","Q2","Q3","Q4"].map(q => (
+            <div key={q} style={{ display: "flex", justifyContent: "space-between", gap: 10, fontVariantNumeric: "tabular-nums" }}>
+              <span>{q}</span><span style={{ color: q === quarter ? "#fff" : COLORS.gray03 }}>{values[q]}%</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div style={{ marginTop: 8, fontSize: 10, color: COLORS.gray03, borderTop: "1px solid #333", paddingTop: 6 }}>
+        {meta.note}
+      </div>
+    </div>
+  );
+}
+
+function TeamHeader({ team, idx, onClick, variant = "column" }) {
+  return (
+    <button
+      onClick={onClick}
+      style={{
+        width: "100%", textAlign: "left",
+        background: "transparent", border: 0, padding: 0, cursor: "pointer",
+        display: "flex", flexDirection: "column", gap: 4,
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 8 }}>
+        <div style={{ fontFamily: "var(--serif)", fontSize: 22, letterSpacing: "-0.01em", color: COLORS.ink, lineHeight: 1 }}>
+          {team.name}
+        </div>
+        {variant !== "card" && (
+          <div style={{
+            fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase",
+            color: COLORS.muted, fontVariantNumeric: "tabular-nums",
+          }}>
+            {String(idx + 1).padStart(2, "0")}
+          </div>
+        )}
+      </div>
+      <div style={{ fontSize: 11, color: COLORS.muted, lineHeight: 1.4 }}>
+        {team.people} people · {team.activeProjects} active projects
+      </div>
+      <div style={{ fontSize: 11, color: COLORS.muted }}>Lead: {team.lead}</div>
+    </button>
+  );
+}
+
+// ── COLUMNS layout (default, matches Figma) ───────────────────────────────
+function LayoutColumns({ director, quarter, onTeamClick, escalationsByTeam }) {
+  const [hover, handlers] = useHoverKpi();
+  const cols = director.teams.length;
+  return (
+    <div style={{ position: "relative" }}>
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: `220px repeat(${cols}, minmax(0, 1fr))`,
+        columnGap: 0,
+        borderTop: `1px solid ${COLORS.hairline}`,
+      }}>
+        {/* left label column */}
+        <div style={{ borderRight: `1px solid ${COLORS.hairline}` }}>
+          <div style={{ padding: "20px 20px 18px 0", borderBottom: `1px solid ${COLORS.hairline}` }}>
+            <div style={{ fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: COLORS.muted }}>
+              Quarter in view
+            </div>
+            <div style={{ fontFamily: "var(--serif)", fontSize: 36, letterSpacing: "-0.02em", lineHeight: 1, marginTop: 6 }}>
+              {quarter}
+            </div>
+          </div>
+          {KPI_META.map((meta, i) => (
+            <div key={meta.key} style={{
+              padding: "22px 20px 22px 0",
+              borderBottom: i < KPI_META.length - 1 ? `1px solid ${COLORS.hairline}` : "none",
+              minHeight: meta.kind === "donut" ? 190 : 120,
+              display: "flex", flexDirection: "column", justifyContent: "center", gap: 6,
+            }}>
+              <div style={{ fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: COLORS.muted }}>
+                KPI {String(i + 1).padStart(2, "0")}
+              </div>
+              <div style={{ fontFamily: "var(--serif)", fontSize: 20, letterSpacing: "-0.01em", color: COLORS.ink, lineHeight: 1.15 }}>
+                {meta.label}
+              </div>
+              <div style={{ fontSize: 11, color: COLORS.muted, lineHeight: 1.4 }}>
+                Goal {meta.goal}% · {meta.note}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* team columns */}
+        {director.teams.map((team, ti) => {
+          const hasEsc = escalationsByTeam[team.name]?.length > 0;
+          return (
+            <div key={team.name} style={{
+              borderRight: ti < cols - 1 ? `1px solid ${COLORS.hairline}` : "none",
+              position: "relative",
+            }}>
+              <div style={{ padding: "20px 20px 18px 20px", borderBottom: `1px solid ${COLORS.hairline}`, position: "relative" }}>
+                <TeamHeader team={team} idx={ti} onClick={() => onTeamClick(ti)} />
+                {hasEsc && (
+                  <div
+                    onClick={(e) => { e.stopPropagation(); onTeamClick(ti, "escalation"); }}
+                    style={{
+                      position: "absolute", top: 16, right: 16,
+                      width: 8, height: 8, borderRadius: "50%",
+                      background: COLORS.tangerine, cursor: "pointer",
+                      boxShadow: `0 0 0 4px ${COLORS.tangerine}22`,
+                    }}
+                    title={`${escalationsByTeam[team.name].length} escalation(s)`}
+                  />
+                )}
+              </div>
+              {KPI_META.map((meta, i) => {
+                const values = team.kpis[meta.key];
+                const v = values[quarter];
+                return (
+                  <div key={meta.key}
+                    {...handlers(ti, meta.key)}
+                    style={{
+                      padding: "22px 20px",
+                      borderBottom: i < KPI_META.length - 1 ? `1px solid ${COLORS.hairline}` : "none",
+                      minHeight: meta.kind === "donut" ? 190 : 120,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      cursor: "default",
+                      transition: "background 0.12s ease",
+                      background: hover?.teamIdx === ti && hover?.kpiKey === meta.key ? COLORS.subtleBg : "transparent",
+                    }}
+                  >
+                    {meta.kind === "donut"
+                    ? <Donut value={v} goal={meta.goal} size={148} thickness={6} />
+                      : <GoalBar value={v} goal={meta.goal} />}
+                  </div>
+                );
+              })}
+            </div>
+          );
+        })}
+      </div>
+
+      {hover && (() => {
+        const team = director.teams[hover.teamIdx];
+        const meta = KPI_META.find(m => m.key === hover.kpiKey);
+        return <KpiTooltip data={hover} meta={meta} quarter={quarter} values={team.kpis[hover.kpiKey]} />;
+      })()}
+    </div>
+  );
+}
+
+// ── ROWS layout (one team per row, KPIs across) ───────────────────────────
+function LayoutRows({ director, quarter, onTeamClick, escalationsByTeam }) {
+  const [hover, handlers] = useHoverKpi();
+  return (
+    <div style={{ position: "relative", paddingTop: 28 }}>
+      {/* column header */}
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: `260px repeat(${KPI_META.length}, minmax(0, 1fr))`,
+        padding: "12px 0",
+        borderBottom: `1px solid ${COLORS.hairline}`,
+      }}>
+        <div style={{ fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: COLORS.muted, padding: "0 20px 0 0" }}>
+          Team · {quarter}
+        </div>
+        {KPI_META.map((meta, i) => (
+          <div key={meta.key} style={{ padding: "0 16px" }}>
+            <div style={{ fontFamily: "var(--serif)", fontSize: 14, letterSpacing: "-0.01em", color: COLORS.ink, lineHeight: 1.2 }}>
+              {meta.shortLabel || meta.label}
+            </div>
+            <div style={{ fontSize: 10, color: COLORS.muted, marginTop: 2 }}>Goal {meta.goal}%</div>
+          </div>
+        ))}
+      </div>
+      {director.teams.map((team, ti) => {
+        const hasEsc = escalationsByTeam[team.name]?.length > 0;
+        return (
+          <div key={team.name} style={{
+            display: "grid",
+            gridTemplateColumns: `260px repeat(${KPI_META.length}, minmax(0, 1fr))`,
+            alignItems: "center",
+            borderBottom: ti < director.teams.length - 1 ? `1px solid ${COLORS.hairline}` : "none",
+            minHeight: 132,
+          }}>
+            <div style={{ padding: "20px 20px 20px 0", position: "relative" }}>
+              <TeamHeader team={team} idx={ti} onClick={() => onTeamClick(ti)} />
+              {hasEsc && (
+                <div
+                  onClick={() => onTeamClick(ti, "escalation")}
+                  style={{
+                    display: "inline-flex", alignItems: "center", gap: 6,
+                    marginTop: 8, padding: "4px 8px",
+                    background: COLORS.tangerine, color: "#fff",
+                    fontSize: 10, letterSpacing: "0.08em", textTransform: "uppercase",
+                    cursor: "pointer",
+                  }}
+                >
+                  <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#fff" }} />
+                  {escalationsByTeam[team.name].length} escalation{escalationsByTeam[team.name].length > 1 ? "s" : ""}
+                </div>
+              )}
+            </div>
+            {KPI_META.map((meta) => {
+              const values = team.kpis[meta.key];
+              const v = values[quarter];
+              return (
+                <div key={meta.key}
+                  {...handlers(ti, meta.key)}
+                  style={{
+                    padding: meta.kind === "donut" ? "20px 16px" : "55px 16px 20px 16px",
+                    alignSelf: "stretch",
+                    display: "grid",
+                    gridTemplateRows: `${meta.kind === "donut" ? "1fr" : "44px"} auto`,
+                    alignItems: "center",
+                    rowGap: meta.kind === "donut" ? 8 : 2,
+                    cursor: "default",
+                    background: hover?.teamIdx === ti && hover?.kpiKey === meta.key ? COLORS.subtleBg : "transparent",
+                  }}
+                >
+                  <div style={{ alignSelf: meta.kind === "donut" ? "center" : "start", display: "flex", alignItems: meta.kind === "donut" ? "center" : "flex-start", width: "100%" }}>
+                    {meta.kind === "donut"
+                      ? <Donut value={v} goal={meta.goal} size={108} thickness={5} />
+                      : <GoalBar value={v} goal={meta.goal} compact />}
+                  </div>
+                  <div style={{ minHeight: 14, fontSize: 10, lineHeight: "33px", color: COLORS.muted, fontStyle: "italic" }}>
+                    {team.projectsAnalyzed && team.projectsAnalyzed[meta.key] != null
+                      ? `${team.projectsAnalyzed[meta.key]} projects analyzed`
+                      : ""}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        );
+      })}
+      {hover && (() => {
+        const team = director.teams[hover.teamIdx];
+        const meta = KPI_META.find(m => m.key === hover.kpiKey);
+        return <KpiTooltip data={hover} meta={meta} quarter={quarter} values={team.kpis[hover.kpiKey]} />;
+      })()}
+    </div>
+  );
+}
+
+// ── CARDS layout (each team as a card) ────────────────────────────────────
+function LayoutCards({ director, quarter, onTeamClick, escalationsByTeam }) {
+  const [hover, handlers] = useHoverKpi();
+  return (
+    <div style={{ position: "relative" }}>
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill, minmax(380px, 1fr))",
+        gap: 0,
+        borderTop: `1px solid ${COLORS.hairline}`,
+        borderLeft: `1px solid ${COLORS.hairline}`,
+      }}>
+        {director.teams.map((team, ti) => {
+          const esc = escalationsByTeam[team.name] || [];
+          return (
+            <div key={team.name} style={{
+              borderRight: `1px solid ${COLORS.hairline}`,
+              borderBottom: `1px solid ${COLORS.hairline}`,
+              padding: 24,
+              background: "#fff",
+              position: "relative",
+            }}>
+              {/* team header row */}
+              <div style={{
+                display: "flex", alignItems: "flex-start", justifyContent: "space-between",
+                borderBottom: `1px solid ${COLORS.hairline}`,
+                paddingBottom: 16, marginBottom: 18, gap: 12,
+              }}>
+                <div style={{ flex: 1 }}>
+                  <TeamHeader team={team} idx={ti} onClick={() => onTeamClick(ti)} variant="card" />
+                </div>
+                {esc.length > 0 && (
+                  <button
+                    onClick={() => onTeamClick(ti, "escalation")}
+                    style={{
+                      background: COLORS.tangerine, color: "#fff",
+                      border: 0, padding: "6px 10px",
+                      fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase",
+                      cursor: "pointer", fontFamily: "inherit",
+                    }}
+                  >
+                    {esc.length} esc.
+                  </button>
+                )}
+              </div>
+              {/* KPI grid inside card */}
+              <div style={{
+                display: "grid",
+                gridTemplateColumns: "140px 1fr",
+                gridTemplateRows: "auto auto auto",
+                gap: "16px 20px",
+                alignItems: "center",
+              }}>
+                {/* donut spans 1 row, 1 col */}
+                <div
+                  {...handlers(ti, "utilization")}
+                  style={{ gridRow: "span 3", display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}
+                >
+                  <Donut value={team.kpis.utilization[quarter]} goal={75} size={148} thickness={6} />
+                  <div style={{ fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: COLORS.muted, textAlign: "center" }}>
+                    Project utilization
+                  </div>
+                </div>
+                {/* 5 bars across rows, 2-wide grid */}
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "14px 20px" }}>
+                  {KPI_META.filter(m => m.kind === "bar").map((meta) => {
+                    const values = team.kpis[meta.key];
+                    const v = values[quarter];
+                    return (
+                      <div key={meta.key} {...handlers(ti, meta.key)} style={{ cursor: "default" }}>
+                        <div style={{ fontSize: 10, letterSpacing: "0.08em", textTransform: "uppercase", color: COLORS.muted, marginBottom: 6 }}>
+                          {meta.shortLabel || meta.label}
+                        </div>
+                        <GoalBar value={v} goal={meta.goal} compact />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      {hover && (() => {
+        const team = director.teams[hover.teamIdx];
+        const meta = KPI_META.find(m => m.key === hover.kpiKey);
+        return <KpiTooltip data={hover} meta={meta} quarter={quarter} values={team.kpis[hover.kpiKey]} />;
+      })()}
+    </div>
+  );
+}
+
+Object.assign(window, { LayoutColumns, LayoutRows, LayoutCards });
+
+  </script>
+  <script type="text/babel">
+// Header, escalation side panel, team drilldown modal
+
+function Header({ director, escalations, onEscalationClick }) {
+  // KPI achievement = count where current-quarter avg across all teams >= goal
+  // but we show it for the active quarter in the main header.
+  return (
+    <header style={{ padding: "20px 48px 0 48px", borderBottom: `1px solid ${COLORS.hairline}`, background: "#F1D8BF" }}>
+      {/* top row: brand + switcher */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+          <svg width="30" height="30" viewBox="0 0 78 78" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
+            <rect width="78" height="78" fill="#FF523D"></rect>
+            <path d="M45.2905 52.042H65.9605V54.031H45.2905V52.042Z" fill="white"></path>
+            <path d="M36.057 42.7989H26.229L24.162 48.9999H18.429L27.555 22.1289H34.848L44.403 48.9999H38.28L36.057 42.7989ZM27.477 38.0409H34.809C32.898 32.3469 31.689 28.7199 31.026 26.3019H30.987C30.324 28.9539 28.998 33.1659 27.477 38.0409Z" fill="white"></path>
+          </svg>
+          <div style={{ fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: COLORS.ink }}>
+            Admind <span style={{ color: COLORS.muted }}>/ Creative Director Dashboard</span>
+          </div>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+          <div style={{ fontSize: 11, color: COLORS.muted, display: "flex", alignItems: "center", gap: 8 }}>
+            <span style={{
+              width: 7, height: 7, borderRadius: "50%", background: COLORS.turquoise,
+              animation: "pulse 2s ease-in-out infinite",
+            }} />
+            <span style={{ fontVariantNumeric: "tabular-nums" }}>Live · updated {director.updated}</span>
+          </div>
+        </div>
+      </div>
+
+      {/* CD identity block */}
+      <div className="cd-identity" style={{
+        display: "grid",
+        gridTemplateColumns: "minmax(0, 1fr) auto",
+        alignItems: "end",
+        paddingBottom: 24,
+        gap: 32,
+      }}>
+        <div style={{ minWidth: 0 }}>
+          <h1 className="cd-name" style={{
+            fontFamily: "var(--serif)",
+            fontSize: 58, lineHeight: 0.95, letterSpacing: "-0.035em",
+            margin: 0, color: COLORS.ink, fontWeight: 400,
+            whiteSpace: "nowrap",
+          }}>
+            {director.name}
+          </h1>
+          <div style={{ marginTop: 8 }}>
+            <span style={{ fontSize: 12, color: COLORS.muted }}>
+              Managing {director.teams.reduce((s, t) => s + t.people, 0)} people across {director.teams.length} teams
+            </span>
+          </div>
+        </div>
+
+        {/* compact signals, inline right */}
+        <div style={{
+          display: "flex", alignItems: "stretch",
+          border: `1px solid ${COLORS.hairline}`,
+        }}>
+          {/* KPI Achievement */}
+          <div style={{
+            padding: "12px 20px",
+            borderRight: `1px solid ${COLORS.hairline}`,
+            display: "flex", flexDirection: "column", gap: 8,
+            minWidth: 168,
+          }}>
+            <div style={{ fontSize: 9, letterSpacing: "0.16em", textTransform: "uppercase", color: COLORS.muted }}>
+              KPI Achievement
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+              <svg width={38} height={38}>
+                <circle cx={19} cy={19} r={15} fill="none" stroke={COLORS.turquoise} strokeWidth={3} />
+                <circle cx={19} cy={19} r={15} fill="none"
+                  stroke={COLORS.tangerine}
+                  strokeWidth={3}
+                  strokeDasharray={`0 ${2 * Math.PI * 15}`}
+                  strokeDashoffset={(2 * Math.PI * 15) / 4}
+                />
+              </svg>
+              <div>
+                <div style={{ fontFamily: "var(--serif)", fontSize: 22, lineHeight: 1, letterSpacing: "-0.01em", color: COLORS.ink }}>
+                  0 <span style={{ color: COLORS.muted, fontSize: 14 }}>/ 6</span>
+                </div>
+                <div style={{ fontSize: 10, color: COLORS.muted, marginTop: 3, letterSpacing: "0.02em" }}>
+                  KPIs achieved
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Project Escalations */}
+          <div
+            onClick={onEscalationClick}
+            onMouseEnter={(e) => e.currentTarget.style.background = COLORS.subtleBg}
+            onMouseLeave={(e) => e.currentTarget.style.background = "transparent"}
+            style={{
+              padding: "12px 20px",
+              display: "flex", flexDirection: "column", gap: 8,
+              cursor: "pointer",
+              minWidth: 192,
+              transition: "background 0.12s ease",
+            }}
+          >
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <div style={{ fontSize: 9, letterSpacing: "0.16em", textTransform: "uppercase", color: COLORS.muted }}>
+                Project Escalations — 2026
+              </div>
+              <span style={{ fontSize: 10, color: COLORS.muted, letterSpacing: "0.04em" }}>View →</span>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
+                <div style={{ fontFamily: "var(--serif)", fontSize: 32, lineHeight: 1, letterSpacing: "-0.02em", color: COLORS.ink }}>
+                  {escalations.length}
+                </div>
+                <div style={{ fontSize: 11, color: COLORS.muted, letterSpacing: "0.04em" }}>
+                  / 4 max
+                </div>
+              </div>
+              <div style={{ display: "flex", gap: 3, flex: 1 }}>
+                {[0, 1, 2, 3].map(i => (
+                  <div key={i} style={{
+                    flex: 1, height: 6,
+                    background: i < escalations.length ? COLORS.tangerine : COLORS.gray01,
+                  }} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+function HeaderSignal({ label, children, onClick, hoverable }) {
+  const [h, setH] = React.useState(false);
+  return (
+    <div
+      onClick={onClick}
+      onMouseEnter={() => hoverable && setH(true)}
+      onMouseLeave={() => setH(false)}
+      style={{
+        padding: "20px 28px 20px 28px",
+        borderRight: `1px solid ${COLORS.hairline}`,
+        cursor: onClick ? "pointer" : "default",
+        background: h ? COLORS.subtleBg : "transparent",
+        transition: "background 0.12s ease",
+      }}
+    >
+      <div style={{ fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: COLORS.muted, marginBottom: 14 }}>
+        {label}
+      </div>
+      {children}
+    </div>
+  );
+}
+
+function KpiAchievementRing({ achieved, total }) {
+  const r = 24;
+  const c = 2 * Math.PI * r;
+  const pct = achieved / total;
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+      <svg width={62} height={62}>
+        <circle cx={31} cy={31} r={r} fill="none" stroke={COLORS.gray01} strokeWidth={4} />
+        <circle cx={31} cy={31} r={r} fill="none"
+          stroke={achieved > 0 ? COLORS.turquoise : COLORS.tangerine}
+          strokeWidth={4}
+          strokeDasharray={`${c * pct} ${c}`}
+          strokeDashoffset={c / 4}
+        />
+        <text x={31} y={37} textAnchor="middle" fontFamily="var(--serif)" fontSize={20} fill={COLORS.ink}>
+          {achieved}
+        </text>
+      </svg>
+      <div>
+        <div style={{ fontFamily: "var(--serif)", fontSize: 22, lineHeight: 1, letterSpacing: "-0.01em", color: COLORS.ink }}>
+          {achieved} of {total}
+        </div>
+        <div style={{ fontSize: 11, color: COLORS.muted, marginTop: 6 }}>
+          KPIs achieved · company-wide
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Quarter tabs ──────────────────────────────────────────────────────────
+function QuarterBar({ quarter, onChange }) {
+  return (
+    <div style={{
+      background: "#0A0A0A", color: "#fff",
+      padding: "0 48px",
+      display: "flex", alignItems: "stretch",
+      borderBottom: "1px solid #1A1A1A",
+    }}>
+      <div style={{
+        display: "flex", alignItems: "center",
+        fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase",
+        color: "#8A8A8A", paddingRight: 36,
+      }}>
+        Fiscal year <span style={{ color: "#fff", marginLeft: 8, fontVariantNumeric: "tabular-nums" }}>2026</span>
+      </div>
+      <div style={{ display: "flex", alignItems: "stretch", flex: 1 }}>
+        {["Q1", "Q2", "Q3", "Q4"].map(q => {
+          const active = q === quarter;
+          return (
+            <button key={q} onClick={() => onChange(q)} style={{
+              background: active ? "#fff" : "transparent",
+              color: active ? COLORS.ink : "#fff",
+              border: 0, cursor: "pointer", fontFamily: "var(--serif)",
+              fontSize: 22, letterSpacing: "-0.01em",
+              padding: "14px 32px",
+              borderRight: "1px solid #1A1A1A",
+              transition: "background 0.12s ease, color 0.12s ease",
+              lineHeight: 1,
+            }}>
+              {q}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function QuarterTabs({ quarter, onChange }) {
+  return (
+    <div style={{
+      display: "flex", alignItems: "flex-end",
+      padding: "28px 48px 0 48px",
+      gap: 36,
+      borderBottom: `1px solid ${COLORS.hairline}`,
+    }}>
+      {["Q1", "Q2", "Q3", "Q4"].map(q => (
+        <button key={q} onClick={() => onChange(q)} style={{
+          background: "transparent", border: 0, padding: "0 0 16px 0",
+          cursor: "pointer", fontFamily: "var(--serif)",
+          fontSize: 38, letterSpacing: "-0.02em",
+          color: q === quarter ? COLORS.ink : COLORS.gray03,
+          borderBottom: q === quarter ? `2px solid ${COLORS.ink}` : "2px solid transparent",
+          marginBottom: -1,
+          transition: "color 0.12s ease",
+          lineHeight: 1,
+        }}>
+          {q}
+        </button>
+      ))}
+      <div style={{ marginLeft: "auto", paddingBottom: 20, fontSize: 11, color: COLORS.muted, letterSpacing: "0.04em" }}>
+        Fiscal year <span style={{ color: COLORS.ink, fontVariantNumeric: "tabular-nums" }}>2026</span>
+      </div>
+    </div>
+  );
+}
+
+// ── Escalation side panel ─────────────────────────────────────────────────
+function EscalationPanel({ open, onClose, director }) {
+  const byTeam = {};
+  director.escalations.forEach(e => {
+    (byTeam[e.team] = byTeam[e.team] || []).push(e);
+  });
+  const severityColor = { high: COLORS.tangerine, medium: "#F39B2B", low: COLORS.beige };
+  return (
+    <>
+      <div
+        onClick={onClose}
+        style={{
+          position: "fixed", inset: 0,
+          background: open ? "rgba(10,10,10,0.32)" : "transparent",
+          pointerEvents: open ? "auto" : "none",
+          transition: "background 0.25s ease",
+          zIndex: 50,
+        }}
+      />
+      <aside style={{
+        position: "fixed", top: 0, right: 0, bottom: 0,
+        width: 520, maxWidth: "92vw",
+        background: "#fff",
+        transform: open ? "translateX(0)" : "translateX(100%)",
+        transition: "transform 0.32s cubic-bezier(.2,.8,.2,1)",
+        zIndex: 51,
+        display: "flex", flexDirection: "column",
+        borderLeft: `1px solid ${COLORS.hairline}`,
+      }}>
+        <div style={{ padding: "24px 28px", borderBottom: `1px solid ${COLORS.hairline}`, display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+          <div>
+            <div style={{ fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: COLORS.muted }}>
+              Project escalations · 2026
+            </div>
+            <div style={{ fontFamily: "var(--serif)", fontSize: 38, letterSpacing: "-0.02em", lineHeight: 1.05, marginTop: 8, color: COLORS.ink }}>
+              {director.escalations.length} of 4
+            </div>
+          </div>
+          <button onClick={onClose} style={{
+            width: 32, height: 32, background: "transparent", border: `1px solid ${COLORS.hairline}`,
+            cursor: "pointer", fontSize: 14, color: COLORS.ink,
+          }}>×</button>
+        </div>
+
+        {/* Allowance bar */}
+        <div style={{ padding: "20px 28px", borderBottom: `1px solid ${COLORS.hairline}` }}>
+          <div style={{ display: "flex", gap: 6 }}>
+            {[0, 1, 2, 3].map(i => (
+              <div key={i} style={{
+                flex: 1, height: 6,
+                background: i < director.escalations.length ? COLORS.tangerine : COLORS.gray01,
+              }} />
+            ))}
+          </div>
+          <div style={{ fontSize: 11, color: COLORS.muted, marginTop: 10 }}>
+            {4 - director.escalations.length} escalation slot{4 - director.escalations.length !== 1 ? "s" : ""} remaining this year
+          </div>
+        </div>
+
+        <div style={{ flex: 1, overflowY: "auto" }}>
+          {Object.entries(byTeam).map(([teamName, list]) => (
+            <div key={teamName}>
+              <div style={{
+                padding: "14px 28px",
+                background: COLORS.subtleBg,
+                fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: COLORS.ink,
+                borderBottom: `1px solid ${COLORS.hairline}`,
+                display: "flex", justifyContent: "space-between", alignItems: "center",
+              }}>
+                <span>{teamName}</span>
+              </div>
+              {list.map(e => (
+                <div key={e.id} style={{
+                  padding: "20px 28px",
+                  borderBottom: `1px solid ${COLORS.hairline}`,
+                }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
+                    <div>
+                      <div style={{ fontFamily: "var(--serif)", fontSize: 22, letterSpacing: "-0.01em", color: COLORS.ink, lineHeight: 1.15 }}>
+                        {e.project}
+                      </div>
+                    </div>
+                  </div>
+                  <div style={{ marginTop: 14, display: "flex", gap: 16 }}>
+                    <a href="https://www.scoro.com/" target="_blank" rel="noopener noreferrer" style={{
+                      fontSize: 11, color: COLORS.ink, textDecoration: "none",
+                      borderBottom: `1px solid ${COLORS.ink}`, paddingBottom: 2, letterSpacing: "0.02em",
+                    }}>
+                      Open in Scoro ↗
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ))}
+          {director.escalations.length === 0 && (
+            <div style={{ padding: "80px 28px", textAlign: "center" }}>
+              <div style={{ fontFamily: "var(--serif)", fontSize: 32, letterSpacing: "-0.02em", color: COLORS.ink }}>
+                Zero escalations
+              </div>
+              <div style={{ fontSize: 12, color: COLORS.muted, marginTop: 8 }}>
+                All projects tracking within tolerance.
+              </div>
+            </div>
+          )}
+        </div>
+      </aside>
+    </>
+  );
+}
+
+// ── Team drilldown ────────────────────────────────────────────────────────
+function TeamDrilldown({ team, director, onClose, focusEscalation }) {
+  if (!team) return null;
+  const esc = director.escalations.filter(e => e.team === team.name);
+  return (
+    <>
+      <div onClick={onClose} style={{
+        position: "fixed", inset: 0, background: "rgba(10,10,10,0.4)", zIndex: 60,
+      }} />
+      <div style={{
+        position: "fixed", top: "50%", left: "50%",
+        transform: "translate(-50%, -50%)",
+        width: 720, maxWidth: "92vw", maxHeight: "86vh",
+        background: "#fff", zIndex: 61,
+        display: "flex", flexDirection: "column",
+        borderLeft: `1px solid ${COLORS.hairline}`,
+      }}>
+        <div style={{ padding: "28px 32px", borderBottom: `1px solid ${COLORS.hairline}`, display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+          <div>
+            <div style={{ fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: COLORS.muted }}>
+              {director.name} · Team detail
+            </div>
+            <div style={{ fontFamily: "var(--serif)", fontSize: 44, letterSpacing: "-0.025em", lineHeight: 1, marginTop: 10, color: COLORS.ink }}>
+              {team.name}
+            </div>
+            <div style={{ fontSize: 12, color: COLORS.muted, marginTop: 8 }}>
+              Lead {team.lead} · {team.people} people · {team.activeProjects} active projects
+            </div>
+          </div>
+          <button onClick={onClose} style={{
+            width: 32, height: 32, background: "transparent", border: `1px solid ${COLORS.hairline}`,
+            cursor: "pointer", fontSize: 14, color: COLORS.ink,
+          }}>×</button>
+        </div>
+        <div style={{ padding: "24px 32px", overflowY: "auto" }}>
+          {focusEscalation && esc.length > 0 && (
+            <div style={{
+              background: COLORS.tangerine, color: "#fff",
+              padding: "14px 18px", marginBottom: 20,
+              fontSize: 12, letterSpacing: "0.04em",
+            }}>
+              <span style={{ letterSpacing: "0.12em", textTransform: "uppercase", fontSize: 10 }}>
+                {esc.length} escalation{esc.length > 1 ? "s" : ""} on this team →
+              </span>
+              {" "}
+              {esc.map(e => e.project).join(" · ")}
+            </div>
+          )}
+          <div style={{
+            display: "grid", gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "16px 24px", marginBottom: 28,
+          }}>
+            {KPI_META.map(meta => {
+              const values = team.kpis[meta.key];
+              const q1 = values.Q1, q4 = values.Q4;
+              return (
+                <div key={meta.key} style={{ borderTop: `1px solid ${COLORS.hairline}`, paddingTop: 14 }}>
+                  <div style={{ fontSize: 10, letterSpacing: "0.08em", textTransform: "uppercase", color: COLORS.muted, marginBottom: 4 }}>
+                    {meta.label}
+                  </div>
+                  <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
+                    <div style={{ fontFamily: "var(--serif)", fontSize: 26, letterSpacing: "-0.02em", color: COLORS.ink, lineHeight: 1 }}>
+                      {values.Q4}%
+                    </div>
+                    <div style={{ fontSize: 11, color: q4 > q1 ? COLORS.turquoise : COLORS.tangerine }}>
+                      {q4 > q1 ? "▲" : "▼"} {Math.abs(q4 - q1)}pt
+                    </div>
+                  </div>
+                  <div style={{ marginTop: 8 }}>
+                    <QuarterSpark values={["Q1","Q2","Q3","Q4"].map(q => values[q])} goal={meta.goal} width={160} height={32} />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+Object.assign(window, { Header, QuarterTabs, EscalationPanel, TeamDrilldown });
+
+  </script>
+
+  <script type="text/babel">
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "quarter": "Q2",
+      "showEscalationBanner": true,
+      "directorId": "marta"
+    }/*EDITMODE-END*/;
+
+    function App() {
+      const [directorId, setDirectorId] = React.useState(() => localStorage.getItem("cd.dir") || TWEAK_DEFAULTS.directorId);
+      const [quarter, setQuarter] = React.useState(() => localStorage.getItem("cd.q") || TWEAK_DEFAULTS.quarter);
+      // Rows on desktop, Cards on mobile (auto via matchMedia)
+      const [isMobile, setIsMobile] = React.useState(() => window.matchMedia("(max-width: 1280px)").matches);
+      React.useEffect(() => {
+        const mq = window.matchMedia("(max-width: 1280px)");
+        const on = (e) => setIsMobile(e.matches);
+        mq.addEventListener("change", on);
+        return () => mq.removeEventListener("change", on);
+      }, []);
+      const layout = isMobile ? "cards" : "rows";
+      const [showBanner, setShowBanner] = React.useState(TWEAK_DEFAULTS.showEscalationBanner);
+      const [escOpen, setEscOpen] = React.useState(false);
+      const [drill, setDrill] = React.useState(null); // { teamIdx, focusEscalation }
+      const [tweaksOn, setTweaksOn] = React.useState(false);
+
+      React.useEffect(() => localStorage.setItem("cd.dir", directorId), [directorId]);
+      React.useEffect(() => localStorage.setItem("cd.q", quarter), [quarter]);
+
+
+      // Tweak-mode protocol
+      React.useEffect(() => {
+        const onMsg = (e) => {
+          if (e.data?.type === "__activate_edit_mode") setTweaksOn(true);
+          if (e.data?.type === "__deactivate_edit_mode") setTweaksOn(false);
+        };
+        window.addEventListener("message", onMsg);
+        window.parent.postMessage({ type: "__edit_mode_available" }, "*");
+        return () => window.removeEventListener("message", onMsg);
+      }, []);
+
+      const director = DIRECTORS.find(d => d.id === directorId) || DIRECTORS[0];
+      const escalationsByTeam = React.useMemo(() => {
+        const o = {};
+        director.escalations.forEach(e => { (o[e.team] = o[e.team] || []).push(e); });
+        return o;
+      }, [director]);
+
+      const Layout = { rows: LayoutRows, cards: LayoutCards }[layout];
+
+      const handleTeamClick = (teamIdx, mode) => {
+        setDrill({ teamIdx, focusEscalation: mode === "escalation" });
+      };
+
+      return (
+        <div data-screen-label="01 Dashboard" data-om-validate style={{ minHeight: "100vh", background: "#fff", maxWidth: 1680, margin: "0 auto", boxShadow: "0 0 40px rgba(0,0,0,0.04)" }}>
+          <Header
+            director={director}
+            escalations={director.escalations}
+            onEscalationClick={() => setEscOpen(true)}
+          />
+
+          <QuarterBar quarter={quarter} onChange={setQuarter} />
+
+          <div style={{ padding: layout === "cards" ? "28px 48px 64px 48px" : "0 48px 64px 48px" }}>
+            <Layout
+              director={director}
+              quarter={quarter}
+              onTeamClick={handleTeamClick}
+              escalationsByTeam={escalationsByTeam}
+            />
+          </div>
+
+          <footer style={{
+            padding: "18px 48px", borderTop: `1px solid ${COLORS.hairline}`,
+            display: "flex", justifyContent: "space-between",
+            fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: COLORS.muted,
+          }}>
+            <span>Admind · Creative Director Dashboard · 2026</span>
+            <span>Data refresh every 5 min</span>
+          </footer>
+
+          <EscalationPanel
+            open={escOpen}
+            onClose={() => setEscOpen(false)}
+            director={director}
+          />
+
+          {drill && (
+            <TeamDrilldown
+              team={director.teams[drill.teamIdx]}
+              director={director}
+              focusEscalation={drill.focusEscalation}
+              onClose={() => setDrill(null)}
+            />
+          )}
+
+        </div>
+      );
+    }
+
+    // keyboard shortcuts
+    window.addEventListener("keydown", (e) => {
+      if (e.target.tagName === "INPUT") return;
+      const map = { "1": "Q1", "2": "Q2", "3": "Q3", "4": "Q4" };
+      if (map[e.key]) {
+        localStorage.setItem("cd.q", map[e.key]);
+        // force re-render
+        window.dispatchEvent(new Event("cd-quarter"));
+      }
+    });
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>

@@ -1,0 +1,1051 @@
+{
+  "description": "Admind Agency team-to-leader mappings. Each entry maps a team member to their team, direct leader, and weekly target hours.",
+  "special_rules": {
+    "justyna_dorman": "Always group under aleksandra.golab@admindagency.com regardless of her own team lead status",
+    "excluded_people": [
+      "marcus.moody@admindagency.com",
+      "katarzyna.figurska@admindagency.com",
+      "karolina.pospischil@admindagency.com"
+    ]
+  },
+  "team_leader_lookup": {
+    "1": {
+      "leader_email": "maciej.ochecki@admindagency.com",
+      "upper_leader_email": "marta.szmyd@admindagency.com"
+    },
+    "2": {
+      "leader_email": "andrzej.leraczyk@admindagency.com",
+      "upper_leader_email": "marta.szmyd@admindagency.com"
+    },
+    "4": {
+      "leader_email": "dominik.wycislo@admindagency.com",
+      "upper_leader_email": "marta.szmyd@admindagency.com"
+    },
+    "3D": {
+      "leader_email": "oscar.sobrino@admindagency.com",
+      "upper_leader_email": "michal.majewski@admindagency.com"
+    },
+    "ACC": {
+      "leader_email": "kamil.lach@admindagency.com",
+      "upper_leader_email": "michal.majewski@admindagency.com"
+    },
+    "BA": {
+      "leader_email": "justyna.dorman@admindagency.com",
+      "upper_leader_email": "aleksandra.golab@admindagency.com"
+    },
+    "CAMPAIGNS": {
+      "leader_email": "katarzyna.wielgolaska@admindagency.com",
+      "upper_leader_email": "piotr.wisniewski@admindagency.com"
+    },
+    "CD": {
+      "leader_email": "aleksandra.golab@admindagency.com",
+      "upper_leader_email": "aleksandra.golab@admindagency.com"
+    },
+    "COE": {
+      "leader_email": "hayley.smith@admindagency.com",
+      "upper_leader_email": "marta.szmyd@admindagency.com"
+    },
+    "COPYWRITER": {
+      "leader_email": "piotr.wisniewski@admindagency.com",
+      "upper_leader_email": "piotr.wisniewski@admindagency.com"
+    },
+    "CT": {
+      "leader_email": "jonattas.poltronieri@admindagency.com",
+      "upper_leader_email": "jonattas.poltronieri@admindagency.com"
+    },
+    "DP & BP": {
+      "leader_email": "krzysztof.wroblewski@admindagency.com",
+      "upper_leader_email": "aleksandra.golab@admindagency.com"
+    },
+    "FE": {
+      "leader_email": "szymon.skrzypczak@admindagency.com",
+      "upper_leader_email": "piotr.wisniewski@admindagency.com"
+    },
+    "MO - MAJA": {
+      "leader_email": "maja.keder@admindagency.com",
+      "upper_leader_email": "michal.majewski@admindagency.com"
+    },
+    "MO - MO": {
+      "leader_email": "mohammad.dorcheh@admindagency.com",
+      "upper_leader_email": "michal.majewski@admindagency.com"
+    },
+    "PM-1": {
+      "leader_email": "weronika.szponar-kaminska@admindagency.com",
+      "upper_leader_email": "natalia.haligowska@admindagency.com",
+      "report_format": "DL"
+    },
+    "PM-2": {
+      "leader_email": "emilia.glowinska@admindagency.com",
+      "upper_leader_email": "natalia.haligowska@admindagency.com",
+      "report_format": "DL"
+    },
+    "PM-4": {
+      "leader_email": "magda.skalik@admindagency.com",
+      "upper_leader_email": "natalia.haligowska@admindagency.com",
+      "report_format": "DL"
+    },
+    "PPT": {
+      "leader_email": "maciej.furtak@admindagency.com",
+      "upper_leader_email": "aleksandra.golab@admindagency.com"
+    },
+    "PM-OTHER": {
+      "leader_email": "aleksandra.monczak@admindagency.com",
+      "upper_leader_email": "aleksandra.monczak@admindagency.com",
+      "report_format": "DL"
+    },
+    "PRINC": {
+      "leader_email": "aida.fernandez@admindagency.com",
+      "upper_leader_email": "dominika.konieczkowska@admindagency.com"
+    },
+    "PM-PPT": {
+      "leader_email": "maciej.furtak@admindagency.com",
+      "upper_leader_email": "aleksandra.golab@admindagency.com"
+    },
+    "STR": {
+      "leader_email": "karolina.pospischil@admind.pl",
+      "upper_leader_email": "aleksandra.golab@admindagency.com"
+    },
+    "PM-DP": {
+      "leader_email": "krzysztof.wroblewski@admindagency.com",
+      "upper_leader_email": "krzysztof.wroblewski@admindagency.com"
+    },
+    "UBS_BA": {
+      "leader_email": "justyna.dorman@admindagency.com",
+      "upper_leader_email": "aleksandra.golab@admindagency.com"
+    },
+    "PM-BM": {
+      "leader_email": "marta.bialecka@admindagency.com",
+      "upper_leader_email": "natalia.haligowska@admindagency.com",
+      "report_format": "DL"
+    },
+    "UBS-SYN": {
+      "leader_email": "michal.danek@admindagency.com",
+      "upper_leader_email": "piotr.wisniewski@admindagency.com"
+    },
+    "UX": {
+      "leader_email": "gabriela.baka@admindagency.com",
+      "upper_leader_email": "jonattas.poltronieri@admindagency.com"
+    },
+    "FURTI": {
+      "leader_email": "aleksandra.golab@admindagency.com",
+      "upper_leader_email": "aleksandra.golab@admindagency.com"
+    }
+  },
+  "members": [
+    {
+      "name": "Agata Myk",
+      "email": "agata.myk@admindagency.com",
+      "team": "BA",
+      "leader_email": "justyna.dorman@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Agnieszka Marek",
+      "email": "agnieszka.marek@admindagency.com",
+      "team": "PM-2",
+      "leader_email": "emilia.glowinska@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Agnieszka Wójcik",
+      "email": "agnieszka.wojcik@admindagency.com",
+      "team": "PM-1",
+      "leader_email": "weronika.szponar-kaminska@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Aida Fernandez",
+      "email": "aida.fernandez@admindagency.com",
+      "team": "PRINC",
+      "leader_email": "dominika.konieczkowska@admindagency.com",
+      "weekly_target": 40.0,
+      "is_team_lead": true
+    },
+    {
+      "name": "Aleksandra Flisikowska",
+      "email": "aleksandra.flisikowska@admindagency.com",
+      "team": "PM-2",
+      "leader_email": "emilia.glowinska@admindagency.com",
+      "weekly_target": 35.0
+    },
+    {
+      "name": "Aleksandra Sznapka",
+      "email": "aleksandra.sznapka@admindagency.com",
+      "team": "MO - MO",
+      "leader_email": "mohammad.dorcheh@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Aleksandra Wojtaszek",
+      "email": "aleksandra.wojtaszek@admindagency.com",
+      "team": "PM-1",
+      "leader_email": "weronika.szponar-kaminska@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Alicja Zakrzewska",
+      "email": "alicja.zakrzewska@admindagency.com",
+      "team": "BA",
+      "leader_email": "justyna.dorman@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Ana Cristina Monsalve",
+      "email": "ana.cristina.amadio@admindagency.com",
+      "team": "PM-BM",
+      "leader_email": "marta.bialecka@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Andrea Wojtachnia",
+      "email": "andrea.wojtachnia@admindagency.com",
+      "team": "COE",
+      "leader_email": "hayley.smith@admindagency.com",
+      "weekly_target": 32.0
+    },
+    {
+      "name": "Andrzej Firlet",
+      "email": "andrzej.firlet@admindagency.com",
+      "team": "1",
+      "leader_email": "maciej.ochecki@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Andrzej Leraczyk",
+      "email": "andrzej.leraczyk@admindagency.com",
+      "team": "2",
+      "leader_email": "marta.szmyd@admindagency.com",
+      "weekly_target": 40.0,
+      "is_team_lead": true
+    },
+    {
+      "name": "Anna Janczak",
+      "email": "anna.janczak@admindagency.com",
+      "team": "PM-OTHER",
+      "leader_email": "aleksandra.monczak@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Anna Rejkowicz",
+      "email": "anna.rejkowicz@admindagency.com",
+      "team": "STR",
+      "leader_email": "karolina.pospischil@admind.pl",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Anna Skiba",
+      "email": "anna.skiba@admindagency.com",
+      "team": "PPT",
+      "leader_email": "maciej.furtak@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Anna Stąpor",
+      "email": "anna.stapor@admindagency.com",
+      "team": "BA",
+      "leader_email": "justyna.dorman@admindagency.com",
+      "weekly_target": 32.0
+    },
+    {
+      "name": "Anna Wróbel",
+      "email": "anna.nedzusiak@admindagency.com",
+      "team": "DP & BP",
+      "leader_email": "krzysztof.wroblewski@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Arkadiusz Haratym",
+      "email": "arkadiusz.haratym@admindagency.com",
+      "team": "COE",
+      "leader_email": "hayley.smith@admindagency.com",
+      "weekly_target": 32.0
+    },
+    {
+      "name": "Bas Krol",
+      "email": "bas.krol@admindagency.com",
+      "team": "3D",
+      "leader_email": "oscar.sobrino@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Bojan Stanikj",
+      "email": "bojan.stanikj@admindagency.com",
+      "team": "UBS-SYN",
+      "leader_email": "michal.danek@admindagency.com",
+      "weekly_target": 32.0
+    },
+    {
+      "name": "Daria Szymańska",
+      "email": "daria.szymanska@admindagency.com",
+      "team": "PM-OTHER",
+      "leader_email": "aleksandra.monczak@admindagency.com",
+      "weekly_target": 32.0
+    },
+    {
+      "name": "Dawid Kalinowski",
+      "email": "dawid.kalinowski@admindagency.com",
+      "team": "PM-BM",
+      "leader_email": "marta.bialecka@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Dmytro Spliukhin",
+      "email": "dmytro.spliukhin@admindagency.com",
+      "team": "3D",
+      "leader_email": "oscar.sobrino@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Dominik Wycisło",
+      "email": "dominik.wycislo@admindagency.com",
+      "team": "4",
+      "leader_email": "marta.szmyd@admindagency.com",
+      "weekly_target": 8.0,
+      "is_team_lead": true
+    },
+    {
+      "name": "Dominika Konieczkowska-Kracik",
+      "email": "dominika.konieczkowska@admindagency.com",
+      "team": "CD",
+      "leader_email": "aleksandra.golab@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Dominika Zych",
+      "email": "dominika.zych@admindagency.com",
+      "team": "DP & BP",
+      "leader_email": "krzysztof.wroblewski@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Dorota Kawęcka",
+      "email": "dorota.kawecka@admindagency.com",
+      "team": "PM-4",
+      "leader_email": "magda.skalik@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Emilia Bukowska-Matz",
+      "email": "emilia.bukowska-matz@admindagency.com",
+      "team": "PM-2",
+      "leader_email": "emilia.glowinska@admindagency.com",
+      "weekly_target": 0.0
+    },
+    {
+      "name": "Emilia Michailidou-Gunia",
+      "email": "emilia.michailidou-gunia@admindagency.com",
+      "team": "BA",
+      "leader_email": "justyna.dorman@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Eryka Żmuda",
+      "email": "eryka.zmuda@admindagency.com",
+      "team": "PM-PPT",
+      "leader_email": "maciej.furtak@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Filip Gonera",
+      "email": "filip.gonera@admindagency.com",
+      "team": "ACC",
+      "leader_email": "kamil.lach@admindagency.com",
+      "weekly_target": 32.0
+    },
+    {
+      "name": "Gabriela Baka",
+      "email": "gabriela.baka@admindagency.com",
+      "team": "UX",
+      "leader_email": "jonattas.poltronieri@admindagency.com",
+      "weekly_target": 40.0,
+      "is_team_lead": true
+    },
+    {
+      "name": "Germain Safari",
+      "email": "germain.safari@admindagency.com",
+      "team": "CT",
+      "leader_email": "jonattas.poltronieri@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Hayley Smith",
+      "email": "hayley.smith@admindagency.com",
+      "team": "COE",
+      "leader_email": "marta.szmyd@admindagency.com",
+      "weekly_target": 40.0,
+      "is_team_lead": true
+    },
+    {
+      "name": "Honorata Pukała",
+      "email": "honorata.pukala@admindagency.com",
+      "team": "PM-OTHER",
+      "leader_email": "aleksandra.monczak@admindagency.com",
+      "weekly_target": 16.0
+    },
+    {
+      "name": "Hristina Gjorgjievska",
+      "email": "hristina.gjorgijevska@admindagency.com",
+      "team": "2",
+      "leader_email": "andrzej.leraczyk@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Ida Wiechowska",
+      "email": "ida.wiechowska@admindagency.com",
+      "team": "STR",
+      "leader_email": "karolina.pospischil@admind.pl",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Igor Gierałt",
+      "email": "igor.gieralt@admindagency.com",
+      "team": "UX",
+      "leader_email": "gabriela.baka@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Inga Tokarska",
+      "email": "inga.tokarska@admindagency.com",
+      "team": "DP & BP",
+      "leader_email": "krzysztof.wroblewski@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Izabela Czyż",
+      "email": "izabela.czyz@admindagency.com",
+      "team": "DP & BP",
+      "leader_email": "krzysztof.wroblewski@admindagency.com",
+      "weekly_target": 0.0
+    },
+    {
+      "name": "Izabela Kabza",
+      "email": "izabela.kabza@admindagency.com",
+      "team": "UBS-SYN",
+      "leader_email": "michal.danek@admindagency.com",
+      "weekly_target": 32.0
+    },
+    {
+      "name": "Jakub Głód",
+      "email": "jakub.glod@admindagency.com",
+      "team": "1",
+      "leader_email": "maciej.ochecki@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Jakub Kukowski",
+      "email": "jakub.kukowski@admindagency.com",
+      "team": "DP & BP",
+      "leader_email": "krzysztof.wroblewski@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Jakub Ostrowski",
+      "email": "jakub.ostrowski@admindagency.com",
+      "team": "PM-1",
+      "leader_email": "weronika.szponar-kaminska@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Jakub Pitwor",
+      "email": "jakub.pitwor@admindagency.com",
+      "team": "PPT",
+      "leader_email": "maciej.furtak@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Jakub Łodej",
+      "email": "jakub.lodej@admindagency.com",
+      "team": "FE",
+      "leader_email": "szymon.skrzypczak@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Joanna Trela",
+      "email": "joanna.trela@admindagency.com",
+      "team": "UX",
+      "leader_email": "gabriela.baka@admindagency.com",
+      "weekly_target": 32.0
+    },
+    {
+      "name": "Jonattas Poltronieri",
+      "email": "jonattas.poltronieri@admindagency.com",
+      "team": "CT",
+      "leader_email": "aleksandra.golab@admindagency.com",
+      "weekly_target": 40.0,
+      "is_team_lead": true
+    },
+    {
+      "name": "Julia Piwowarska",
+      "email": "julia.piwowarska@admindagency.com",
+      "team": "PRINC",
+      "leader_email": "aida.fernandez@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Justyna Brząkała",
+      "email": "justyna.brzakala@admindagency.com",
+      "team": "MO - MAJA",
+      "leader_email": "maja.keder@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Justyna Dorman",
+      "email": "justyna.dorman@admindagency.com",
+      "team": "UBS_BA",
+      "leader_email": "aleksandra.golab@admindagency.com",
+      "weekly_target": 35.0,
+      "is_team_lead": true
+    },
+    {
+      "name": "Jędrzej Chojnacki",
+      "email": "jedrzej.chojnacki@admindagency.com",
+      "team": "BA",
+      "leader_email": "justyna.dorman@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Kamil Kościuk",
+      "email": "kamil.kosciuk@admindagency.com",
+      "team": "DP & BP",
+      "leader_email": "krzysztof.wroblewski@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Kamil Lach",
+      "email": "kamil.lach@admindagency.com",
+      "team": "ACC",
+      "leader_email": "michal.majewski@admindagency.com",
+      "weekly_target": 40.0,
+      "is_team_lead": true
+    },
+    {
+      "name": "Karolina Dubaj",
+      "email": "karolina.dubaj@admindagency.com",
+      "team": "2",
+      "leader_email": "andrzej.leraczyk@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Karolina Orlińska",
+      "email": "karolina.orlinska@admindagency.com",
+      "team": "PM-OTHER",
+      "leader_email": "aleksandra.monczak@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Karolina Pospischil",
+      "email": "karolina.pospischil@admindagency.com",
+      "team": "STR",
+      "leader_email": "aleksandra.golab@admindagency.com",
+      "weekly_target": 0.0,
+      "is_team_lead": true
+    },
+    {
+      "name": "Katarzyna Mliczek",
+      "email": "katarzyna.mliczek@admindagency.com",
+      "team": "PRINC",
+      "leader_email": "aida.fernandez@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Katarzyna Powichrowska",
+      "email": "katarzyna.powichrowska@admindagency.com",
+      "team": "PM-4",
+      "leader_email": "magda.skalik@admindagency.com",
+      "weekly_target": 0.0
+    },
+    {
+      "name": "Katarzyna Schab",
+      "email": "katarzyna.schab@admindagency.com",
+      "team": "UBS-SYN",
+      "leader_email": "michal.danek@admindagency.com",
+      "weekly_target": 32.0
+    },
+    {
+      "name": "Katarzyna Wajdziak",
+      "email": "katarzyna.wajdziak@admindagency.com",
+      "team": "PRINC",
+      "leader_email": "aida.fernandez@admindagency.com",
+      "weekly_target": 8.0
+    },
+    {
+      "name": "Katarzyna Wielgołaska",
+      "email": "katarzyna.wielgolaska@admindagency.com",
+      "team": "CAMPAIGNS",
+      "leader_email": "piotr.wisniewski@admindagency.com",
+      "weekly_target": 32.0,
+      "is_team_lead": true
+    },
+    {
+      "name": "Keegan Jordan-Matney",
+      "email": "keegan.j-m@admindagency.com",
+      "team": "ACC",
+      "leader_email": "kamil.lach@admindagency.com",
+      "weekly_target": 24.0
+    },
+    {
+      "name": "Kinga Draczyńska",
+      "email": "kinga.draczynska@admindagency.com",
+      "team": "PPT",
+      "leader_email": "maciej.furtak@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Kinga Gluch",
+      "email": "kinga.gluch@admindagency.com",
+      "team": "COE",
+      "leader_email": "hayley.smith@admindagency.com",
+      "weekly_target": 40.0
+    },
+{
+      "name": "Klaudia Grzelak",
+      "email": "klaudia.grzelak@admindagency.com",
+      "team": "PM-2",
+      "leader_email": "emilia.glowinska@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Lidia Latawiec",
+      "email": "lidia.latawiec@admindagency.com",
+      "team": "MO - MAJA",
+      "leader_email": "maja.keder@admindagency.com",
+      "weekly_target": 32.0
+    },
+    {
+      "name": "Liliana Fryda",
+      "email": "liliana.fryda@admindagency.com",
+      "team": "2",
+      "leader_email": "andrzej.leraczyk@admindagency.com",
+      "weekly_target": 35.0
+    },
+    {
+      "name": "Maciej Furtak",
+      "email": "maciej.furtak@admindagency.com",
+      "team": "FURTI",
+      "leader_email": "aleksandra.golab@admindagency.com",
+      "weekly_target": 24.0,
+      "is_team_lead": true
+    },
+    {
+      "name": "Maciej Ochęcki",
+      "email": "maciej.ochecki@admindagency.com",
+      "team": "1",
+      "leader_email": "marta.szmyd@admindagency.com",
+      "weekly_target": 40.0,
+      "is_team_lead": true
+    },
+    {
+      "name": "Magdalena Fangerog",
+      "email": "magdalena.fangerog@admindagency.com",
+      "team": "PPT",
+      "leader_email": "maciej.furtak@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Magdalena Hutny",
+      "email": "magdalena.hutny@admindagency.com",
+      "team": "PPT",
+      "leader_email": "maciej.furtak@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Magdalena Jesionkiewicz",
+      "email": "magdalena.jesionkiewicz@admindagency.com",
+      "team": "PPT",
+      "leader_email": "maciej.furtak@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Magdalena Kotlarek",
+      "email": "magdalena.kotlarek@admindagency.com",
+      "team": "BA",
+      "leader_email": "justyna.dorman@admindagency.com",
+      "weekly_target": 0.0,
+      "is_team_lead": false
+    },
+    {
+      "name": "Magdalena Krakowska",
+      "email": "magdalena.krakowska@admindagency.com",
+      "team": "PM-BM",
+      "leader_email": "marta.bialecka@admindagency.com",
+      "weekly_target": 24.0
+    },
+    {
+      "name": "Magdalena Rymarczuk",
+      "email": "magdalena.rymarczuk@admindagency.com",
+      "team": "STR",
+      "leader_email": "karolina.pospischil@admind.pl",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Maja Kęder",
+      "email": "maja.keder@admindagency.com",
+      "team": "MO - MAJA",
+      "leader_email": "michal.majewski@admindagency.com",
+      "weekly_target": 40.0,
+      "is_team_lead": true
+    },
+    {
+      "name": "Maja Sikora",
+      "email": "maja.sikora@admindagency.com",
+      "team": "PM-PPT",
+      "leader_email": "maciej.furtak@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Malwina Tuchendler",
+      "email": "malwina.tuchendler@admindagency.com",
+      "team": "COPYWRITER",
+      "leader_email": "piotr.wisniewski@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Małgorzata Piwowarczyk",
+      "email": "malgorzata.piwowarczyk@admindagency.com",
+      "team": "1",
+      "leader_email": "maciej.ochecki@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Marcin Krokosz",
+      "email": "marcin.krokosz@admindagency.com",
+      "team": "FE",
+      "leader_email": "szymon.skrzypczak@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Marco Couto",
+      "email": "marco.couto@admindagency.com",
+      "team": "MO - MO",
+      "leader_email": "mohammad.dorcheh@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Maria Dorda",
+      "email": "maria.dorda@admindagency.com",
+      "team": "UBS-SYN",
+      "leader_email": "michal.danek@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Marika Owczarek",
+      "email": "marika.owczarek@admindagency.com",
+      "team": "PM-OTHER",
+      "leader_email": "aleksandra.monczak@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Marta Białecka",
+      "email": "marta.bialecka@admindagency.com",
+      "team": "PM-BM",
+      "leader_email": "marta.bialecka@admindagency.com",
+      "weekly_target": 0.0
+    },
+    {
+      "name": "Marta Plichta",
+      "email": "marta.plichta@admindagency.com",
+      "team": "PM-4",
+      "leader_email": "magda.skalik@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Marta Szmyd",
+      "email": "marta.szmyd@admindagency.com",
+      "team": "CD",
+      "leader_email": "aleksandra.golab@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Marta Warmińska",
+      "email": "marta.warminska@admindagency.com",
+      "team": "2",
+      "leader_email": "andrzej.leraczyk@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Martyna Florek",
+      "email": "martyna.florek@admindagency.com",
+      "team": "CT",
+      "leader_email": "jonattas.poltronieri@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Martyna Mormul",
+      "email": "martyna.mormul@admindagency.com",
+      "team": "PPT",
+      "leader_email": "maciej.furtak@admindagency.com",
+      "weekly_target": 38.0
+    },
+    {
+      "name": "Mateja Nikolikj",
+      "email": "mateja.nikolikj@admindagency.com",
+      "team": "CAMPAIGNS",
+      "leader_email": "katarzyna.wielgolaska@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Mateusz Adamczyk",
+      "email": "mateusz.adamczyk@admindagency.com",
+      "team": "UBS-SYN",
+      "leader_email": "michal.danek@admindagency.com",
+      "weekly_target": 24.0
+    },
+    {
+      "name": "Mateusz Zieliński",
+      "email": "mateusz.zielinski@admindagency.com",
+      "team": "DP & BP",
+      "leader_email": "krzysztof.wroblewski@admindagency.com",
+      "weekly_target": 32.0
+    },
+    {
+      "name": "Małgorzata Duda",
+      "email": "malgorzata.duda@admindagency.com",
+      "team": "DP & BP",
+      "leader_email": "krzysztof.wroblewski@admindagency.com",
+      "weekly_target": 0.0
+    },
+    {
+      "name": "Małgorzata Polewka",
+      "email": "malgorzata.polewka@admindagency.com",
+      "team": "DP & BP",
+      "leader_email": "krzysztof.wroblewski@admindagency.com",
+      "weekly_target": -5.0
+    },
+    {
+      "name": "Michał Danek",
+      "email": "michal.danek@admindagency.com",
+      "team": "UBS-SYN",
+      "leader_email": "piotr.wisniewski@admindagency.com",
+      "weekly_target": 40.0,
+      "is_team_lead": true
+    },
+    {
+      "name": "Michał Majewski",
+      "email": "michal.majewski@admindagency.com",
+      "team": "CD",
+      "leader_email": "aleksandra.golab@admindagency.com",
+      "weekly_target": 40.0,
+      "is_team_lead": true
+    },
+    {
+      "name": "Michał Suska",
+      "email": "michal.suska@admindagency.com",
+      "team": "1",
+      "leader_email": "maciej.ochecki@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Michał Wojtunik",
+      "email": "michal.wojtunik@admindagency.com",
+      "team": "DP & BP",
+      "leader_email": "krzysztof.wroblewski@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Mohammad Dorcheh",
+      "email": "mohammad.dorcheh@admindagency.com",
+      "team": "MO - MO",
+      "leader_email": "michal.majewski@admindagency.com",
+      "weekly_target": 0.0,
+      "is_team_lead": true
+    },
+    {
+      "name": "Monika Pabian",
+      "email": "monika.pabian@admindagency.com",
+      "team": "COE",
+      "leader_email": "hayley.smith@admindagency.com",
+      "weekly_target": 0.0
+    },
+    {
+      "name": "Morgan Nicholas-Karpiel",
+      "email": "morgan.nicholas-karpiel@admindagency.com",
+      "team": "CT",
+      "leader_email": "jonattas.poltronieri@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Natalia Błędowska",
+      "email": "natalia.bledowska@admindagency.com",
+      "team": "PRINC",
+      "leader_email": "aida.fernandez@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Natalia Rodzińska",
+      "email": "natalia.rodzinska@admindagency.com",
+      "team": "COE",
+      "leader_email": "hayley.smith@admindagency.com",
+      "weekly_target": 28.0
+    },
+    {
+      "name": "Nina Hess",
+      "email": "nina.hess@admindagency.com",
+      "team": "PPT",
+      "leader_email": "maciej.furtak@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Olga Shikhova",
+      "email": "olga.shikhova@admindagency.com",
+      "team": "PPT",
+      "leader_email": "maciej.furtak@admindagency.com",
+      "weekly_target": 30.0
+    },
+    {
+      "name": "Oliwia Głód",
+      "email": "oliwia.glod@admindagency.com",
+      "team": "4",
+      "leader_email": "dominik.wycislo@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Oscar Sobrino Guagnelli",
+      "email": "oscar.sobrino@admindagency.com",
+      "team": "3D",
+      "leader_email": "michal.majewski@admindagency.com",
+      "weekly_target": 32.0,
+      "is_team_lead": true
+    },
+    {
+      "name": "Patrycja Jurewicz",
+      "email": "patrycja.jurewicz@admindagency.com",
+      "team": "PM-BM",
+      "leader_email": "marta.bialecka@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Paulina Krynicka",
+      "email": "paulina.krynicka@admindagency.com",
+      "team": "PRINC",
+      "leader_email": "aida.fernandez@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Pavlo Blinokhvatov",
+      "email": "pavlo.blinokhvatov@admindagency.com",
+      "team": "CT",
+      "leader_email": "jonattas.poltronieri@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Paweł Kubala",
+      "email": "pawel.kubala@admindagency.com",
+      "team": "ACC",
+      "leader_email": "kamil.lach@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Piotr Gromniak",
+      "email": "piotr.gromniak@admindagency.com",
+      "team": "ACC",
+      "leader_email": "kamil.lach@admindagency.com",
+      "weekly_target": 36.0
+    },
+    {
+      "name": "Piotr Wiśniewski",
+      "email": "piotr.wisniewski@admindagency.com",
+      "team": "CD",
+      "leader_email": "aleksandra.golab@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Ricardo Neves",
+      "email": "ricardo.neves@admindagency.com",
+      "team": "PM-4",
+      "leader_email": "magda.skalik@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Rudeerat (Tam) Chankluan",
+      "email": "rudeerat.chankluan@admindagency.com",
+      "team": "PM-2",
+      "leader_email": "emilia.glowinska@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Svitlana Asyka",
+      "email": "svetlana.asyka@admindagency.com",
+      "team": "PPT",
+      "leader_email": "maciej.furtak@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Szymon Skrzypczak",
+      "email": "szymon.skrzypczak@admindagency.com",
+      "team": "FE",
+      "leader_email": "piotr.wisniewski@admindagency.com",
+      "weekly_target": 32.0,
+      "is_team_lead": true
+    },
+    {
+      "name": "Sławomir Wygoda",
+      "email": "slawomir.wygoda@admindagency.com",
+      "team": "PM-4",
+      "leader_email": "magda.skalik@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Tomasz Gąsior",
+      "email": "tomasz.gasior@admindagency.com",
+      "team": "MO - MO",
+      "leader_email": "mohammad.dorcheh@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Vedrana Peko",
+      "email": "vedrana.peko@admindagency.com",
+      "team": "2",
+      "leader_email": "andrzej.leraczyk@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Viktoriia Mandych",
+      "email": "viktoria.mandych@admindagency.com",
+      "team": "PPT",
+      "leader_email": "maciej.furtak@admindagency.com",
+      "weekly_target": 0.0
+    },
+    {
+      "name": "Viktoriia Szymczak",
+      "email": "viktoriia.szymczak@admindagency.com",
+      "team": "PM-DP",
+      "leader_email": "krzysztof.wroblewski@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Vladyslava Hrechkosii",
+      "email": "vladyslava.hrechkosii@admindagency.com",
+      "team": "1",
+      "leader_email": "maciej.ochecki@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Wiktor Skawski",
+      "email": "wiktor.skawski@admindagency.com",
+      "team": "4",
+      "leader_email": "dominik.wycislo@admindagency.com",
+      "weekly_target": 24.0
+    },
+    {
+      "name": "Wojciech Piróg",
+      "email": "wojciech.pirog@admindagency.com",
+      "team": "MO - MAJA",
+      "leader_email": "maja.keder@admindagency.com",
+      "weekly_target": 35.0
+    },
+    {
+      "name": "Younes Toufalla",
+      "email": "younes.toufalla@admindagency.com",
+      "team": "PM-BM",
+      "leader_email": "marta.bialecka@admindagency.com",
+      "weekly_target": 40.0
+    },
+    {
+      "name": "Zuzanna Kołodziej",
+      "email": "zuzanna.kolodziej@admindagency.com",
+      "team": "3D",
+      "leader_email": "oscar.sobrino@admindagency.com",
+      "weekly_target": 40.0
+    }
+  ]
+}
