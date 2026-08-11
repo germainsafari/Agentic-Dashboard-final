@@ -180,6 +180,10 @@ export async function runSync(directorId?: string): Promise<void> {
 
     for (const dir of directors) {
       console.log(`[sync] Processing ${dir.name} (${dir.teams.length} teams)...`);
+      const previousEntry = await getCachedDirector(dir.id);
+      const previousStatsByTeamCode = new Map(
+        (previousEntry?.teamStats ?? []).map((ts) => [ts.team.code, ts.stats])
+      );
       const entry: DirectorCacheEntry = {
         directorId: dir.id,
         teamStats: [],
@@ -238,13 +242,15 @@ export async function runSync(directorId?: string): Promise<void> {
             const leadKpiProjects = await fetchLeadKpiProjectsForTeam(
               teamLive,
               users,
-              teamProjects ?? []
+              teamProjects ?? [],
+              year
             );
             const activeResult = await fetchActiveProjectsForTeam(
               teamLive,
               users,
               teamProjects ?? []
             );
+            const previousStats = previousStatsByTeamCode.get(team.code);
             const stats = await loadTeamBundleFromScoro(
               teamLive,
               ids,
@@ -253,7 +259,11 @@ export async function runSync(directorId?: string): Promise<void> {
               leadKpiProjects,
               projectsForUtilization ?? teamProjects,
               activeResult.projects,
-              activeResult.details
+              activeResult.details,
+              previousStats && {
+                utilization: previousStats.kpiDebug?.utilization ?? {},
+                billable: previousStats.kpiDebug?.billable ?? {},
+              }
             );
             entry.teamStats.push({ team: teamLive, stats });
             console.log(
