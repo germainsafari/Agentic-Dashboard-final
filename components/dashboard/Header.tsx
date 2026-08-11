@@ -12,7 +12,6 @@ type Props = {
   escalationCount: number;
   kpiAchievement: { achieved: number; total: number };
   onEscalationClick: () => void;
-  onRefresh: () => Promise<void>;
 };
 
 const ESCALATION_TARGET = ESCALATION_YEARLY_MAX;
@@ -24,21 +23,7 @@ export function Header({
   escalationCount,
   kpiAchievement,
   onEscalationClick,
-  onRefresh,
 }: Props) {
-  const [refreshing, setRefreshing] = React.useState(false);
-  const [hovered, setHovered] = React.useState(false);
-
-  const handleRefresh = async () => {
-    if (refreshing) return;
-    setRefreshing(true);
-    try {
-      await onRefresh();
-    } finally {
-      setRefreshing(false);
-    }
-  };
-
   return (
     <header
       className="px-12 pt-5"
@@ -89,58 +74,6 @@ export function Header({
                   : `Offline · ${updatedAt}`}
               </span>
             </div>
-
-            {/* Refresh button */}
-            <button
-              type="button"
-              onClick={handleRefresh}
-              onMouseEnter={() => setHovered(true)}
-              onMouseLeave={() => setHovered(false)}
-              disabled={refreshing}
-              title="Refresh data"
-              aria-label="Refresh data"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 5,
-                background: "transparent",
-                border: `1px solid ${hovered && !refreshing ? COLORS.ink : COLORS.hairline}`,
-                color: hovered && !refreshing ? COLORS.ink : COLORS.muted,
-                padding: "4px 8px",
-                cursor: refreshing ? "default" : "pointer",
-                fontSize: 10,
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                transition: "border-color 0.15s, color 0.15s",
-                opacity: refreshing ? 0.55 : 1,
-                fontFamily: "inherit",
-              }}
-            >
-              <svg
-                width="11"
-                height="11"
-                viewBox="0 0 11 11"
-                fill="none"
-                style={{
-                  animation: refreshing ? "spin 0.9s linear infinite" : "none",
-                }}
-              >
-                <path
-                  d="M10 5.5A4.5 4.5 0 1 1 5.5 1"
-                  stroke="currentColor"
-                  strokeWidth="1.3"
-                  strokeLinecap="square"
-                />
-                <path
-                  d="M5.5 1 L8 1 L8 3.5"
-                  stroke="currentColor"
-                  strokeWidth="1.3"
-                  strokeLinecap="square"
-                  strokeLinejoin="miter"
-                />
-              </svg>
-              {refreshing ? "Syncing…" : hovered ? "Refresh" : ""}
-            </button>
           </div>
         </div>
       </div>

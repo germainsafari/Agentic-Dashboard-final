@@ -51,6 +51,20 @@ export function quarterRange(year: number, q: Quarter): { from: string; to: stri
   };
 }
 
+const CLOSED_QUARTER_BUFFER_DAYS = 30;
+
+/** A quarter is "closed" once we're safely past its last day — its logged
+ * time/absences are extremely unlikely to change, so a fresh sync can reuse
+ * the last computed numerator/denominator instead of re-fetching Scoro data
+ * for it. Only the still-open quarter (plus any that closed within the last
+ * `CLOSED_QUARTER_BUFFER_DAYS`) gets fetched fresh each sync. */
+export function isQuarterClosed(year: number, q: Quarter): boolean {
+  const { to } = quarterRange(year, q);
+  const cutoff = new Date(`${to}T00:00:00Z`);
+  cutoff.setUTCDate(cutoff.getUTCDate() + CLOSED_QUARTER_BUFFER_DAYS);
+  return cutoff.getTime() < Date.now();
+}
+
 export function yearRange(year: number): { from: string; to: string } {
   return { from: `${year}-01-01`, to: `${year}-12-31` };
 }
@@ -559,12 +573,18 @@ async function fetchTimeOffForUserIds(userIds: number[], year: number): Promise<
   return all.filter((a) => idSet.has(a.userId));
 }
 
+export type PreviousUtilBillableDebug = {
+  utilization: Record<string, KpiQuarterDebug>;
+  billable: Record<string, KpiQuarterDebug>;
+};
+
 export async function aggregateTimeForTeam(
   team: ResolvedTeam,
   userIds: number[],
   year: number,
   users: ScoroUser[],
-  projectsForUtilization: ScoroProject[] = []
+  projectsForUtilization: ScoroProject[] = [],
+  previousDebug?: PreviousUtilBillableDebug
 ): Promise<QuarterAgg> {
   const agg = emptyQuarterAgg();
   const yr = yearRange(year);
@@ -573,10 +593,37 @@ export async function aggregateTimeForTeam(
   const activities = await loadActivityLookup();
   const internalIds = await loadInternalNonBillableActivityIds();
 
+  // Closed quarters (safely in the past — see isQuarterClosed) reuse last
+  // sync's numerator/denominator instead of being re-fetched/recomputed;
+  // only the still-open quarter(s) do live Scoro work below. This is what
+  // keeps a routine re-sync from re-deriving months of unchanging history
+  // every single run.
+  const closed = new Set<Quarter>();
+  for (const q of QUARTERS) {
+    if (!isQuarterClosed(year, q)) continue;
+    const prevUtil = previousDebug?.utilization[q];
+    const prevBill = previousDebug?.billable[q];
+    if (!prevUtil || !prevBill || prevUtil.denominator <= 0) {
+      // No usable cached value yet (first sync ever, or team roster is new)
+      // — fall back to computing this quarter live just this once.
+      continue;
+    }
+    agg[q].utilizationSec = prevUtil.numerator;
+    agg[q].billableSec = prevBill.numerator;
+    agg[q].targetSec = prevUtil.denominator;
+    agg[q].availSec = prevUtil.denominator;
+    closed.add(q);
+  }
+  // Built in QUARTERS' natural chronological order regardless of which
+  // quarters ended up reclassified above — open[0] must be the earliest
+  // open quarter for the fetch-window narrowing below to be correct.
+  const open = QUARTERS.filter((q) => !closed.has(q));
+
   // Day-by-day (not weeks × flat weekly target) so a part-timer's non-work
   // weekdays correctly contribute 0, matching their real Scoro schedule.
+  // Only for open quarters — closed quarters already have their targetSec.
   for (const m of team.members) {
-    for (const q of QUARTERS) {
+    for (const q of open) {
       const { from, to } = quarterRange(year, q);
       if (asOfIso < from) continue;
       const end = asOfIso < to ? asOfIso : to;
@@ -593,7 +640,7 @@ export async function aggregateTimeForTeam(
   // Absences: subtract the member's scheduled hours for each booked day,
   // capped at that day's schedule (a full-day absence on a non-work day, or a
   // partial value exceeding the day's hours, can't subtract more than the
-  // person was ever scheduled to work).
+  // person was ever scheduled to work). Only applied to open quarters.
   const emailToId = new Map(users.map((u) => [u.email.toLowerCase(), u.id]));
   const idToMember = new Map<number, ResolvedTeam["members"][number]>();
   for (const m of team.members) {
@@ -615,23 +662,26 @@ export async function aggregateTimeForTeam(
     const member = idToMember.get(a.userId);
     if (!member) continue;
     const q = quarterFromIsoDate(a.date, year);
-    if (!q) continue;
+    if (!q || closed.has(q)) continue;
     const scheduled = scheduledSecondsForDay(member, a.date);
     const claimed = a.value === -1 ? scheduled : Math.max(0, a.value);
     agg[q].absenceSec += Math.min(claimed, scheduled);
   }
-  for (const q of QUARTERS) {
+  for (const q of open) {
     agg[q].targetSec = Math.max(0, agg[q].availSec - agg[q].absenceSec);
   }
 
   // Fetch each user's entries once, keep them in memory for this single team
   // (at most a handful of people), and collect exactly which calendar/task
   // event_ids need resolving — no full-year bulk crawl, no double-fetch.
+  // Narrowed to the earliest open quarter's start (not the full year) since
+  // closed quarters' entries are already accounted for above.
+  const fetchFrom = open.length > 0 ? quarterRange(year, open[0]).from : yr.to;
   const entriesByUser: ScoroTimeEntry[][] = [];
   const calEventIds = new Set<number>();
   const taskEventIds = new Set<number>();
   for (const uid of userIds) {
-    const entries = await fetchTimeEntriesForUser(uid, yr.from, yr.to);
+    const entries = await fetchTimeEntriesForUser(uid, fetchFrom, yr.to);
     entriesByUser.push(entries);
     collectReferencedEventIds(entries, calEventIds, taskEventIds);
   }
@@ -649,7 +699,7 @@ export async function aggregateTimeForTeam(
         (typeof e.start_datetime === "string" && String(e.start_datetime).slice(0, 10)) ||
         "";
       const q = quarterFromIsoDate(dateStr, year);
-      if (!q) continue;
+      if (!q || closed.has(q)) continue;
       const dur = parseDurationToSeconds(e.duration);
       const bill = parseDurationToSeconds(e.billable_duration ?? "00:00:00");
       agg[q].durationSec += dur;
@@ -1760,14 +1810,23 @@ async function fetchOpenTasksForLead(leadId: number): Promise<ScoroTask[]> {
   );
 }
 
-/** All tasks (open + completed) linked to the design lead. */
-async function fetchAllTasksForLead(leadId: number): Promise<ScoroTask[]> {
+/**
+ * All tasks (open + completed) linked to the design lead, bounded to modified
+ * since Jan 1 of the PRIOR year. Unbounded would mean re-fetching a multi-year
+ * lead's entire task history (600+ tasks) on every sync even though only
+ * projects completing in the current KPI year matter — a project that
+ * started last year and completed this year still has its start-of-work task
+ * modified within this window, so nothing this year's FTA/estimate KPIs need
+ * is excluded.
+ */
+async function fetchAllTasksForLead(leadId: number, year: number): Promise<ScoroTask[]> {
   const seen = new Set<number>();
   const merged: ScoroTask[] = [];
+  const modified_date = { from_date: `${year - 1}-01-01`, to_date: yearRange(year).to };
 
   for (const key of LEAD_OPEN_TASK_FILTER_KEYS) {
     const tasks = await scoroListAllPages<ScoroTask>("tasks/list", {
-      filter: { [key]: leadId },
+      filter: { [key]: leadId, modified_date },
       detailed: true,
       maxPages: 40,
     });
@@ -2143,7 +2202,8 @@ export type ActiveProjectsResult = {
 export async function fetchLeadKpiProjectsForTeam(
   team: ResolvedTeam,
   users: ScoroUser[],
-  knownProjects: ScoroProject[] = []
+  knownProjects: ScoroProject[] = [],
+  year: number
 ): Promise<ScoroProject[]> {
   const leadId = leadUserIdForTeam(team, users);
   if (leadId == null) {
@@ -2151,7 +2211,7 @@ export async function fetchLeadKpiProjectsForTeam(
     return [];
   }
 
-  const leadTasks = await fetchAllTasksForLead(leadId);
+  const leadTasks = await fetchAllTasksForLead(leadId, year);
   const projectIds = new Set<number>();
   for (const t of leadTasks) {
     const pid = taskProjectId(t);
@@ -2305,7 +2365,8 @@ export async function loadTeamBundleFromScoro(
   projectsForKpis?: ScoroProject[],
   projectsForUtilization?: ScoroProject[],
   projectsForActiveCount?: ScoroProject[],
-  activeProjectDetails?: ActiveProjectDetail[]
+  activeProjectDetails?: ActiveProjectDetail[],
+  previousDebug?: PreviousUtilBillableDebug
 ): Promise<TeamStats> {
   if (userIds.length === 0) {
     throw new Error("no_scoro_users");
@@ -2325,7 +2386,8 @@ export async function loadTeamBundleFromScoro(
     userIds,
     year,
     users,
-    projectsForUtilization ?? projects
+    projectsForUtilization ?? projects,
+    previousDebug
   );
   const projKpi = computeProjectKpisByQuarter(projects, year);
 

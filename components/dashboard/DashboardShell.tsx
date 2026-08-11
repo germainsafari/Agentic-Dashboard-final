@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { useRouter } from "next/navigation";
 import { ChatBot } from "./ChatBot";
 import { EscalationPanel } from "./EscalationPanel";
 import { Header } from "./Header";
@@ -36,33 +35,12 @@ export function DashboardShell({
   kpiAchievement,
   ftaEnabledTeamCodes,
 }: Props) {
-  const router = useRouter();
   const [quarter, setQuarter] = React.useState<Period>(initialQuarter);
   const [isMobile, setIsMobile] = React.useState(false);
   const [escOpen, setEscOpen] = React.useState(false);
   const [drill, setDrill] = React.useState<
     { teamIdx: number; focusEscalation: boolean } | null
   >(null);
-
-  /**
-   * Trigger a fresh Scoro sync for this director, wait for it to finish,
-   * then re-run the server components so the page shows new data.
-   */
-  const handleRefresh = React.useCallback(async () => {
-    // Kick off sync
-    await fetch(`/api/sync?director=${director.id}`, { method: "POST" });
-
-    // Poll until sync is no longer running (max ~3 min)
-    const deadline = Date.now() + 3 * 60 * 1000;
-    while (Date.now() < deadline) {
-      await new Promise((r) => setTimeout(r, 2500));
-      const status = await fetch("/api/sync").then((r) => r.json()).catch(() => null);
-      if (status && !status.running) break;
-    }
-
-    // Re-run server components to pick up fresh snapshot
-    router.refresh();
-  }, [director.id, router]);
 
   React.useEffect(() => {
     const mq = window.matchMedia("(max-width: 1280px)");
@@ -110,7 +88,6 @@ export function DashboardShell({
         escalationCount={escalations.length}
         kpiAchievement={kpiAchievement}
         onEscalationClick={() => setEscOpen(true)}
-        onRefresh={handleRefresh}
       />
       <QuarterBar quarter={quarter} onChange={setQuarter} />
 
