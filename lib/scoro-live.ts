@@ -516,7 +516,42 @@ function scheduledSecondsForDay(
   return (Math.max(0, m.weeklyTarget) * 3600) / 5;
 }
 
-export type AbsenceDay = { userId: number; date: string; type: string; value: number };
+const AVAILABILITY_MISMATCH_THRESHOLD_HOURS = 4;
+
+/**
+ * Sanity check, not a calculation input: flags when a member's live Scoro
+ * weekly schedule disagrees with their configured weeklyTarget (roster
+ * config) by more than a few hours. The live schedule always wins for the
+ * actual KPI math (see scheduledSecondsForDay) — this only makes the
+ * disagreement visible in sync logs instead of it silently producing
+ * confusing numbers that only get caught by someone reconciling by hand
+ * (as happened with a part-time member whose Scoro record still showed a
+ * full-time schedule).
+ */
+function logAvailabilityMismatches(team: ResolvedTeam): void {
+  for (const m of team.members) {
+    if (!m.availability) continue;
+    const liveWeeklySec = WEEKDAY_KEYS.reduce((s, k) => s + (m.availability![k] ?? 0), 0);
+    const configuredSec = Math.max(0, m.weeklyTarget) * 3600;
+    const diffHours = Math.abs(liveWeeklySec - configuredSec) / 3600;
+    if (diffHours > AVAILABILITY_MISMATCH_THRESHOLD_HOURS) {
+      console.warn(
+        `[sanity-check] ${team.code} ${m.email}: configured weeklyTarget=${m.weeklyTarget}h/wk ` +
+          `but live Scoro schedule=${(liveWeeklySec / 3600).toFixed(1)}h/wk ` +
+          `(diff ${diffHours.toFixed(1)}h) — the live number is what's actually used for target hours; ` +
+          `verify which one is correct.`
+      );
+    }
+  }
+}
+
+export type AbsenceDay = {
+  userId: number;
+  date: string;
+  type: string;
+  value: number;
+  recordId: number;
+};
 
 let _orgTimeOffs: AbsenceDay[] | null = null;
 let _orgTimeOffsYear: number | null = null;
@@ -546,6 +581,7 @@ async function loadOrgTimeOffs(year: number): Promise<AbsenceDay[]> {
   for (const r of rows) {
     const type = String(r.type ?? "");
     if (type === "extra_availability") continue;
+    const recordId = Number(r.id);
 
     const usersDates = Array.isArray(r.usersDates) ? r.usersDates : [];
     for (const ud of usersDates as Record<string, unknown>[]) {
@@ -555,7 +591,7 @@ async function loadOrgTimeOffs(year: number): Promise<AbsenceDay[]> {
       for (const d of dates as Record<string, unknown>[]) {
         const date = String(d.date ?? "");
         if (!date) continue;
-        out.push({ userId, date, type, value: Number(d.value ?? 0) });
+        out.push({ userId, date, type, value: Number(d.value ?? 0), recordId });
       }
     }
   }
@@ -586,6 +622,8 @@ export async function aggregateTimeForTeam(
   projectsForUtilization: ScoroProject[] = [],
   previousDebug?: PreviousUtilBillableDebug
 ): Promise<QuarterAgg> {
+  logAvailabilityMismatches(team);
+
   const agg = emptyQuarterAgg();
   const yr = yearRange(year);
   const asOfIso = utilizationAsOfIso(year);
@@ -648,13 +686,30 @@ export async function aggregateTimeForTeam(
     if (id != null) idToMember.set(id, m);
   }
   // A single day can appear in more than one time-off record (e.g. a 5-day
-  // vacation block plus a separately-logged national holiday inside it) —
-  // dedupe by user+date first so overlapping records don't double-subtract.
+  // vacation block plus a separately-logged national holiday inside it, or
+  // two genuinely duplicate bookings) — dedupe by user+date first so
+  // overlapping records don't double-subtract. Logged when it happens (not
+  // just silently absorbed) since a genuine duplicate booking is a real
+  // Scoro data-quality issue worth someone cleaning up, even though this
+  // dedup already protects the calculation from it.
   const absencesByUserDate = new Map<string, AbsenceDay>();
   for (const a of await fetchTimeOffForUserIds(userIds, year)) {
     const key = `${a.userId}|${a.date}`;
     const existing = absencesByUserDate.get(key);
-    if (!existing || (existing.value !== -1 && (a.value === -1 || a.value > existing.value))) {
+    if (!existing) {
+      absencesByUserDate.set(key, a);
+      continue;
+    }
+    if (existing.recordId !== a.recordId) {
+      const member = idToMember.get(a.userId);
+      console.warn(
+        `[sanity-check] ${team.code} ${member?.email ?? a.userId} has overlapping time-off ` +
+          `bookings on ${a.date}: record ${existing.recordId} (${existing.type}) and ` +
+          `record ${a.recordId} (${a.type}) both claim this day — only one is counted, ` +
+          `but the duplicate booking itself is worth cleaning up in Scoro.`
+      );
+    }
+    if (existing.value !== -1 && (a.value === -1 || a.value > existing.value)) {
       absencesByUserDate.set(key, a);
     }
   }
@@ -663,6 +718,12 @@ export async function aggregateTimeForTeam(
     if (!member) continue;
     const q = quarterFromIsoDate(a.date, year);
     if (!q || closed.has(q)) continue;
+    // A future booking later in the still-open quarter (e.g. vacation booked
+    // for next week) must not be subtracted yet — the availability loop above
+    // never added those future days to availSec in the first place (it stops
+    // at asOfIso), so subtracting their absence here would understate target
+    // hours for time that hasn't happened yet.
+    if (a.date > asOfIso) continue;
     const scheduled = scheduledSecondsForDay(member, a.date);
     const claimed = a.value === -1 ? scheduled : Math.max(0, a.value);
     agg[q].absenceSec += Math.min(claimed, scheduled);
@@ -692,6 +753,7 @@ export async function aggregateTimeForTeam(
     projectsForUtilization
   );
 
+  const unresolvedSecByQuarter = new Map<Quarter, number>();
   for (const entries of entriesByUser) {
     for (const e of entries) {
       const dateStr =
@@ -704,9 +766,30 @@ export async function aggregateTimeForTeam(
       const bill = parseDurationToSeconds(e.billable_duration ?? "00:00:00");
       agg[q].durationSec += dur;
       agg[q].billableSec += bill;
-      if (classifyUtilizationEntry(e, resolver, activities, internalIds).counted) {
+      const result = classifyUtilizationEntry(e, resolver, activities, internalIds);
+      if (result.counted) {
         agg[q].utilizationSec += dur;
+      } else if (result.reason === "unresolvedProject") {
+        unresolvedSecByQuarter.set(q, (unresolvedSecByQuarter.get(q) ?? 0) + dur);
       }
+    }
+  }
+
+  // Sanity check: an entry whose calendar/task event never resolved to a
+  // project is silently excluded from utilization (neither counted nor
+  // logged elsewhere) — fine occasionally, but a large share pointing to
+  // unresolvable data is worth surfacing rather than quietly under-counting
+  // real work.
+  const UNRESOLVED_SHARE_THRESHOLD = 0.05;
+  for (const q of open) {
+    const unresolvedSec = unresolvedSecByQuarter.get(q) ?? 0;
+    if (agg[q].durationSec > 0 && unresolvedSec / agg[q].durationSec > UNRESOLVED_SHARE_THRESHOLD) {
+      console.warn(
+        `[sanity-check] ${team.code} ${q}: ${(unresolvedSec / 3600).toFixed(1)}h ` +
+          `(${Math.round((100 * unresolvedSec) / agg[q].durationSec)}% of logged time) could not be ` +
+          `resolved to a project and was excluded from utilization — likely time entries linked to ` +
+          `deleted/moved tasks or calendar events.`
+      );
     }
   }
 
