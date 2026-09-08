@@ -1200,37 +1200,73 @@ export function projectCompletionQuarter(p: ScoroProject, year: number): Quarter
   return quarterFromIsoDate(projectCompletionDateIso(p), year);
 }
 
-/** Quoted vs actual style totals from Scoro (preferred when present). */
-type BudgetEntry = {
-  estimatedCost: number;
-  actualCost: number;
-  budgetedSum?: number;
-  usedBudget?: number;
-};
-
 const BUDGET_EPS = 0.01;
 
-let _budgetCache: Map<number, BudgetEntry> | null = null;
+/**
+ * Live "Projects in Estimate" budget data — quoted vs. invoiced amount per
+ * project, fetched fresh every sync. Replaces a one-time static snapshot
+ * (data/budgets.json, hand-pulled once via the v4 API and never refreshed —
+ * confirmed stale and missing real projects) with Scoro's own v2 `quotes/list`
+ * and `invoices/list`, both batchable by an array of project_id, so no v4/MCP
+ * credential is needed at all.
+ *
+ * Only quotes in status "Confirmed" (raw code `additional8`) or "Project
+ * Invoiced" (raw code `completed`) are summed as the quoted/estimated amount
+ * — a project can carry several quotes and some get rejected along the way,
+ * so an all-quotes sum would overstate the real estimate (raw status codes
+ * confirmed live against this account's actual `statuses/list`, since the
+ * human-readable labels are custom-configured per account). Invoices are
+ * summed unfiltered — they represent money actually billed.
+ */
+type LiveProjectBudget = { quotedSum: number; invoicedSum: number };
+const QUOTE_ESTIMATE_STATUSES = new Set(["additional8", "completed"]);
+const BUDGET_FETCH_CHUNK = 100;
 
-/** Comparable cap vs used for "within estimate" (higher values = more spend). */
-function budgetPairFromCache(b: BudgetEntry): { cap: number; used: number } | null {
-  const bs = b.budgetedSum;
-  const ub = b.usedBudget;
-  if (
-    typeof bs === "number" &&
-    Number.isFinite(bs) &&
-    typeof ub === "number" &&
-    Number.isFinite(ub) &&
-    (bs > 0 || ub > 0)
-  ) {
-    return { cap: bs, used: ub };
+async function fetchLiveProjectBudgets(
+  projectIds: number[]
+): Promise<Map<number, LiveProjectBudget>> {
+  const out = new Map<number, LiveProjectBudget>();
+  if (projectIds.length === 0) return out;
+
+  const get = (pid: number) => {
+    let entry = out.get(pid);
+    if (!entry) {
+      entry = { quotedSum: 0, invoicedSum: 0 };
+      out.set(pid, entry);
+    }
+    return entry;
+  };
+
+  for (let i = 0; i < projectIds.length; i += BUDGET_FETCH_CHUNK) {
+    const chunk = projectIds.slice(i, i + BUDGET_FETCH_CHUNK);
+
+    const quotes = await scoroListAllPages<Record<string, unknown>>("quotes/list", {
+      filter: { project_id: chunk },
+      maxPages: 20,
+    });
+    for (const q of quotes) {
+      if (!QUOTE_ESTIMATE_STATUSES.has(String(q.status ?? ""))) continue;
+      const pid = Number(q.project_id);
+      const sum = Number(q.sum);
+      if (Number.isFinite(pid) && Number.isFinite(sum)) get(pid).quotedSum += sum;
+    }
+
+    const invoices = await scoroListAllPages<Record<string, unknown>>("invoices/list", {
+      filter: { project_id: chunk },
+      maxPages: 20,
+    });
+    for (const inv of invoices) {
+      const pid = Number(inv.project_id);
+      const sum = Number(inv.sum);
+      if (Number.isFinite(pid) && Number.isFinite(sum)) get(pid).invoicedSum += sum;
+    }
   }
-  const ec = b.estimatedCost;
-  const ac = b.actualCost;
-  if ((typeof ec === "number" && ec > 0) || (typeof ac === "number" && ac > 0)) {
-    return { cap: ec, used: ac };
-  }
-  return null;
+
+  return out;
+}
+
+function withinBudgetCap(cap: number, used: number): boolean {
+  return used <= cap + BUDGET_EPS;
 }
 
 function projectBudgetPair(p: ScoroProject): { cap: number; used: number } | null {
@@ -1253,37 +1289,6 @@ function projectBudgetPair(p: ScoroProject): { cap: number; used: number } | nul
   return null;
 }
 
-function withinBudgetCap(cap: number, used: number): boolean {
-  return used <= cap + BUDGET_EPS;
-}
-
-function loadBudgetCache(): Map<number, BudgetEntry> {
-  if (_budgetCache) return _budgetCache;
-  _budgetCache = new Map();
-  try {
-    // budgets.json is committed to the repo and available read-only in all
-    // environments (local dev and Vercel's /var/task filesystem).
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const fs = require("fs") as typeof import("fs");
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const path = require("path") as typeof import("path");
-    const fp = path.join(process.cwd(), "data", "budgets.json");
-    const raw = JSON.parse(fs.readFileSync(fp, "utf8")) as Record<string, BudgetEntry>;
-    for (const [id, entry] of Object.entries(raw)) {
-      _budgetCache.set(Number(id), entry);
-    }
-    console.log(`[budget] Loaded ${_budgetCache.size} project budgets`);
-  } catch {
-    console.warn("[budget] data/budgets.json not found — Projects in Estimate will show 0%");
-  }
-  return _budgetCache;
-}
-
-/**
- * "Projects in Estimate" — budget cost vs actual cost.
- * Reads pre-fetched budget data from data/budgets.json (populated via
- * the Scoro v4 API / MCP). Falls back to v2 fields if present.
- */
 function projectNumericId(p: ScoroProject): number {
   // Scoro v2 may return the ID as "project_id" or "id"
   const a = Number(p.project_id);
@@ -1293,15 +1298,17 @@ function projectNumericId(p: ScoroProject): number {
   return NaN;
 }
 
-function inEstimateSuccess(p: ScoroProject): boolean {
+/** "Projects in Estimate" — quoted amount (live budgets map) vs actual cost. */
+function inEstimateSuccess(
+  p: ScoroProject,
+  liveBudgets: Map<number, LiveProjectBudget>
+): boolean {
   if (!isCompletedOrInvoiced(p)) return false;
   const pid = projectNumericId(p);
 
-  const budgets = loadBudgetCache();
-  const b = Number.isFinite(pid) ? budgets.get(pid) : undefined;
-  if (b) {
-    const pair = budgetPairFromCache(b);
-    if (pair) return withinBudgetCap(pair.cap, pair.used);
+  const live = Number.isFinite(pid) ? liveBudgets.get(pid) : undefined;
+  if (live && live.quotedSum > 0) {
+    return withinBudgetCap(live.quotedSum, live.invoicedSum);
   }
 
   const fromProject = projectBudgetPair(p);
@@ -1310,38 +1317,28 @@ function inEstimateSuccess(p: ScoroProject): boolean {
   return false;
 }
 
-function hasEstimateData(p: ScoroProject): boolean {
+function hasEstimateData(
+  p: ScoroProject,
+  liveBudgets: Map<number, LiveProjectBudget>
+): boolean {
   const pid = projectNumericId(p);
-  const budgets = loadBudgetCache();
-  const b = Number.isFinite(pid) ? budgets.get(pid) : undefined;
-  if (b && budgetPairFromCache(b)) return true;
+  const live = Number.isFinite(pid) ? liveBudgets.get(pid) : undefined;
+  if (live && live.quotedSum > 0) return true;
 
   return projectBudgetPair(p) != null;
 }
 
 /**
- * Returns the budgeted / quoted value of a project in CHF for pitch weighting.
- * Priority: budgetedSum from budgets.json → estimatedCost from budgets.json →
- * Scoro project budget fields. Returns 0 when no data is available.
+ * DEAD CODE NOTE: this feeds computeProjectKpisByQuarter's own newBizWin/
+ * existingWin, which is itself never read — loadTeamBundleFromScoro uses
+ * computePitchKpisFromTasks's output for those KPIs instead (weighted by
+ * the task's own tag, not project budget value). Kept only so that block
+ * still compiles; not worth deleting in this pass since it's inert either
+ * way. Returns the project's own v2 budget field if present, else 0.
  */
 function projectBudgetValue(p: ScoroProject): number {
-  const pid = projectNumericId(p);
-  const budgets = loadBudgetCache();
-  const b = Number.isFinite(pid) ? budgets.get(pid) : undefined;
-  if (b) {
-    const bs = b.budgetedSum;
-    if (typeof bs === "number" && Number.isFinite(bs) && bs > 0) return bs;
-    const ec = b.estimatedCost;
-    if (typeof ec === "number" && Number.isFinite(ec) && ec > 0) return ec;
-  }
-  const cap = Number(
-    (p as { budget_cost?: unknown }).budget_cost ??
-      (p as { estimated_cost?: unknown }).estimated_cost ??
-      (p as { project_budget?: unknown }).project_budget ??
-      (p as { total_budget?: unknown }).total_budget ??
-      0
-  );
-  return Number.isFinite(cap) && cap > 0 ? cap : 0;
+  const fromProject = projectBudgetPair(p);
+  return fromProject?.cap ?? 0;
 }
 
 /**
@@ -1404,10 +1401,10 @@ export async function fetchProjectsForTeamUserIds(
   });
 }
 
-export function computeProjectKpisByQuarter(
+export async function computeProjectKpisByQuarter(
   projects: ScoroProject[],
   year: number
-): {
+): Promise<{
   fta: Record<Quarter, number>;
   estimate: Record<Quarter, number>;
   newBizWin: Record<Quarter, number>;
@@ -1420,7 +1417,7 @@ export function computeProjectKpisByQuarter(
     newBizWin: Record<Quarter, { numerator: number; denominator: number }>;
     existingWin: Record<Quarter, { numerator: number; denominator: number }>;
   };
-} {
+}> {
   const zeros = () =>
     Object.fromEntries(QUARTERS.map((q) => [q, 0])) as Record<Quarter, number>;
   const zeroCounts = () =>
@@ -1462,6 +1459,18 @@ export function computeProjectKpisByQuarter(
     console.log(`[kpi:diag] sample deadline/dueDate: ${String(sample.deadline ?? (sample as { dueDate?: unknown }).dueDate ?? "")}`);
   }
 
+  // Prefetch live quoted/invoiced amounts for every completed client project
+  // across all four quarters in one batched pass, rather than per-quarter.
+  const allCompletedClientIds = [
+    ...new Set(
+      projects
+        .filter((p) => isClientProject(p) && isCompletedOrInvoiced(p))
+        .map(projectNumericId)
+        .filter((id) => Number.isFinite(id) && id > 0)
+    ),
+  ];
+  const liveBudgets = await fetchLiveProjectBudgets(allCompletedClientIds);
+
   for (const q of QUARTERS) {
     const pool = projects.filter(
       (p) =>
@@ -1477,8 +1486,8 @@ export function computeProjectKpisByQuarter(
     debug.fta[q] = { numerator: ftaNum, denominator: ftaDenom };
     analyzed.fta += ftaDenom;
 
-    const estPool = completed.filter((p) => hasEstimateData(p));
-    const estNum = estPool.filter((p) => inEstimateSuccess(p)).length;
+    const estPool = completed.filter((p) => hasEstimateData(p, liveBudgets));
+    const estNum = estPool.filter((p) => inEstimateSuccess(p, liveBudgets)).length;
     estimate[q] = estPool.length ? Math.round((100 * estNum) / estPool.length) : 0;
     debug.estimate[q] = { numerator: estNum, denominator: estPool.length };
     analyzed.estimate += estPool.length;
@@ -1894,34 +1903,42 @@ async function fetchOpenTasksForLead(leadId: number): Promise<ScoroTask[]> {
 }
 
 /**
- * All tasks (open + completed) linked to the design lead, bounded to modified
- * since Jan 1 of the PRIOR year. Unbounded would mean re-fetching a multi-year
- * lead's entire task history (600+ tasks) on every sync even though only
- * projects completing in the current KPI year matter — a project that
- * started last year and completed this year still has its start-of-work task
- * modified within this window, so nothing this year's FTA/estimate KPIs need
- * is excluded.
+ * All tasks (open + completed) linked to any of the given design leads
+ * (current + former, e.g. a lead who has since left the company but whose
+ * historical completed projects should still count — see
+ * leadUserIdsForTeam), bounded to modified since Jan 1 of the PRIOR year.
+ * Unbounded would mean re-fetching a multi-year lead's entire task history
+ * (600+ tasks) on every sync even though only projects completing in the
+ * current KPI year matter — a project that started last year and completed
+ * this year still has its start-of-work task modified within this window,
+ * so nothing this year's FTA/estimate KPIs need is excluded.
  */
-async function fetchAllTasksForLead(leadId: number, year: number): Promise<ScoroTask[]> {
+async function fetchAllTasksForLead(leadIds: number[], year: number): Promise<ScoroTask[]> {
   const seen = new Set<number>();
   const merged: ScoroTask[] = [];
   const modified_date = { from_date: `${year - 1}-01-01`, to_date: yearRange(year).to };
 
-  for (const key of LEAD_OPEN_TASK_FILTER_KEYS) {
-    const tasks = await scoroListAllPages<ScoroTask>("tasks/list", {
-      filter: { [key]: leadId, modified_date },
-      detailed: true,
-      maxPages: 40,
-    });
-    for (const t of tasks) {
-      const id = stableTaskEventId(t);
-      if (id != null && seen.has(id)) continue;
-      if (id != null) seen.add(id);
-      merged.push(t);
+  // Looped per lead id (not one array-valued filter call) — an array value
+  // wasn't verified to behave correctly for these particular filter keys,
+  // and this only ever runs with more than one id for a team mid-handoff
+  // between leads, so the extra calls are rare and cheap.
+  for (const leadId of leadIds) {
+    for (const key of LEAD_OPEN_TASK_FILTER_KEYS) {
+      const tasks = await scoroListAllPages<ScoroTask>("tasks/list", {
+        filter: { [key]: leadId, modified_date },
+        detailed: true,
+        maxPages: 40,
+      });
+      for (const t of tasks) {
+        const id = stableTaskEventId(t);
+        if (id != null && seen.has(id)) continue;
+        if (id != null) seen.add(id);
+        merged.push(t);
+      }
     }
   }
 
-  return merged.filter((t) => taskAssigneeUserIds(t).includes(leadId));
+  return merged.filter((t) => taskAssigneeUserIds(t).some((id) => leadIds.includes(id)));
 }
 
 function isInternalNonBillableTask(
@@ -2241,6 +2258,25 @@ export function leadUserIdForTeam(
   return match?.id ?? null;
 }
 
+/** Current lead plus any former leads (see mapping.ts's former_leader_emails)
+ * whose historical projects should still count — used for FTA/Estimate,
+ * which look at completed-project history, not for active/open-task KPIs
+ * (a departed former lead has no legitimate open tasks left to track). */
+export function leadUserIdsForTeam(
+  team: ResolvedTeam,
+  users: ScoroUser[]
+): number[] {
+  const emails = [team.leadEmail, ...(team.formerLeadEmails ?? [])]
+    .filter((e): e is string => !!e)
+    .map((e) => e.toLowerCase());
+  const ids = new Set<number>();
+  for (const email of emails) {
+    const match = users.find((u) => u.email.toLowerCase() === email);
+    if (match) ids.add(match.id);
+  }
+  return [...ids];
+}
+
 const PROJECTS_BY_ID_CHUNK_SIZE = 100;
 
 /** Fetch projects by id in chunks (one paginated call per ~100 ids), not
@@ -2288,13 +2324,13 @@ export async function fetchLeadKpiProjectsForTeam(
   knownProjects: ScoroProject[] = [],
   year: number
 ): Promise<ScoroProject[]> {
-  const leadId = leadUserIdForTeam(team, users);
-  if (leadId == null) {
+  const leadIds = leadUserIdsForTeam(team, users);
+  if (leadIds.length === 0) {
     console.warn(`[kpi:lead] ${team.code}: no Scoro user for design lead ${team.leadEmail ?? "?"}`);
     return [];
   }
 
-  const leadTasks = await fetchAllTasksForLead(leadId, year);
+  const leadTasks = await fetchAllTasksForLead(leadIds, year);
   const projectIds = new Set<number>();
   for (const t of leadTasks) {
     const pid = taskProjectId(t);
@@ -2423,7 +2459,6 @@ export function computePitchKpisFromTasks(
 
 export function clearLiveCaches(): void {
   activityCache = null;
-  _budgetCache = null;
   _offerPrepBookmarkId = undefined;
   _offerPrepIds = null;
   _pitchCandidateTasks = null;
@@ -2472,7 +2507,7 @@ export async function loadTeamBundleFromScoro(
     projectsForUtilization ?? projects,
     previousDebug
   );
-  const projKpi = computeProjectKpisByQuarter(projects, year);
+  const projKpi = await computeProjectKpisByQuarter(projects, year);
 
   const { pitchTasks } = await fetchTeamTasks(team, userIds, year);
   const pitchKpi = computePitchKpisFromTasks(pitchTasks, year);

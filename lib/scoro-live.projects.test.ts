@@ -19,6 +19,7 @@ function team(code: string, userIds: number[]): TeamProjectFetch {
     name: `Team ${code}`,
     leadEmail: undefined,
     leadName: undefined,
+    formerLeadEmails: [],
     people: userIds.length,
     members: [],
   };
