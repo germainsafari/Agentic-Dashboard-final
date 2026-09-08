@@ -59,14 +59,8 @@ export function TeamHeader({ team, idx, activeProjects, onClick, variant = "row"
                 {team.people} team member{team.people === 1 ? "" : "s"}
               </div>
               {team.members.map((m) => (
-                <div
-                  key={m.email}
-                  className="flex items-baseline justify-between gap-3"
-                >
+                <div key={m.email}>
                   <span>{m.name}</span>
-                  <span style={{ color: COLORS.gray03, fontSize: 10 }}>
-                    {m.weeklyTarget}h/wk
-                  </span>
                 </div>
               ))}
             </div>

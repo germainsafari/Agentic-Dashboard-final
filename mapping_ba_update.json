@@ -18,8 +18,9 @@
       "upper_leader_email": "marta.szmyd@admindagency.com"
     },
     "4": {
-      "leader_email": "dominik.wycislo@admindagency.com",
-      "upper_leader_email": "marta.szmyd@admindagency.com"
+      "leader_email": "julia.piwowarska@admindagency.com",
+      "upper_leader_email": "marta.szmyd@admindagency.com",
+      "former_leader_emails": ["dominik.wycislo@admindagency.com"]
     },
     "3D": {
       "leader_email": "oscar.sobrino@admindagency.com",
@@ -475,7 +476,7 @@
       "is_team_lead": true
     },
     {
-      "name": "Julia Piwowarska",
+      "name": "Julia Ożgo",
       "email": "julia.piwowarska@admindagency.com",
       "team": "PRINC",
       "leader_email": "aida.fernandez@admindagency.com",
