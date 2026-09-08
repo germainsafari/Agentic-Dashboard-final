@@ -783,6 +783,15 @@ export async function aggregateTimeForTeam(
       "";
     const q = quarterFromIsoDate(dateStr, year);
     if (!q || closed.has(q)) continue;
+    // An entry logged/scheduled for later in the still-open quarter (e.g. a
+    // calendar block for next week) hasn't happened yet and must not count
+    // as worked time — the availability loop above already stops at
+    // asOfIso for the same reason. Without this, a person's future-dated
+    // calendar entries inflate this quarter's utilization numerator for
+    // days that haven't occurred (confirmed live 2026-09-08: 43h of
+    // qualifying time already logged for Sep 9-30 was being counted in
+    // Q3's numerator on Sep 8).
+    if (dateStr > asOfIso) continue;
     const dur = parseDurationToSeconds(e.duration);
     const bill = parseDurationToSeconds(e.billable_duration ?? "00:00:00");
     agg[q].durationSec += dur;
