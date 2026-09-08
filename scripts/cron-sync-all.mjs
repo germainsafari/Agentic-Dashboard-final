@@ -122,31 +122,49 @@ async function waitForDirectorSync(director) {
 
 console.log(`[cron-sync] Target: ${base}`);
 
-for (const director of directors) {
-  console.log(`[cron-sync] Triggering ${director}…`);
-  const trigger = await httpRequest(
-    "POST",
-    `${base}/api/sync?director=${encodeURIComponent(director)}`,
-    headers
-  );
-  console.log(
-    `[cron-sync] ${director} trigger → HTTP ${trigger.status}: ${trigger.body.slice(0, 200)}`
-  );
-  if (trigger.status !== 202 && trigger.status !== 409) {
-    process.exit(1);
-  }
-  if (trigger.status === 409) {
-    console.log(`[cron-sync] ${director} skipped — sync already in progress, waiting…`);
-  }
+// One director timing out or erroring must not abandon the rest of the run —
+// this used to throw uncaught and kill the whole process mid-list, silently
+// leaving every director after the failure point stale until the next cron
+// cycle (confirmed live: real snapshots were found 16-36 days stale, with a
+// different director tripping the ~60min-per-director cap each cycle since
+// Scoro's own rate-limiting varies run to run).
+const failed = [];
 
-  const status = await waitForDirectorSync(director);
-  console.log(
-    `[cron-sync] ${director} done — lastSyncAt=${status.lastSyncAt}, cached=${status.directorsCached}`
-  );
+for (const director of directors) {
+  try {
+    console.log(`[cron-sync] Triggering ${director}…`);
+    const trigger = await httpRequest(
+      "POST",
+      `${base}/api/sync?director=${encodeURIComponent(director)}`,
+      headers
+    );
+    console.log(
+      `[cron-sync] ${director} trigger → HTTP ${trigger.status}: ${trigger.body.slice(0, 200)}`
+    );
+    if (trigger.status !== 202 && trigger.status !== 409) {
+      throw new Error(`Unexpected trigger status ${trigger.status}`);
+    }
+    if (trigger.status === 409) {
+      console.log(`[cron-sync] ${director} skipped — sync already in progress, waiting…`);
+    }
+
+    const status = await waitForDirectorSync(director);
+    console.log(
+      `[cron-sync] ${director} done — lastSyncAt=${status.lastSyncAt}, cached=${status.directorsCached}`
+    );
+  } catch (e) {
+    console.error(`[cron-sync] ${director} FAILED — continuing with remaining directors:`, e.message);
+    failed.push(director);
+  }
 
   if (director !== directors[directors.length - 1]) {
     await sleep(PAUSE_MS);
   }
 }
 
-console.log("[cron-sync] All directors synced.");
+if (failed.length > 0) {
+  console.error(`[cron-sync] Done with failures: ${failed.join(", ")}`);
+  process.exit(1);
+} else {
+  console.log("[cron-sync] All directors synced.");
+}
