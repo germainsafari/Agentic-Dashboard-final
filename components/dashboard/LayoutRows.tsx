@@ -192,11 +192,18 @@ export function LayoutRows({
                     {(() => {
                       const pa = stats.projectsAnalyzed as Record<string, number | undefined>;
                       const pitchKeys = new Set(["newBizWin", "existingWin"]);
-                      const poolSize = pitchKeys.has(meta.key)
-                        ? stats.kpiDebug?.[meta.key as keyof typeof stats.kpiDebug]?.[quarter]
-                            ?.poolSize
-                        : undefined;
-                      const n = poolSize ?? pa[meta.key];
+                      const debugForQuarter =
+                        stats.kpiDebug?.[meta.key as keyof typeof stats.kpiDebug]?.[quarter];
+                      // Pitch KPIs carry their quarter-specific pool size directly;
+                      // fta/estimate's per-quarter count is their debug denominator
+                      // instead — projectsAnalyzed (pa) is a YEAR-WIDE total summed
+                      // across all four quarters, so using it here made this caption
+                      // show the same count no matter which quarter was selected.
+                      // Only fall back to it when kpiDebug has no data at all (e.g.
+                      // an older cached snapshot).
+                      const n = pitchKeys.has(meta.key)
+                        ? (debugForQuarter?.poolSize ?? pa[meta.key])
+                        : (debugForQuarter?.denominator ?? pa[meta.key]);
                       const label = pitchKeys.has(meta.key) ? "pitch tasks analyzed" : "projects analyzed";
                       return n != null && n > 0 ? `${n} ${label}` : "";
                     })()}
